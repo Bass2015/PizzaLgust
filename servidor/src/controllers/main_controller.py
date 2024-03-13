@@ -2,12 +2,13 @@ from flask import request, jsonify
 
 from events.events import TOKEN_VERIFIED_EVENT
 from utils.async_utils import run_task_in_background
-from config import INVALID_TOKEN_CODE, DOCUMENT_NOT_FOUND_CODE
+from config import UNAUTHORIZED_CODE, DOCUMENT_NOT_FOUND_CODE
 from services.database import DocumentNotFoundError
 
 # from utils.auth_utils import verify, InvalidTokenError
+from utils.auth_utils import InvalidPasswordError
 
-from .controllers import BaseController
+from .controllers import LoginController
 
 # def __make_response(controller):
 #     try:
@@ -30,8 +31,22 @@ from .controllers import BaseController
 # #                 LOGIN ENDPOINTS                            #
 # #                 ``````````````````````                     #
 # ##############################################################
-# def login():
-#     return __make_response(BaseController)
+def login():
+    try:
+        controller = LoginController(request)
+        data, code = controller.run()      
+        response =  jsonify(data), code
+    # except InvalidTokenError as e:
+    #     response =  jsonify({'msg': str(e.message)}), INVALID_TOKEN_CODE
+    except DocumentNotFoundError as e:
+        response =  jsonify({'msg': str(e.message)}), DOCUMENT_NOT_FOUND_CODE
+    except InvalidPasswordError as e:
+        response =  jsonify({'msg': str(e.message)}), UNAUTHORIZED_CODE
+    except Exception as e:
+        response = jsonify({'msg': f"{e.__class__.__name__}: {str(e)}"}), 500
+    finally:
+        TOKEN_VERIFIED_EVENT.clear_observers()
+        return response
 
 def test():
     nombre = request.json['nombre']

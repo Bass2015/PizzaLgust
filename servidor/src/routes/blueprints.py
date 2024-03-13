@@ -13,5 +13,5 @@ from controllers import main_controller as controller
 blueprint = Blueprint('blueprint', __name__, url_prefix='/pizzalgust')
 
 
-# blueprint.route('/login', methods=['GET'])(controller.login)
+blueprint.route('/login', methods=['GET'])(controller.login)
 blueprint.route('/test', methods=['GET'])(controller.test)

@@ -7,6 +7,7 @@ load_dotenv()
 DB_URI = os.getenv('db_uri')
 
 DOCUMENT_NOT_FOUND_CODE = 410
+UNAUTHORIZED_CODE = 401
 
 # JWT AUTHORIZATION
 # JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY')
