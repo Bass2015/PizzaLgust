@@ -1,4 +1,5 @@
 from utils.async_utils import run_task_in_background
+from utils.auth_utils import create_token
 from abc import ABC, abstractmethod, abstractclassmethod
 from services import database as db
 from models.models import DBModel, User
@@ -30,7 +31,10 @@ class LoginController(BaseController):
         # message = DBModel # Some kind of DBModel
         # run_task_in_background(self.__persist, 
         #                        message=message)
-        data = {'msg': 'Login succesful'}
+        token = create_token(self.user._id, 
+                             self.user.email)
+        data = {'msg': 'Login succesful', 
+                'token': token}
         return data, 200
 
     def __example(self):

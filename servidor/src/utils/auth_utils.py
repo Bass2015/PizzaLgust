@@ -1,12 +1,14 @@
 
-# from jwt import (decode, 
+from jwt import (decode, 
+                 encode)
 #                  InvalidAlgorithmError, 
 #                  InvalidSignatureError,
 #                  ExpiredSignatureError, 
 #                  MissingRequiredClaimError)
-# from config import JWT_SECRET_KEY, N_REQ_CLAIMS
+from config import JWT_SECRET_KEY, N_REQ_CLAIMS
 # from services.database import is_document_in_collection
 # from events.events import TOKEN_VERIFIED_EVENT
+from time import time
 
 import bcrypt
 
@@ -21,6 +23,15 @@ def check_password(password: str, hashed_pwd):
     if bcrypt.checkpw(bpassword, hashed_pwd):
         return True
     raise InvalidPasswordError()
+
+def create_token(user_id, user_mail, ):
+    token = encode(
+            payload={'id': user_id,
+                    'email': user_mail,
+                    'iat':int(time())},
+            key= JWT_SECRET_KEY,
+            algorithm='HS256')
+    return token
 
 # def verify(headers: dict) -> str:
 #     """
