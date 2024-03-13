@@ -13,7 +13,6 @@ from events.events import TokenVerifiedEventListener
 from utils.async_utils import run_task_in_background
 from utils.auth_utils import hash_password, check_password
 from inspect import getfullargspec
-import bcrypt
 
 class DBModel(ABC):
     def __init__(self) -> None:
@@ -79,6 +78,18 @@ class User(DBModel):
         retrieved_user = db.get_document_from_database(User._database, 
                                       User._collection, 
                                       _id=user_id)
+        hashed_password = retrieved_user.pop('password')
+        check_password(password=password, hashed_pwd=hashed_password)
+        fields = {k:v for k,v in retrieved_user.items() 
+                      if k in getfullargspec(cls.__init__).args}
+        user = cls(**fields)
+        return user
+    
+    @classmethod
+    def read_from_email(cls, email, password):
+        retrieved_user = db.get_document_from_database(User._database, 
+                                      User._collection, 
+                                      email=email)
         hashed_password = retrieved_user.pop('password')
         check_password(password=password, hashed_pwd=hashed_password)
         fields = {k:v for k,v in retrieved_user.items() 
