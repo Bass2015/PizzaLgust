@@ -1,9 +1,4 @@
-# """
-# Description: The auth_utils module contains utility functions
-# and tools for handling user authentication, including functions 
-# for registration, and token verification.
-# Purpose: To assist in user authentication and authorization.
-# """
+
 # from jwt import (decode, 
 #                  InvalidAlgorithmError, 
 #                  InvalidSignatureError,
@@ -12,6 +7,20 @@
 # from config import JWT_SECRET_KEY, N_REQ_CLAIMS
 # from services.database import is_document_in_collection
 # from events.events import TOKEN_VERIFIED_EVENT
+
+import bcrypt
+
+
+def hash_password(password: str):
+    bpassword = password.encode()
+    salt = bcrypt.gensalt()
+    return bcrypt.hashpw(bpassword, salt)
+
+def check_password(password: str, hashed_pwd):
+    bpassword = password.encode()
+    if bcrypt.checkpw(bpassword, hashed_pwd):
+        return True
+    raise InvalidPasswordError()
 
 # def verify(headers: dict) -> str:
 #     """
@@ -65,3 +74,8 @@
 #     def __init__(self, message="Token is invalid"):
 #         self.message = message
 #         super().__init__(self.message)
+
+class InvalidPasswordError(Exception):
+    def __init__(self, message="Password is invalid"):
+        self.message = message
+        super().__init__(self.message)
