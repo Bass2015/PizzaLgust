@@ -22,6 +22,7 @@ class BaseController(ABC):
         message_id = model.store()
         
 class LoginController(BaseController):
+    logged_in_users = []
     def __init__(self, request, config=None):
         self.user = User.read_from_email(email=request.json['email'],
                                          password=request.json['password'])
@@ -33,6 +34,7 @@ class LoginController(BaseController):
         #                        message=message)
         token = create_token(self.user._id, 
                              self.user.email)
+        LoginController.logged_in_users.append(token)
         data = {'msg': 'Login succesful', 
                 'token': token}
         return data, 200
