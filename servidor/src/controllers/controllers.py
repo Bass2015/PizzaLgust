@@ -36,6 +36,10 @@ class LoginController(BaseController):
                              self.user.email)
         LoginController.logged_in_users.append(token)
         data = {'msg': 'Login succesful', 
+                'user_name': self.user.user_name,
+                'first_name': self.user.first_name,
+                'last_name': self.user.last_name,
+                'is_admin': self.user.is_admin,
                 'token': token}
         return data, 200
 

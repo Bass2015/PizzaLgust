@@ -7,3 +7,36 @@
    1. En la terminal, ir a la carpeta del proyecto
    2. Correr `pip install -r requirements.txt`
 3. Para iniciar el servidor, correr `python servidor/src/main.py`
+
+### Métodos
+####  GET `/login`
+Inicia sesión con las credenciales proporcionadas y devuelve un token de autenticación junto con los detalles del usuario.
+
+**Parámetros de Entrada**
+email (cadena): Correo electrónico del usuario.
+password (cadena): Contraseña del usuario.
+```GET /login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "usuario@example.com",
+    "password": "contraseña123"
+}
+```
+**Respuestas**
+- Código 200: Se devuelve cuando el inicio de sesión es exitoso. Se proporciona un token de autenticación junto con los detalles del usuario.
+```
+{
+    "msg": "Inicio de sesión exitoso",
+    "user_name": "nombre_de_usuario",
+    "first_name": "Nombre",
+    "last_name": "Apellido",
+    "is_admin": true,
+    "token": "token_de_autenticacion"
+}
+```
+
+- Código 400: Se devuelve si los datos de inicio de sesión son incorrectos o faltantes.
+- Código 410: Se devuelve si el usuario no está en la base de datos.
+- Código 401: Se devuelve si la contraseña del usuario es incorrecta.
+- Código 500: Se devuelve con cualquier otro error no contemplado en los ya mencionados.
