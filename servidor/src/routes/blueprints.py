@@ -14,4 +14,4 @@ blueprint = Blueprint('blueprint', __name__, url_prefix='/pizzalgust')
 
 
 # blueprint.route('/login', methods=['GET'])(controller.login)
-blueprint.route('/test', methods=['GET'])(controller.test)
+blueprint.route('/test', methods=['POST'])(controller.test)

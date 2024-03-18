@@ -1,20 +1,25 @@
 package com.joanet.pizzalgustmobile
 
+import android.graphics.ColorSpace.Model
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import com.google.gson.Gson
 import com.google.gson.JsonObject
+
 import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import com.joanet.pizzalgustmobile.DataModel
 
 
 
@@ -55,8 +60,6 @@ class MainActivity : AppCompatActivity() {
             val jsonString = Gson().toJson(jsonObject)
 
 
-
-
             // Llamar al método getJokes() de la clase ApiCall,
             // pasando una función de devolución de llamada como parámetro.
             val retrofit = Retrofit.Builder()
@@ -65,24 +68,34 @@ class MainActivity : AppCompatActivity() {
                 .build()
 
             val apiService = retrofit.create(ApiService::class.java)
-            apiService.getJokes().enqueue(object : Callback<DataModel> {
+
+            //construyendo la petición --> /test
+
+            val model = DataModel("Joan", "")
+            val call = apiService.getUserData(model)
+
+            call.enqueue(object : Callback<DataModel> {
                 override fun onResponse(call: Call<DataModel>, response: Response<DataModel>) {
-                    // Establecer el texto del TextView con el
-                    // valor de la broma devuelta por la respuesta de la API.
-                    tv_jokes.setText(response.body()?.nombre ?: "No se encontraron Nombres")
+                    if (response.isSuccessful) {
+                        val dataModel = response.body()
+                        tv_jokes.text = dataModel?.msg ?: "No se encontraron Nombres"
 
+                        Log.d("API_CALL1", "Respuesta buena: $dataModel")
+                    } else {
+                        Log.e("API_CALL", "Error: ${response.code()}")
+                        tv_jokes.text = "Error: ${response.code()}"
 
-                    // Ocultar la barra de progreso
+                    }
                     progressBar.visibility = View.GONE
                 }
 
                 override fun onFailure(call: Call<DataModel>, t: Throwable) {
-                    // Manejar la falla de la solicitud aquí
-                    Log.e("API_CALL", "Error: ${t.message}")
-                    // Ocultar la barra de progress
+                    Log.e("API_CALL", "Error: ${t.message}", t)
+                    tv_jokes.text = "Request Fail"
                     progressBar.visibility = View.GONE
                 }
             })
         }
     }
 }
+
