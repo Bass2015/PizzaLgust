@@ -9,7 +9,7 @@
 3. Para iniciar el servidor, correr `python servidor/src/main.py`
 
 ### Métodos
-####  GET `/login`
+####  POST `/login`
 Inicia sesión con las credenciales proporcionadas y devuelve un token de autenticación junto con los detalles del usuario.
 
 **Parámetros de Entrada**
@@ -19,8 +19,8 @@ password (cadena): Contraseña del usuario.
 Content-Type: application/json
 
 {
-    "email": "usuario@example.com",
-    "password": "contraseña123"
+    "email": "bwayne@gotham.com",
+    "password": "batman"
 }
 ```
 **Respuestas**
@@ -28,9 +28,9 @@ Content-Type: application/json
 ```
 {
     "msg": "Inicio de sesión exitoso",
-    "user_name": "nombre_de_usuario",
-    "first_name": "Nombre",
-    "last_name": "Apellido",
+    "user_name": "bwayne",
+    "first_name": "Bruce",
+    "last_name": "Wayne",
     "is_admin": true,
     "token": "token_de_autenticacion"
 }
