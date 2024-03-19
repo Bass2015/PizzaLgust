@@ -13,5 +13,6 @@ from controllers import main_controller as controller
 blueprint = Blueprint('blueprint', __name__, url_prefix='/pizzalgust')
 
 
+
 blueprint.route('/login', methods=['POST'])(controller.login)
 blueprint.route('/test', methods=['POST'])(controller.test)
