@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">pizzaLgustMobile</string>
+    <string name="btn_entrar">ENTRAR</string>
+    <string name="tv_login">LOGIN</string>
+    <string name="et_contraseña">Ingrese la contraseña</string>
+    <string name="et_email">Ingrese el correo electronico</string>
+    <string name="tv_email">Email</string>
+    <string name="tv_contraseña">Contraseña</string>
+    <string name="tv_Bienvenido">Bienvenidos a PizzaLgust!</string>
+
 </resources>
