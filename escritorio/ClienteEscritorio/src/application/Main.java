@@ -57,6 +57,11 @@ public class Main extends Application {
 	@FXML
 	Label isAdminText;
 	
+	/**
+	 * Aquesta classe executa l'entorn gràfic del programa
+	 * @author Raul Luque Craciun
+	 * @param primaryStage L'escena que s'executarà
+	 */
 	@Override
 	public void start(Stage primaryStage) {
 		
@@ -79,6 +84,11 @@ public class Main extends Application {
 		launch(args);
 	}
 	
+	/**
+	 * Aquest mètode controla el login al clicar al botó de login
+	 * @author Raul Luque Craciun
+	 * @param e ActionEvent
+	 */
 	public void handleLogin(ActionEvent e) {
 		try {
             URL url = new URL("http://localhost:5002/pizzalgust/login");
@@ -178,6 +188,11 @@ public class Main extends Application {
         }
 	}
 	
+	/**
+	 * Aquest mètode controla el logout al clicar el botó de logout
+	 * @author Raul Luque Craciun
+	 * @param e ActionEvent
+	 */
 	public void handleLogout(ActionEvent e) {
 		try {
 			URL url = new URL("http://localhost:5002/pizzalgust/logout");
