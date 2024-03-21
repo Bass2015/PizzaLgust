@@ -1,11 +1,5 @@
-"""
-Description: This module defines Flask blueprints for organizing 
-routes and views in your application. Blueprints are used to group
-related routes and views together, making it easier to manage and
-organize your application's endpoints.
-Purpose: To define and register blueprints that handle different 
-parts of your application's functionality.
-"""
+"""Descripción: Este módulo define blueprints de Flask para organizar rutas y vistas en tu aplicación. Los blueprints se utilizan para agrupar rutas y vistas relacionadas, facilitando la gestión y organización de los puntos finales de tu aplicación.
+Propósito: Definir y registrar blueprints que manejen diferentes partes de la funcionalidad de tu aplicación."""
 
 from flask import Blueprint
 from controllers import main_controller as controller

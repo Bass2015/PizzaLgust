@@ -14,17 +14,52 @@ import bcrypt
 
 
 def hash_password(password: str):
+    """
+    Función para generar el hash de una contraseña.
+
+    Parámetros:
+    - password (str): La contraseña a hashear.
+
+    Retorna:
+    - str: El hash de la contraseña.
+
+    Esta función toma una contraseña como entrada, la hashea con una sal aleatoria y retorna el hash resultante.
+    """
     bpassword = password.encode()
     salt = bcrypt.gensalt()
     return bcrypt.hashpw(bpassword, salt)
 
 def check_password(password: str, hashed_pwd):
+    """
+    Función para verificar una contraseña con su hash.
+
+    Parámetros:
+    - password (str): La contraseña a verificar.
+    - hashed_pwd: El hash de la contraseña almacenada.
+
+    Retorna:
+    - bool: True si la contraseña es válida, False si no lo es.
+
+    Esta función verifica si una contraseña coincide con su hash almacenado.
+    """
     bpassword = password.encode()
     if bcrypt.checkpw(bpassword, hashed_pwd):
         return True
     raise InvalidPasswordError()
 
 def create_token(user_id, user_mail, ):
+    """
+    Función para crear un token JWT.
+
+    Parámetros:
+    - user_id: ID del usuario.
+    - user_mail: Correo electrónico del usuario.
+
+    Retorna:
+    - str: El token JWT creado.
+
+    Esta función crea un token JWT codificando el ID de usuario, el correo electrónico y el tiempo actual.
+    """
     token = encode(
             payload={'id': user_id,
                     'email': user_mail,
@@ -35,12 +70,12 @@ def create_token(user_id, user_mail, ):
 
 def verify_token(token: str) -> str:
     """
-    Get the user ID from a provided token.
+    Obtener el ID de usuario a partir de un token proporcionado.
 
-    Parameters:
-    - token (str): The user token.
+    Parámetros:
+    - token (str): El token de usuario.
 
-    This function decodes the provided user token using a secret key, checks for required claims, and verifies the user's existence in the database. If the token is invalid or missing required claims, it raises an InvalidTokenError.
+    Esta función decodifica el token de usuario proporcionado utilizando una clave secreta, verifica las reclamaciones requeridas y verifica la existencia del usuario en la base de datos. Si el token es inválido o falta reclamaciones requeridas, se genera un error InvalidTokenError.
     """
     try:
         decoded_token = decode(token, 

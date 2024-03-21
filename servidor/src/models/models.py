@@ -1,11 +1,7 @@
 """
-Description: The models module defines data models and database
-schema for your application. It typically includes classes that 
-represent the structure of your application's data, such as user 
-profiles, chat conversations, or messages.
+Descripción: El módulo de modelos define modelos de datos y el esquema de la base de datos para tu aplicación. Normalmente incluye clases que representan la estructura de los datos de tu aplicación, como perfiles de usuario, conversaciones de chat o mensajes.
 
-Purpose: To define the data structure and relationships for your 
-application's database.
+Propósito: Definir la estructura de datos y las relaciones para la base de datos de tu aplicación.
 """
 from abc import ABC, abstractmethod, abstractclassmethod
 from services import database as db
@@ -15,6 +11,15 @@ from utils.auth_utils import hash_password, check_password
 from inspect import getfullargspec
 
 class DBModel(ABC):
+    """
+    DBModel: Clase abstracta base para definir la funcionalidad básica de un modelo de base de datos.
+
+    Métodos abstractos:
+    - read(self, *args): Método para leer datos del modelo.
+    - store(self): Método para almacenar el modelo en la base de datos.
+    - update(self): Método para actualizar el modelo en la base de datos.
+    - delete(self): Método para eliminar el modelo de la base de datos.
+    """
     def __init__(self) -> None:
         super().__init__()
    
@@ -24,20 +29,35 @@ class DBModel(ABC):
 
     @abstractmethod
     def store(self):
+        """
+        Método para almacenar el modelo en la base de datos.
+        """
         pass
     
     def store_in_background(self):
+        """
+        Método para guardar el modelo en la base de datos en segundo plano.
+        """
         run_task_in_background(self.store)
     
     @abstractmethod
     def update(self):
+        """
+        Método para actualizar el modelo en la base de datos.
+        """
         pass
     
     def update_in_background(self):
+        """
+        Método para actualizar el modelo en la base de datos en segundo plano.
+        """
         run_task_in_background(self.update)
 
     @abstractmethod
     def delete(self):
+        """
+        Método para eliminar el modelo en la base de datos.
+        """
         pass
 
 class User(DBModel):
@@ -62,6 +82,20 @@ class User(DBModel):
 
     @classmethod
     def new_user(cls, is_admin, user_name, email, first_name, last_name, password):
+        """
+        Método para crear un nuevo usuario.
+
+        Parámetros:
+        - is_admin (bool): Indica si el usuario es administrador.
+        - user_name (str): Nombre de usuario.
+        - email (str): Correo electrónico del usuario.
+        - first_name (str): Nombre del usuario.
+        - last_name (str): Apellido del usuario.
+        - password (str): Contraseña del usuario.
+
+        Retorna:
+        - user: Objeto de usuario creado.
+        """
         user = cls(is_admin=is_admin,
                    user_name = user_name,
                    email=email, 
@@ -75,6 +109,16 @@ class User(DBModel):
     
     @classmethod
     def read(cls, user_id, password):
+        """
+        Método para leer un usuario por su ID y contraseña.
+
+        Parámetros:
+        - user_id (str): ID del usuario.
+        - password (str): Contraseña del usuario.
+
+        Retorna:
+        - user: Objeto de usuario leído.
+        """
         retrieved_user = db.get_document_from_database(User._database, 
                                       User._collection, 
                                       _id=user_id)
@@ -87,6 +131,16 @@ class User(DBModel):
     
     @classmethod
     def read_from_email(cls, email, password):
+        """
+        Método para leer un usuario por su correo electrónico y contraseña.
+
+        Parámetros:
+        - email (str): Correo electrónico del usuario.
+        - password (str): Contraseña del usuario.
+
+        Retorna:
+        - user: Objeto de usuario leído.
+        """
         retrieved_user = db.get_document_from_database(User._database, 
                                       User._collection, 
                                       email=email)

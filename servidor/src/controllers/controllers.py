@@ -1,3 +1,14 @@
+"""
+Documentación del Módulo: controllers
+
+Este módulo proporciona controladores para manejar la autenticación de usuarios y la gestión de sesiones en una aplicación Flask.
+
+Clases:
+- BaseController: Clase base abstracta para definir la funcionalidad básica del controlador.
+- LoginController: Controlador para manejar la funcionalidad de inicio de sesión de usuario.
+- LogoutController: Controlador para manejar la funcionalidad de cierre de sesión de usuario.
+- UserNotLoggedInError: Excepción personalizada generada cuando un usuario intenta realizar acciones sin haber iniciado sesión.
+"""
 from utils.async_utils import run_task_in_background
 from utils.auth_utils import create_token
 from abc import ABC, abstractmethod, abstractclassmethod
@@ -6,11 +17,23 @@ from models.models import DBModel, User
 
 
 class BaseController(ABC):
+    """BaseController: Clase base abstracta para definir la funcionalidad básica del controlador.
+
+    Métodos:
+    - __init__(self, request, config=None): Método constructor.
+    - run(self) -> tuple: Método abstracto que debe ser implementado por subclases para ejecutar la lógica del controlador.
+    """
     def __init__(self, request, config=None):
         pass
 
 
     def run(self) -> tuple:
+        """
+        Método para ejecutar la lógica del controlador.
+
+        Retorna:
+        - tuple: Una tupla que contiene los datos de respuesta del controlador y el código de estado HTTP.
+        """
         message = DBModel # Some kind of DBModel
         run_task_in_background(self.__persist, 
                                message=message)
