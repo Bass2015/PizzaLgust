@@ -1,5 +1,6 @@
 package com.joanet.pizzalgustmobile
 
+import com.google.gson.annotations.SerializedName
 
 
 // Model class for our Jokes
@@ -13,5 +14,11 @@ data class LoginDataModel(
     val is_admin: Boolean,
     val token: String
 
+
+):java.io.Serializable
+
+data class LogoutDataModel(
+    val token: String,
+    val msg: String
 
 ):java.io.Serializable
