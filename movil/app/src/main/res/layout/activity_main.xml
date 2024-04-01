@@ -40,29 +40,30 @@
         android:id="@+id/textView3"
         android:layout_width="59dp"
         android:layout_height="25dp"
+        android:layout_marginTop="92dp"
         android:text="@string/tv_email"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/et_login"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.036"
+        app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewLogin"
-        app:layout_constraintVertical_bias="0.793" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewLogin" />
 
     <EditText
         android:id="@+id/et_contraseña"
-        android:layout_width="410dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="236dp"
+        android:layout_width="398dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/edittext_rounded_corner"
-        android:hint="@string/et_contraseña"
 
+        android:hint="@string/et_contraseña"
         android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.357"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_login"
+        app:layout_constraintVertical_bias="0.003" />
 
     <TextView
         android:id="@+id/tvContraseña"
@@ -80,16 +81,16 @@
 
     <EditText
         android:id="@+id/et_login"
-        android:layout_width="410dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="104dp"
+        android:layout_width="409dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="136dp"
         android:autofillHints=""
         android:background="@drawable/edittext_rounded_corner"
         android:hint="@string/et_email"
         android:inputType="text"
         android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewLogin" />
 
@@ -97,12 +98,12 @@
         android:id="@+id/btn_entrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="176dp"
+        android:layout_marginStart="4dp"
         android:text="@string/btn_entrar"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_contraseña"
+        app:layout_constraintVertical_bias="0.273" />
 
     <ProgressBar
         android:id="@+id/idLoadingPB"

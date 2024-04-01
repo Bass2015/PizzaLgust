@@ -3,6 +3,7 @@ import org.apache.tools.ant.util.JavaEnvUtils.VERSION_1_8
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("org.jetbrains.dokka") version "1.9.20"
 }
 
 android {
@@ -48,8 +49,14 @@ dependencies {
     //Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-
+    implementation("org.jetbrains.dokka:android-documentation-plugin:1.9.20")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    dokkaPlugin("org.jetbrains.dokka:android-documentation-plugin:1.9.20")
+
 }
+tasks.dokkaHtml.configure {
+    outputDirectory.set(file("C:\\Users\\joanet\\Desktop\\DAM\\movil\\dokka"))
+}
+

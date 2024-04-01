@@ -13,10 +13,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-/**
- * Actividad que representa la pantalla de administrador.
- */
-class AdminActivity : AppCompatActivity() {
+class UserActivity : AppCompatActivity() {
 
     private lateinit var btn_salir: Button
     private lateinit var tvFirstName: TextView
@@ -36,8 +33,8 @@ class AdminActivity : AppCompatActivity() {
         val message = intent.getStringExtra("message")
 
         // Muestra los datos recibidos en las vistas correspondientes
-        tvFirstName.text = "Nombre :  $firstName"
-        tvMessage.text = "Mensaje: $message"
+        tvFirstName.text = firstName
+        tvMessage.text = message
 
         // Configura el listener para el botón de salir
         btn_salir.setOnClickListener {
@@ -75,23 +72,23 @@ class AdminActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val responseData = response.body()
                     responseData?.let {
-                        Toast.makeText(this@AdminActivity, it.msg, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@UserActivity, it.msg, Toast.LENGTH_SHORT).show()
                         Log.d("DEBUG", "Logout exitoso: ${it.msg}")
                     }
                     // Redirige a la actividad de inicio de sesión
-                    val intent = Intent(this@AdminActivity, MainActivity::class.java)
+                    val intent = Intent(this@UserActivity, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {
                     // Muestra un mensaje de error si la respuesta no fue exitosa
-                    Toast.makeText(this@AdminActivity, "Error en el logout: ${response.code()}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@UserActivity, "Error en el logout: ${response.code()}", Toast.LENGTH_SHORT).show()
                     Log.e("ERROR", "Error en el logout: ${response.code()}")
                 }
             }
 
             override fun onFailure(call: Call<LogoutDataModel>, t: Throwable) {
                 // Muestra un mensaje de error en caso de fallo en la llamada de logout
-                Toast.makeText(this@AdminActivity, "Fallo en la llamada de logout: ${t.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@UserActivity, "Fallo en la llamada de logout: ${t.message}", Toast.LENGTH_SHORT).show()
                 Log.e("ERROR", "Fallo en la llamada de logout: ${t.message}")
             }
         })

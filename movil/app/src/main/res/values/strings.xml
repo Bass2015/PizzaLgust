@@ -13,6 +13,8 @@
     <string name="tv_admin_name">Name :</string>
     <string name="btn_salir">SALIR/LOGOUT</string>
     <string name="tv_bienvenidaAdmin">Bienvenido Admin</string>
+    <string name="tv_Bienvenida">Bienvenido Sr.Wayne</string>
+    <string name="tv_admin">Administrador</string>
 
 
 

@@ -10,13 +10,16 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import com.google.gson.Gson
-
-
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+
+/**
+ * Actividad principal de la aplicación.
+ * Esta actividad maneja el inicio de sesión de los usuarios.
+ */
 
 class MainActivity : AppCompatActivity() {
 
@@ -48,6 +51,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Método para iniciar sesión en la aplicación.
+     * Realiza una llamada a la API para autenticar al usuario.
+     * @param email El correo electrónico del usuario.
+     * @param password La contraseña del usuario.
+     */
     private fun login(email: String, password: String) {
         val retrofit = Retrofit.Builder()
             .baseUrl("http://10.0.2.2:5002/")
@@ -76,8 +85,10 @@ class MainActivity : AppCompatActivity() {
                         Log.d("JSON Response", jsonString)
 
                         val isAdmin = dataModel?.is_admin ?: false
-                        val message = if (isAdmin) "Hola Admin" else "Hola Usuario"
+                        val message = if (isAdmin) "Hola ${dataModel?.first_name}" else "Hola ${dataModel?.first_name}"
                         Toast.makeText(this@MainActivity, message, Toast.LENGTH_SHORT).show()
+
+
 
                         val intent = Intent(this@MainActivity, AdminActivity::class.java)
                         intent.putExtra("authToken", dataModel?.token)
