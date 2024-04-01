@@ -1,7 +1,6 @@
 package com.joanet.pizzalgustmobile
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -9,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,7 +20,6 @@ import retrofit2.converter.gson.GsonConverterFactory
  * Actividad principal de la aplicación.
  * Esta actividad maneja el inicio de sesión de los usuarios.
  */
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var etEmail: EditText
@@ -84,17 +83,20 @@ class MainActivity : AppCompatActivity() {
                         val jsonString = gson.toJson(dataModel)
                         Log.d("JSON Response", jsonString)
 
-                        val isAdmin = dataModel?.is_admin ?: false
-                        val message = if (isAdmin) "Hola ${dataModel?.first_name}" else "Hola ${dataModel?.first_name}"
-                        Toast.makeText(this@MainActivity, message, Toast.LENGTH_SHORT).show()
-
-
-
-                        val intent = Intent(this@MainActivity, AdminActivity::class.java)
-                        intent.putExtra("authToken", dataModel?.token)
-                        intent.putExtra("firstName", dataModel?.first_name)
-                        intent.putExtra("message", dataModel?.msg)
-                        startActivity(intent)
+                        // Verifica si el usuario es un administrador o no
+                        if (dataModel?.is_admin == true) {
+                            val intent = Intent(this@MainActivity, AdminActivity::class.java)
+                            intent.putExtra("authToken", dataModel.token)
+                            intent.putExtra("firstName", dataModel.first_name)
+                            intent.putExtra("message", dataModel.msg)
+                            startActivity(intent)
+                        } else {
+                            val intent = Intent(this@MainActivity, UserActivity::class.java)
+                            intent.putExtra("authToken", dataModel?.token)
+                            intent.putExtra("firstName", dataModel?.first_name)
+                            intent.putExtra("message", dataModel?.msg)
+                            startActivity(intent)
+                        }
                         finish()
                     }
                 } else {

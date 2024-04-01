@@ -21,7 +21,7 @@ class UserActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login_admin) //
+        setContentView(R.layout.activity_login_user) //
 
         btn_salir = findViewById(R.id.btn_salir)
         tvFirstName = findViewById(R.id.tvFirstName)
