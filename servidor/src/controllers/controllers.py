@@ -60,6 +60,7 @@ class LoginController(BaseController):
                 'first_name': self.user.first_name,
                 'last_name': self.user.last_name,
                 'is_admin': self.user.is_admin,
+                'user_type': self.user.user_type,
                 'token': token}
         return data, 200
 class LogoutController(BaseController):

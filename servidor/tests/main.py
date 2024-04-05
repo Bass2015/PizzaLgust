@@ -31,6 +31,7 @@ class TEA2Tests(TestCase):
         assert 'last_name' in response.json().keys()
         assert 'is_admin' in response.json().keys()
         assert 'token' in response.json().keys()
+        assert 'user_type' in response.json().keys()
 
     def test_bad_password(self):
         """

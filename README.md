@@ -32,6 +32,7 @@ Content-Type: application/json
     "first_name": "Bruce",
     "last_name": "Wayne",
     "is_admin": true,
+    "user_type": "admin
     "token": "token_de_autenticacion"
 }
 ```
