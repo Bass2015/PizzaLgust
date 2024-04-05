@@ -71,7 +71,8 @@ class User(DBModel):
                  email="",
                  first_name="",
                  last_name="",
-                 password="") -> None:
+                 password="", 
+                 user_type="cliente") -> None:
         self._id = _id
         self.is_admin = is_admin
         self.email = email
@@ -79,9 +80,10 @@ class User(DBModel):
         self.first_name = first_name
         self.last_name  = last_name 
         self.password = hash_password(password)
+        self.user_type=user_type
 
     @classmethod
-    def new_user(cls, is_admin, user_name, email, first_name, last_name, password):
+    def new_user(cls, is_admin, user_name, email, first_name, last_name, password, user_type):
         """
         Método para crear un nuevo usuario.
 
@@ -96,12 +98,16 @@ class User(DBModel):
         Retorna:
         - user: Objeto de usuario creado.
         """
+        if user_type not in ['admin', 'cliente', 'cocinero', 'repartidor']:
+            raise InvalidUserTypeError
+
         user = cls(is_admin=is_admin,
                    user_name = user_name,
                    email=email, 
                    first_name=first_name, 
                    last_name=last_name, 
                    password=password, 
+                   user_type=user_type
                    )
         user.__dict__.pop('_id')
         user._id = db.insert_one(User._database, User._collection, **user.__dict__)
@@ -159,3 +165,10 @@ class User(DBModel):
     
     def delete(self):
         raise NotImplementedError()
+    
+
+
+class InvalidUserTypeError(Exception):
+    def __init__(self, message="User type is not valid. Must be one of ['admin', 'cliente', 'cocinero', 'repartidor']."):
+        self.message = message
+        super().__init__(self.message)
