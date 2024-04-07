@@ -24,7 +24,7 @@ class DBModel(ABC):
         super().__init__()
    
     @abstractclassmethod
-    def read(self, *args):
+    def read_w_pwd(self, *args):
         pass
 
     @abstractmethod
@@ -114,7 +114,7 @@ class User(DBModel):
         return user
     
     @classmethod
-    def read(cls, user_id, password):
+    def read_w_pwd(cls, user_id, password):
         """
         Método para leer un usuario por su ID y contraseña.
 
@@ -132,6 +132,27 @@ class User(DBModel):
         check_password(password=password, hashed_pwd=hashed_password)
         fields = {k:v for k,v in retrieved_user.items() 
                       if k in getfullargspec(cls.__init__).args}
+        user = cls(**fields)
+        return user
+    
+    @classmethod
+    def read(cls, user_id):
+        """
+        Método para leer un usuario por su ID y contraseña.
+
+        Parámetros:
+        - user_id (str): ID del usuario.
+        - password (str): Contraseña del usuario.
+
+        Retorna:
+        - user: Objeto de usuario leído.
+        """
+        retrieved_user = db.get_document_from_database(User._database, 
+                                      User._collection, 
+                                      _id=user_id)
+        fields = {k:v for k,v in retrieved_user.items() 
+                      if k in getfullargspec(cls.__init__).args}
+        fields.pop('password')
         user = cls(**fields)
         return user
     
