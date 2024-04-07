@@ -84,7 +84,7 @@ Content-Type: application/json
 **Respuestas**
 - Código 200: Se devuelve cuando el inicio de sesión es exitoso. Se proporciona un token de autenticación junto con los detalles del usuario.
 ```
-{
+{'users': 
     [{'_id': '65ef5d26bd17175093180e23',
   'email': 'bwayne@gotham.com',
   'first_name': 'Bruce',
