@@ -88,7 +88,11 @@ class GetAllUsersController(TokenVerifiedEventListener, BaseController):
         self.user = User.read(GetAllUsersController._user_id)
         if not self.user.is_admin:
             raise UserNotAdminError()
+        results =  db.get_all_documents_from_database('user','users')
         data = {'users': []}
+        for result in results:
+            result.pop('password')
+            data['users'].append(result)
         return data, 200
 
 class UserNotLoggedInError(Exception):
