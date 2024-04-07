@@ -83,7 +83,7 @@ class User(DBModel):
         self.user_type=user_type
 
     @classmethod
-    def new_user(cls, is_admin, user_name, email, first_name, last_name, password, user_type):
+    def new_user(cls, user_name, email, first_name, last_name, password, is_admin=False, user_type='cliente'):
         """
         Método para crear un nuevo usuario.
 

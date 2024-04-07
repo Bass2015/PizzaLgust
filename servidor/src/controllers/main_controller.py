@@ -13,13 +13,15 @@ from utils.auth_utils import InvalidPasswordError
 from .controllers import (LoginController,
                           LogoutController,
                           GetAllUsersController,
+                          CreateUserController,
                           UserNotLoggedInError,
                           UserNotAdminError)
 
-def __make_response(controller):
+def __make_response(controller, verify=True):
     try:
         controller = controller(request)
-        verify_token(request.json['token'])  
+        if verify:
+            verify_token(request.json['token'])  
         data, code = controller.run()      
         response =  jsonify(data), code
     except InvalidTokenError as e:
@@ -61,6 +63,11 @@ def logout():
 
 def get_all_users():
     return __make_response(GetAllUsersController)
+
+def create_user():
+    return __make_response(CreateUserController, verify=False)
+
+
 def test():
     nombre = request.json['nombre']
     return jsonify({'msg': f'Hola {nombre}, todo ok!'}), 200
