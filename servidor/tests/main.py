@@ -112,7 +112,7 @@ class TEA2Tests(TestCase):
                                  json=body,
                                  headers=HEADERS)
         assert response.status_code == 200
-        assert response.json()['msg'] == 'User created succesfully'
+        assert response.json()['msg'] == 'Usuario creado con éxito'
 
 if __name__ == '__main__':
     unittest.main()

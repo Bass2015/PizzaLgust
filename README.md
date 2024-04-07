@@ -113,3 +113,36 @@ Content-Type: application/json
 - Código 410: Se devuelve si el usuario no está en la base de datos.
 - Código 401: Se devuelve si el usuario no ha hecho log in o si el usuario no es admin.
 - Código 500: Se devuelve con cualquier otro error no contemplado en los ya mencionados.
+
+####  POST `/create-user`
+Crea un nuevo usuario en la base de datos.
+
+**Parámetros de Entrada**
+user_name (cadena): El nombre de usuario del usuario.
+email (cadena): El email del usuario.
+first_name (cadena): El nombre del usuario.
+last_name (cadena): El apellido del usuario.
+password (cadena): La contraseña elegida por el usuario.
+
+```POST /login HTTP/1.1
+Content-Type: application/json
+
+{
+    'user_name': 'homer',
+    'email': 'hsimpson@springfield.com',
+    'first_name': 'Homer',
+    'last_name': 'Simpson',
+    'password': 'stupidflanders'
+}
+```
+**Respuestas**
+- Código 200: Se devuelve cuando el inicio de sesión es exitoso. Se proporciona un token de autenticación junto con los detalles del usuario.
+```
+{
+    "msg": "Usuario creado con éxito",
+}
+```
+
+- Código 400: Se devuelve si los datos de inicio de sesión son incorrectos o faltantes.
+- Código 410: Se devuelve si el usuario no está en la base de datos.
+- Código 500: Se devuelve con cualquier otro error no contemplado en los ya mencionados.

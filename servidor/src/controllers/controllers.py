@@ -101,7 +101,7 @@ class CreateUserController(BaseController):
 
     def run(self) -> tuple:
         user = User.new_user(**self.user)
-        data = {'msg': 'User created succesfully'}
+        data = {'msg': 'Usuario creado con éxito'}
         return data, 200
 
 class UserNotLoggedInError(Exception):
