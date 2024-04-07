@@ -12,6 +12,7 @@ Clases:
 from utils.async_utils import run_task_in_background
 from utils.auth_utils import create_token
 from abc import ABC, abstractmethod, abstractclassmethod
+from events.events import TokenVerifiedEventListener
 from services import database as db
 from models.models import DBModel, User
 
@@ -23,7 +24,7 @@ class BaseController(ABC):
     - __init__(self, request, config=None): Método constructor.
     - run(self) -> tuple: Método abstracto que debe ser implementado por subclases para ejecutar la lógica del controlador.
     """
-    def __init__(self, request, config=None):
+    def __init__(self, config=None):
         pass
 
 
@@ -71,8 +72,27 @@ class LogoutController(BaseController):
     def run(self) -> tuple:
         if not self.token in LoginController.logged_in_user_tokens:
             raise UserNotLoggedInError()
+        
         data = {'msg': 'Logout succesful',}
         LoginController.logged_in_user_tokens.remove(self.token)
+        return data, 200
+
+class GetAllUsersController(TokenVerifiedEventListener, BaseController):
+    def __init__(self, request, config=None):
+        self.token = request.json['token']
+        super(GetAllUsersController, self).__init__()
+
+    def run(self) -> tuple:
+        if not self.token in LoginController.logged_in_user_tokens:
+            raise UserNotLoggedInError()
+        self.user = User.read(GetAllUsersController._user_id)
+        if not self.user.is_admin:
+            raise UserNotAdminError()
+        results =  db.get_all_documents_from_database('user','users')
+        data = {'users': []}
+        for result in results:
+            result.pop('password')
+            data['users'].append(result)
         return data, 200
 
 class UserNotLoggedInError(Exception):
@@ -80,3 +100,7 @@ class UserNotLoggedInError(Exception):
         self.message = message
         super().__init__(self.message)
 
+class UserNotAdminError(Exception):
+    def __init__(self, message="The user is not admin"):
+        self.message = message
+        super().__init__(self.message)
