@@ -72,5 +72,36 @@ class TEA2Tests(TestCase):
                                  headers=HEADERS)
         assert response.status_code == 500
 
+    def test_get_all_users(self):  
+        body = {'email': 'bwayne@gotham.com',
+                'password': 'batman'}
+        response = requests.post(url=URL + '/login',
+                                 json=body,
+                                 headers=HEADERS)
+        token = response.json()['token']
+
+        body = {'token': token}
+        response = requests.post(url=URL + '/get-all-users',
+                                 json=body,
+                                 headers=HEADERS)
+        assert response.status_code == 200
+        assert 'users' in response.json().keys()
+        assert isinstance(response.json()['users'], list)
+    
+    def test_get_all_users_no_admin(self):  
+        body = {"email": "pparker@newyork.com",
+                "password": "spiderman",}
+        response = requests.post(url=URL + '/login',
+                                 json=body,
+                                 headers=HEADERS)
+        token = response.json()['token']
+
+        body = {'token': token}
+        response = requests.post(url=URL + '/get-all-users',
+                                 json=body,
+                                 headers=HEADERS)
+        assert response.status_code == 401
+
+
 if __name__ == '__main__':
     unittest.main()

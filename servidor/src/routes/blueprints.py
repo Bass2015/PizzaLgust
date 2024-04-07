@@ -10,4 +10,5 @@ blueprint = Blueprint('blueprint', __name__, url_prefix='/pizzalgust')
 
 blueprint.route('/login', methods=['POST'])(controller.login)
 blueprint.route('/logout', methods=['POST'])(controller.logout)
+blueprint.route('/get-all-users', methods=['POST'])(controller.get_all_users)
 blueprint.route('/test', methods=['POST'])(controller.test)
