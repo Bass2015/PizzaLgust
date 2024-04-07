@@ -95,6 +95,15 @@ class GetAllUsersController(TokenVerifiedEventListener, BaseController):
             data['users'].append(result)
         return data, 200
 
+class CreateUserController(BaseController):
+    def __init__(self, request, config=None):
+        self.user = request.json
+
+    def run(self) -> tuple:
+        user = User.new_user(**self.user)
+        data = {'msg': 'User created succesfully'}
+        return data, 200
+
 class UserNotLoggedInError(Exception):
     def __init__(self, message="The user is not logged in"):
         self.message = message
