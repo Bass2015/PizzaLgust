@@ -1,7 +1,7 @@
 """
-Entry point of the Flask application. It is where you 
-create the Flask app instance, configure it, and run the application.
-Purpose: To initialize and run the Flask application.
+Punto de entrada de la aplicación Flask. Es donde se crea la instancia de la aplicación Flask, se configura
+y ejecuta la aplicación.
+Propósito: Inicializar y ejecutar la aplicación Flask.
 """
 
 from flask import Flask

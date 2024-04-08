@@ -1,9 +1,7 @@
 """
-Description: This module is responsible for managing database 
-connections and database-related services, including data storage,
-retrieval, and manipulation.
-Purpose: To provide database-related services for your application.
-"""
+Descripción: Este módulo es responsable de gestionar las conexiones a la base de datos 
+y los servicios relacionados con la base de datos, incluido el almacenamiento, la recuperación y la manipulación de datos.
+Propósito: Proporcionar servicios relacionados con la base de datos para tu aplicación."""
 
 from contextlib import contextmanager   
 from pymongo.server_api import ServerApi
@@ -12,12 +10,36 @@ from bson import ObjectId
 from config import DB_URI
 
 def insert_one(database: str, collection: str, **fields) -> str:
+    """
+    Inserta un documento en una colección de una base de datos.
+
+    Parámetros:
+    - database (str): El nombre de la base de datos.
+    - collection (str): El nombre de la colección.
+    - **fields: Argumentos clave-valor representando los campos del documento a insertar.
+
+    Retorna:
+    - str: El ID del documento insertado.
+
+    Esta función inserta un documento en la colección especificada de la base de datos dada. Asegura que el ID del documento sea un ObjectId válido.
+    """
     fields = __ensure_object_id_in_fields(**fields) 
     with __get_db(database) as db:
         result = db[collection].insert_one(fields)
     return str(result.inserted_id)
 
 def update_one(database:str, collection:str, _id:str, **updated_fields):
+    """
+    Actualiza un documento en una colección de una base de datos.
+
+    Parámetros:
+    - database (str): El nombre de la base de datos.
+    - collection (str): El nombre de la colección.
+    - _id (str): El ID del documento a actualizar.
+    - **updated_fields: Argumentos clave-valor representando los campos actualizados del documento.
+
+    Esta función actualiza un documento en la colección especificada de la base de datos dada. Asegura que el ID del documento sea un ObjectId válido.
+    """
     _id = __ensure_object_id(_id)
     fields = __ensure_object_id_in_fields(**updated_fields)
     with __get_db(database) as db:
@@ -27,17 +49,17 @@ def is_document_in_collection(db: str,
                               collection: str,  
                               **fields) -> bool:
     """
-    Check if a document exists in a database collection based on provided filters.
+    Comprueba si un documento existe en una colección de base de datos según los filtros proporcionados.
 
-    Parameters:
-    - db (str): The name of the database.
-    - collection (str): The name of the collection.
-    - **fields: Keyword arguments representing additional filters.
+    Parámetros:
+    - db (str): El nombre de la base de datos.
+    - collection (str): El nombre de la colección.
+    - **fields: Argumentos de palabras clave que representan filtros adicionales.
 
-    Returns:
-    - bool: True if the document is found in the collection, False otherwise.
+    Retorna:
+    - bool: True si se encuentra el documento en la colección, False en caso contrario.
 
-    This function checks whether a document exists in the specified database collection based on the provided filters. It returns True if the document is found, otherwise, it returns False.
+    Esta función comprueba si un documento existe en la colección de base de datos especificada según los filtros proporcionados. Retorna True si se encuentra el documento, de lo contrario, retorna False.
     """
     fields = {k: ObjectId(v) 
               if k.endswith('_id') else v 
@@ -48,17 +70,17 @@ def is_document_in_collection(db: str,
 
 def get_document_from_database(database:str, collection:str, **query) -> dict:
     """
-    Retrieve a document from a database collection based on specified query parameters.
+    Recupera un documento de una colección de base de datos según los parámetros de consulta especificados.
 
-    Parameters:
-    - database (str): The name of the database.
-    - collection (str): The name of the collection.
-    - **query: Keyword arguments representing query parameters.
+    Parámetros:
+    - database (str): El nombre de la base de datos.
+    - collection (str): El nombre de la colección.
+    - **query: Argumentos de palabras clave que representan parámetros de consulta.
 
-    Returns:
-    - dict: A dictionary containing the retrieved document.
+    Retorna:
+    - dict: Un diccionario que contiene el documento recuperado.
 
-    This function retrieves a document from the specified database collection based on the provided query parameters. The query parameters are used to match the document, and the retrieved document is returned as a dictionary.
+    Esta función recupera un documento de la colección de base de datos especificada según los parámetros de consulta proporcionados. Los parámetros de consulta se utilizan para coincidir con el documento, y el documento recuperado se devuelve como un diccionario.
     """
 
     query = {k: ObjectId(v) if k.endswith('_id') else v for k,v in dict(**query).items()} 
@@ -71,18 +93,18 @@ def get_document_from_database(database:str, collection:str, **query) -> dict:
     
 def delete_document_from_db(db_name: str, collection: str, **filters) -> bool:
     """
-    Delete documents from a database collection based on specified filters.
+    Elimina documentos de una colección de base de datos según los filtros especificados.
 
-    Parameters:
-    - db_name (str): The name of the database to operate on.
-    - collection (str): The name of the collection to delete documents from.
-    - **filters: Keyword arguments representing filters for document deletion.
+    Parámetros:
+    - db_name (str): El nombre de la base de datos en la que operar.
+    - collection (str): El nombre de la colección de la que se eliminarán los documentos.
+    - **filters: Argumentos de palabras clave que representan filtros para la eliminación de documentos.
 
-    Returns:
-    - bool: True if one or more documents were deleted, False if no documents were deleted.
+    Retorna:
+    - bool: True si se eliminó uno o más documentos, False si no se eliminó ningún documento.
 
-    This function deletes documents from the specified database collection based on the provided filters.
-    The filters are applied to match documents for deletion, and it returns True if one or more documents were deleted, otherwise, it returns False.
+    Esta función elimina documentos de la colección de base de datos especificada según los filtros proporcionados.
+    Los filtros se aplican para coincidir con los documentos para la eliminación, y retorna True si se eliminó uno o más documentos, de lo contrario, retorna False.
     """
     filters = {k: __ensure_object_id(v) if k.endswith('_id') else v for k,v in filters.items()}
     with __get_db(db_name) as db:
@@ -91,6 +113,20 @@ def delete_document_from_db(db_name: str, collection: str, **filters) -> bool:
 
 
 def get_all_documents_from_database(database:str, collection: str, projection=None, **query) -> list:
+    """
+    Obtiene todos los documentos de una colección de una base de datos.
+
+    Parámetros:
+    - database (str): El nombre de la base de datos.
+    - collection (str): El nombre de la colección.
+    - projection: La proyección de los campos a incluir en los documentos recuperados.
+    - **query: Argumentos clave-valor representando los filtros de consulta.
+
+    Retorna:
+    - list: Una lista de diccionarios que representan los documentos recuperados.
+
+    Esta función obtiene todos los documentos que coinciden con los filtros de consulta especificados de la colección dada en la base de datos dada.
+    """
     query = {k: ObjectId(v) if k.endswith('_id') else v for k,v in dict(**query).items()} 
     with __get_db(database) as db:
         results = db[collection].find(query, projection=projection)
@@ -109,14 +145,6 @@ def get_many_documents(database: str, collection: str, ids_array:list):
     messages =[{k:str(v) if isinstance(v, ObjectId) else v for k,v in message.items()} for message in messages]
     return messages
 
-def get_recording_urls(user_id:str, number_of_recordings=3):
-    user_id = __ensure_object_id(user_id)
-    with __get_db('recording') as db:
-        recordings = list(db.recordings.find({'user_id': user_id, 
-                                       'recording_url': {'$ne': ''}}, 
-                                     projection={'recording_url': 1, '_id':0}))
-        recordings = [r['recording_url'] for r in recordings[:number_of_recordings]]
-    return recordings
 
 # –––––––––––––– PRIVATE METHODS ––––––––––––––––––––––    
 def __ensure_object_id(id:str) -> ObjectId:
@@ -132,16 +160,16 @@ def __ensure_object_id_in_fields(**fields) -> dict:
 @contextmanager
 def __get_db(db_name: str):
     """
-    Context manager for connecting to the MongoDB converstaions database.
+    Gestor de contexto para conectarse a la base de datos de conversaciones MongoDB.
 
     Args:
-        db_name: The name of the wanted database. 
+        db_name: El nombre de la base de datos deseada.
 
     Yields:
-        The database.
+        La base de datos.
 
-    Note:
-        The connection is automatically closed when exiting the context.
+    Nota:
+        La conexión se cierra automáticamente al salir del contexto.
     """
     client = MongoClient(DB_URI, server_api=ServerApi('1'))
     try:

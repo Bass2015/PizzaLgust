@@ -10,12 +10,18 @@ from services.database import DocumentNotFoundError
 from utils.auth_utils import verify_token, InvalidTokenError
 from utils.auth_utils import InvalidPasswordError
 
-from .controllers import LoginController, LogoutController, UserNotLoggedInError
+from .controllers import (LoginController,
+                          LogoutController,
+                          GetAllUsersController,
+                          CreateUserController,
+                          UserNotLoggedInError,
+                          UserNotAdminError)
 
-def __make_response(controller):
+def __make_response(controller, verify=True):
     try:
         controller = controller(request)
-        verify_token(request.json['token'])  
+        if verify:
+            verify_token(request.json['token'])  
         data, code = controller.run()      
         response =  jsonify(data), code
     except InvalidTokenError as e:
@@ -24,7 +30,8 @@ def __make_response(controller):
         response =  jsonify({'msg': str(e.message)}), UNAUTHORIZED_CODE
     except DocumentNotFoundError as e:
         response =  jsonify({'msg': str(e.message)}), DOCUMENT_NOT_FOUND_CODE
-    
+    except UserNotAdminError as e:
+        response =  jsonify({'msg': str(e.message)}), UNAUTHORIZED_CODE
     except Exception as e:
         response = jsonify({'msg': f"{e.__class__.__name__}: {str(e)}"}), 500
     finally:
@@ -53,6 +60,13 @@ def login():
 
 def logout():
     return __make_response(LogoutController)
+
+def get_all_users():
+    return __make_response(GetAllUsersController)
+
+def create_user():
+    return __make_response(CreateUserController, verify=False)
+
 
 def test():
     nombre = request.json['nombre']
