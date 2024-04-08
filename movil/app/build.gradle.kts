@@ -1,5 +1,3 @@
-import org.apache.tools.ant.util.JavaEnvUtils.VERSION_1_8
-
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
@@ -36,6 +34,17 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    packaging {
+        resources.excludes.addAll(
+            listOf(
+                "META-INF/LICENSE.md",
+                "META-INF/LICENSE-notice.md",
+
+        )
+        )
+    }
+
+
 }
 
 dependencies {
@@ -53,10 +62,14 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    testImplementation("org.mockito:mockito-core:4.8.0")
+    testImplementation ("io.mockk:mockk:1.13.10")
+    androidTestImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
     dokkaPlugin("org.jetbrains.dokka:android-documentation-plugin:1.9.20")
 
 }
 tasks.dokkaHtml.configure {
-    outputDirectory.set(file("C:\\Users\\joanet\\Desktop\\DAM\\movil\\dokka"))
+    outputDirectory.set(file("C:\\Users\\joanet\\Desktop\\DAM\\pizzaLgust\\github\\PizzaLgust\\movil\\documentation"))
 }
 

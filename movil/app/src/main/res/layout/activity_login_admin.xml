@@ -2,13 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/loginAdmin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_batman">
 
 
-    <Button
-        android:id="@+id/btn_salir"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSalirAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="56dp"
@@ -18,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/tv_Bienvenida"
+        android:id="@+id/tvBienvenidaAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -28,10 +29,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMessage" />
+        app:layout_constraintTop_toBottomOf="@+id/tvMessage1" />
 
     <TextView
-        android:id="@+id/tvFirstName"
+        android:id="@+id/tvFirstNameAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -41,22 +42,23 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvMessage"
+        android:id="@+id/tvMessageAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvFirstName" />
+        app:layout_constraintTop_toBottomOf="@+id/tvFirstNameAdmin" />
 
     <TextView
-        android:id="@+id/tv_admin"
+        android:id="@+id/tvAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:text="@string/tv_admin"
+        android:textColor="@color/red"
         />
 
 

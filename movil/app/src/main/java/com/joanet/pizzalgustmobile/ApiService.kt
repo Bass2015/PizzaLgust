@@ -26,7 +26,17 @@ interface ApiService {
      * @return Objeto Call que representa la llamada asíncrona y su respuesta.
      */
 
+    /**
+     * Esta interfaz define una API para realizar el cierre de sesión en el sistema.
+     */
     interface ApiLogout {
+
+        /**
+         * Este método realiza una solicitud POST para cerrar sesión en el sistema.
+         *
+         * @param requestBody Cuerpo de la solicitud que contiene los datos de cierre de sesión.
+         * @return Objeto Call que representa la llamada asíncrona y su respuesta.
+         */
 
         @Headers("Content-type: application/json")
         @POST("pizzalgust/logout")

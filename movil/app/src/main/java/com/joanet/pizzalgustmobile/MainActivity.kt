@@ -31,9 +31,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        etEmail = findViewById(R.id.et_login)
-        etPassword = findViewById(R.id.et_contraseña)
-        btnEntrar = findViewById(R.id.btn_entrar)
+        etEmail = findViewById(R.id.etLogin)
+        etPassword = findViewById(R.id.etPassword)
+        btnEntrar = findViewById(R.id.btnEntrar1)
         progressBar = findViewById(R.id.idLoadingPB)
 
         btnEntrar.setOnClickListener {

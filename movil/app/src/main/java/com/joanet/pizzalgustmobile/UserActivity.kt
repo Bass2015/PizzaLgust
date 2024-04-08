@@ -13,19 +13,23 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+
+/**
+ * Actividad que representa la pantalla de usuario.
+ */
 class UserActivity : AppCompatActivity() {
 
-    private lateinit var btn_salir: Button
-    private lateinit var tvFirstName: TextView
-    private lateinit var tvMessage: TextView
+    private lateinit var btnSalir2: Button
+    private lateinit var tvFirstName2: TextView
+    private lateinit var tvMessage2: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_user) //
 
-        btn_salir = findViewById(R.id.btn_salir)
-        tvFirstName = findViewById(R.id.tvFirstName)
-        tvMessage = findViewById(R.id.tvMessage)
+        btnSalir2 = findViewById(R.id.btnSalirUser)
+        tvFirstName2 = findViewById(R.id.tvFirstNameUser)
+        tvMessage2 = findViewById(R.id.tvMessageUser)
 
         // Obtiene los datos pasados desde la actividad anterior
         val authToken = intent.getStringExtra("authToken")
@@ -33,11 +37,11 @@ class UserActivity : AppCompatActivity() {
         val message = intent.getStringExtra("message")
 
         // Muestra los datos recibidos en las vistas correspondientes
-        tvFirstName.text = firstName
-        tvMessage.text = message
+        tvFirstName2.text = firstName
+        tvMessage2.text = message
 
         // Configura el listener para el botón de salir
-        btn_salir.setOnClickListener {
+        btnSalir2.setOnClickListener {
             authToken?.let { token ->
                 logoutUser(token)
             } ?: run {

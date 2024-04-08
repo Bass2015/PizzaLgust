@@ -37,7 +37,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textViewEmail"
         android:layout_width="59dp"
         android:layout_height="25dp"
         android:layout_marginTop="92dp"
@@ -50,7 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewLogin" />
 
     <EditText
-        android:id="@+id/et_contraseña"
+        android:id="@+id/etPassword"
         android:layout_width="398dp"
         android:layout_height="53dp"
         android:layout_marginTop="40dp"
@@ -62,25 +62,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.357"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_login"
+        app:layout_constraintTop_toBottomOf="@+id/etLogin"
         app:layout_constraintVertical_bias="0.003" />
 
     <TextView
-        android:id="@+id/tvContraseña"
+        android:id="@+id/tvPassword"
         android:layout_width="141dp"
         android:layout_height="25dp"
         android:text="@string/tv_contraseña"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/et_contraseña"
+        app:layout_constraintBottom_toTopOf="@+id/etPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.048"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_login"
+        app:layout_constraintTop_toBottomOf="@+id/etLogin"
         app:layout_constraintVertical_bias="0.715" />
 
     <EditText
-        android:id="@+id/et_login"
+        android:id="@+id/etLogin"
         android:layout_width="409dp"
         android:layout_height="55dp"
         android:layout_marginTop="136dp"
@@ -94,15 +94,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewLogin" />
 
-    <Button
-        android:id="@+id/btn_entrar"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnEntrar1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:text="@string/btn_entrar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_contraseña"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword"
         app:layout_constraintVertical_bias="0.273" />
 
     <ProgressBar

@@ -11,10 +11,15 @@
 
     <!-- admin activity -->
     <string name="tv_admin_name">Name :</string>
-    <string name="btn_salir">SALIR/LOGOUT</string>
+    <string name="btn_salir">LOGOUT</string>
     <string name="tv_bienvenidaAdmin">Bienvenido Admin</string>
     <string name="tv_Bienvenida">Bienvenido Sr.Wayne</string>
     <string name="tv_admin">Administrador</string>
+
+    <!-- User activity -->
+
+    <string name="tv_bienvenida_user">Bienvenid@</string>
+    <string name="tv_user">Usuario</string>
 
 
 

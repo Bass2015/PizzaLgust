@@ -18,17 +18,17 @@ import retrofit2.converter.gson.GsonConverterFactory
  */
 class AdminActivity : AppCompatActivity() {
 
-    private lateinit var btn_salir: Button
-    private lateinit var tvFirstName: TextView
-    private lateinit var tvMessage: TextView
+    private lateinit var btnSalir1: Button
+    private lateinit var tvFirstName1: TextView
+    private lateinit var tvMessage1: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_admin) //
 
-        btn_salir = findViewById(R.id.btn_salir)
-        tvFirstName = findViewById(R.id.tvFirstName)
-        tvMessage = findViewById(R.id.tvMessage)
+        btnSalir1 = findViewById(R.id.btnSalirAdmin)
+        tvFirstName1 = findViewById(R.id.tvFirstNameAdmin)
+        tvMessage1 = findViewById(R.id.tvMessageAdmin)
 
         // Obtiene los datos pasados desde la actividad anterior
         val authToken = intent.getStringExtra("authToken")
@@ -36,11 +36,11 @@ class AdminActivity : AppCompatActivity() {
         val message = intent.getStringExtra("message")
 
         // Muestra los datos recibidos en las vistas correspondientes
-        tvFirstName.text = "Nombre :  $firstName"
-        tvMessage.text = "Mensaje: $message"
+        tvFirstName1.text = "Nombre :$firstName"
+        tvMessage1.text = "Mensaje:$message"
 
         // Configura el listener para el botón de salir
-        btn_salir.setOnClickListener {
+        btnSalir1.setOnClickListener {
             authToken?.let { token ->
                 logoutUser(token)
             } ?: run {
@@ -54,7 +54,7 @@ class AdminActivity : AppCompatActivity() {
      *
      * @param token El token de autenticación del usuario.
      */
-    private fun logoutUser(token: String) {
+    fun logoutUser(token: String) {
         Log.d("DEBUG", "Iniciando logout con token: $token")
 
         // Configura la instancia de Retrofit
