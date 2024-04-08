@@ -1,4 +1,5 @@
 <resources>
+    <!-- PRINCIPAL -->
     <string name="app_name">pizzaLgustMobile</string>
     <string name="btn_entrar">ENTRAR</string>
     <string name="tv_login">LOGIN</string>
@@ -7,5 +8,19 @@
     <string name="tv_email">Email</string>
     <string name="tv_contraseña">Contraseña</string>
     <string name="tv_Bienvenido">Bienvenidos a PizzaLgust!</string>
+
+    <!-- admin activity -->
+    <string name="tv_admin_name">Name :</string>
+    <string name="btn_salir">LOGOUT</string>
+    <string name="tv_bienvenidaAdmin">Bienvenido Admin</string>
+    <string name="tv_Bienvenida">Bienvenido Sr.Wayne</string>
+    <string name="tv_admin">Administrador</string>
+
+    <!-- User activity -->
+
+    <string name="tv_bienvenida_user">Bienvenid@</string>
+    <string name="tv_user">Usuario</string>
+
+
 
 </resources>
