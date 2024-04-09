@@ -115,11 +115,21 @@ class PizzalgustTests(TestCase):
                                  json=body,
                                  headers=HEADERS)
         token = response.json()['token']
-
-        body = {'token': token}
+        body = dict(user_name="homer",
+            email="hsimpson@springfield.com",
+            first_name="Homer",
+            last_name="Simpson",
+            password="stupidflanders",)
+        response = requests.post(url=URL + '/create-user',
+                                 json=body,
+                                 headers=HEADERS)
+        body = {'token': token,
+                'user_id': response.json()['user_id']}
         response = requests.delete(url=URL + '/delete-user',
                                  json=body,
                                  headers=HEADERS)
+        assert response.status_code == 200
+        assert response.json()['msg'] == 'Usuario borrado con éxito'
 
 if __name__ == '__main__':
     unittest.main()

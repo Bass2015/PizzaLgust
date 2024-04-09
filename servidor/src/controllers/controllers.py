@@ -101,7 +101,8 @@ class CreateUserController(BaseController):
 
     def run(self) -> tuple:
         user = User.new_user(**self.user)
-        data = {'msg': 'Usuario creado con éxito'}
+        data = {'msg': 'Usuario creado con éxito',
+                'user_id': user._id}
         return data, 200
 
 class DeleteUserController(TokenVerifiedEventListener, BaseController):
