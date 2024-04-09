@@ -48,7 +48,7 @@ Cierra sesión.
 **Parámetros de Entrada**
 token (cadena): token de autenticación enviado al `login`
 
-```POST /login HTTP/1.1
+```POST /logout HTTP/1.1
 Content-Type: application/json
 
 {
@@ -74,7 +74,7 @@ Devuelve una lista con todos los usuarios. Sólo funciona si la petición viene 
 **Parámetros de Entrada**
 token (cadena): token de autenticación enviado al `login`
 
-```POST /login HTTP/1.1
+```POST /get-all-users HTTP/1.1
 Content-Type: application/json
 
 {
@@ -124,7 +124,7 @@ first_name (cadena): El nombre del usuario.
 last_name (cadena): El apellido del usuario.
 password (cadena): La contraseña elegida por el usuario.
 
-```POST /login HTTP/1.1
+```POST /create-user HTTP/1.1
 Content-Type: application/json
 
 {
@@ -148,14 +148,14 @@ Content-Type: application/json
 - Código 410: Se devuelve si el usuario no está en la base de datos.
 - Código 500: Se devuelve con cualquier otro error no contemplado en los ya mencionados.
 
-####  DELETE `/get-all-users`
+####  DELETE `/delete-user`
 Borra el usuario correspondiente al user_id enviado. Sólo funciona si la petición viene de un usuario admin.
 
 **Parámetros de Entrada**
 token (cadena): token de autenticación enviado al `login`
 user_id (cadena): Id del usuario que se quiere borrar. Se puede conseguir con `get-all-users`
 
-```DELETE /login HTTP/1.1
+```DELETE /delete-user HTTP/1.1
 Content-Type: application/json
 
 {
