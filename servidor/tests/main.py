@@ -130,6 +130,34 @@ class PizzalgustTests(TestCase):
                                  headers=HEADERS)
         assert response.status_code == 200
         assert response.json()['msg'] == 'Usuario borrado con éxito'
+    
+    def test_update_user(self):
+        body = dict(user_name="homer",
+            email="hsimpson@springfield.com",
+            first_name="Homer",
+            last_name="Simpson",
+            password="stupidflanders",)
+        response = requests.post(url=URL + '/create-user',
+                                 json=body,
+                                 headers=HEADERS)
+        
+        body = {'email': 'hsimpson@springfield.com',
+                'password': 'stupidflanders'}
+        response = requests.post(url=URL + '/login',
+                                 json=body,
+                                 headers=HEADERS)
+        token = response.json()['token']
+
+        body = {'token': token,
+                'user_name': "max_power",
+                'first_name': "Max",
+                'last_name': "Power"}
+        
+        response = requests.put(url=URL + '/update-user',
+                                 json=body,
+                                 headers=HEADERS)
+        assert response.status_code == 200
+        assert response.json()['msg'] == 'Usuario actualizado con éxito'
 
 if __name__ == '__main__':
     unittest.main()
