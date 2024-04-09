@@ -125,6 +125,26 @@ class DeleteUserController(TokenVerifiedEventListener, BaseController):
             data = {'msg': 'El usuario no se ha podido borrar'}
             code = 500
         return data, code
+    
+class UpdateUserController(TokenVerifiedEventListener, BaseController):
+    def __init__(self, request, config=None):
+        self.user_info = request.json.copy()
+        self.user_info.pop('token')
+        super(UpdateUserController, self).__init__()
+
+    def run(self) -> tuple:
+        if not DeleteUserController._token in LoginController.logged_in_user_tokens:
+            raise UserNotLoggedInError()
+        user = User.read(DeleteUserController._user_id)
+        if user.is_admin:
+            user = User.read(self.user_info['user_id'])
+        if 'user_id' in self.user_info.keys():
+            self.user_info.pop('user_id')
+        if 'password' in self.user_info.keys():
+            self.user_info.pop('password')
+        user.update(**self.user_info)
+        data = {'msg': 'Usuario actualizado con éxito'}
+        return data, 200
 
 class UserNotLoggedInError(Exception):
     def __init__(self, message="The user is not logged in"):
