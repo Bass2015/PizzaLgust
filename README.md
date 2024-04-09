@@ -140,9 +140,36 @@ Content-Type: application/json
 ```
 {
     "msg": "Usuario creado con éxito",
+    "user_id": "65ef5f89ee038e9346215ecb"
 }
 ```
 
 - Código 400: Se devuelve si los datos de inicio de sesión son incorrectos o faltantes.
 - Código 410: Se devuelve si el usuario no está en la base de datos.
+- Código 500: Se devuelve con cualquier otro error no contemplado en los ya mencionados.
+
+####  DELETE `/get-all-users`
+Borra el usuario correspondiente al user_id enviado. Sólo funciona si la petición viene de un usuario admin.
+
+**Parámetros de Entrada**
+token (cadena): token de autenticación enviado al `login`
+user_id (cadena): Id del usuario que se quiere borrar. Se puede conseguir con `get-all-users`
+
+```DELETE /login HTTP/1.1
+Content-Type: application/json
+
+{
+    "token": "token",
+    "user_id": "65ef5f89ee038e9346215ecb"
+}
+```
+**Respuestas**
+- Código 200: Se devuelve cuando el usuario se ha borrado con éxito.
+```
+{'msg': 'Usuario borrado con éxito'}
+```
+
+- Código 400: Se devuelve si los datos de inicio de sesión son incorrectos o faltantes.
+- Código 410: Se devuelve si el usuario no está en la base de datos.
+- Código 401: Se devuelve si el usuario no ha hecho log in o si el usuario no es admin.
 - Código 500: Se devuelve con cualquier otro error no contemplado en los ya mencionados.

@@ -5,15 +5,9 @@ from unittest import TestCase
 URL = 'http://localhost:5002/pizzalgust/'
 HEADERS = {'Content-Type': 'application/json'}
 
-class TEA2Tests(TestCase):
+class PizzalgustTests(TestCase):
     """
-    TEA2Tests: Clase para realizar pruebas de unidad relacionadas con TEA2.
-
-    Métodos:
-    - test_login(self): Método para probar la funcionalidad de inicio de sesión.
-    - test_bad_password(self): Método para probar el manejo de una contraseña incorrecta.
-    - test_logout(self): Método para probar la funcionalidad de cierre de sesión.
-    - test_bad_token(self): Método para probar el manejo de un token incorrecto.
+    PizzalgustTests: Clase para realizar pruebas de unidad.
     """
     def test_login(self):
         """
@@ -113,6 +107,29 @@ class TEA2Tests(TestCase):
                                  headers=HEADERS)
         assert response.status_code == 200
         assert response.json()['msg'] == 'Usuario creado con éxito'
+
+    def test_delete_user(self):
+        body = {'email': 'bwayne@gotham.com',
+                'password': 'batman'}
+        response = requests.post(url=URL + '/login',
+                                 json=body,
+                                 headers=HEADERS)
+        token = response.json()['token']
+        body = dict(user_name="homer",
+            email="hsimpson@springfield.com",
+            first_name="Homer",
+            last_name="Simpson",
+            password="stupidflanders",)
+        response = requests.post(url=URL + '/create-user',
+                                 json=body,
+                                 headers=HEADERS)
+        body = {'token': token,
+                'user_id': response.json()['user_id']}
+        response = requests.delete(url=URL + '/delete-user',
+                                 json=body,
+                                 headers=HEADERS)
+        assert response.status_code == 200
+        assert response.json()['msg'] == 'Usuario borrado con éxito'
 
 if __name__ == '__main__':
     unittest.main()
