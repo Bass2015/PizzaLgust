@@ -140,9 +140,10 @@ class UpdateUserController(TokenVerifiedEventListener, BaseController):
             user = User.read(self.user_info['user_id'])
         if 'user_id' in self.user_info.keys():
             self.user_info.pop('user_id')
+        if 'password' in self.user_info.keys():
+            self.user_info.pop('password')
         user.update(**self.user_info)
-        data = {'msg': 'Usuario actualizado con éxito',
-                'user_id': user._id}
+        data = {'msg': 'Usuario actualizado con éxito'}
         return data, 200
 
 class UserNotLoggedInError(Exception):
