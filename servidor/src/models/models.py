@@ -185,7 +185,9 @@ class User(DBModel):
         raise NotImplementedError()
     
     def delete(self):
-        raise NotImplementedError()
+        return db.delete_document_from_db(User._database,
+                                   User._collection,
+                                   _id=self._id)
     
 
 
