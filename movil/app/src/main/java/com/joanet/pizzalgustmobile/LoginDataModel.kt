@@ -22,6 +22,7 @@ data class LoginDataModel(
     val first_name: String,
     val last_name: String,
     val is_admin: Boolean,
+
     val token: String
 ) : java.io.Serializable
 
