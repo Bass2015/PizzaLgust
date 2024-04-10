@@ -101,7 +101,49 @@ class CreateUserController(BaseController):
 
     def run(self) -> tuple:
         user = User.new_user(**self.user)
-        data = {'msg': 'Usuario creado con éxito'}
+        data = {'msg': 'Usuario creado con éxito',
+                'user_id': user._id}
+        return data, 200
+
+class DeleteUserController(TokenVerifiedEventListener, BaseController):
+    def __init__(self, request, config=None):
+        self.request = request.json
+        super(DeleteUserController, self).__init__()
+
+
+    def run(self) -> tuple:
+        if not DeleteUserController._token in LoginController.logged_in_user_tokens:
+            raise UserNotLoggedInError()
+        self.user = User.read(DeleteUserController._user_id)
+        if not self.user.is_admin:
+            raise UserNotAdminError()
+        user = User.read(self.request['user_id'])
+        if user.delete():
+            data = {'msg': 'Usuario borrado con éxito'}
+            code = 200
+        else:
+            data = {'msg': 'El usuario no se ha podido borrar'}
+            code = 500
+        return data, code
+    
+class UpdateUserController(TokenVerifiedEventListener, BaseController):
+    def __init__(self, request, config=None):
+        self.user_info = request.json.copy()
+        self.user_info.pop('token')
+        super(UpdateUserController, self).__init__()
+
+    def run(self) -> tuple:
+        if not DeleteUserController._token in LoginController.logged_in_user_tokens:
+            raise UserNotLoggedInError()
+        user = User.read(DeleteUserController._user_id)
+        if user.is_admin:
+            user = User.read(self.user_info['user_id'])
+        if 'user_id' in self.user_info.keys():
+            self.user_info.pop('user_id')
+        if 'password' in self.user_info.keys():
+            self.user_info.pop('password')
+        user.update(**self.user_info)
+        data = {'msg': 'Usuario actualizado con éxito'}
         return data, 200
 
 class UserNotLoggedInError(Exception):

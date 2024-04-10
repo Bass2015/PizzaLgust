@@ -1,0 +1,30 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:com.joanet.pizzalgustmobile////PointingToDeclaration/app/com.joanet.pizzalgustmobile/index.html
+$dokka.location:com.joanet.pizzalgustmobile/AdminActivity///PointingToDeclaration/app/com.joanet.pizzalgustmobile/-admin-activity/index.html
+$dokka.location:com.joanet.pizzalgustmobile/AdminActivity/AdminActivity/#/PointingToDeclaration/app/com.joanet.pizzalgustmobile/-admin-activity/-admin-activity.html
+$dokka.location:com.joanet.pizzalgustmobile/AdminActivity/logoutUser/#kotlin.String/PointingToDeclaration/app/com.joanet.pizzalgustmobile/-admin-activity/logout-user.html
+$dokka.location:com.joanet.pizzalgustmobile/ApiService.ApiLogout///PointingToDeclaration/app/com.joanet.pizzalgustmobile/-api-service/-api-logout/index.html
+$dokka.location:com.joanet.pizzalgustmobile/ApiService.ApiLogout/logout/#com.joanet.pizzalgustmobile.LogoutDataModel/PointingToDeclaration/app/com.joanet.pizzalgustmobile/-api-service/-api-logout/logout.html
+$dokka.location:com.joanet.pizzalgustmobile/ApiService///PointingToDeclaration/app/com.joanet.pizzalgustmobile/-api-service/index.html
+$dokka.location:com.joanet.pizzalgustmobile/ApiService/getUserData/#com.joanet.pizzalgustmobile.LoginDataModel/PointingToDeclaration/app/com.joanet.pizzalgustmobile/-api-service/get-user-data.html
+$dokka.location:com.joanet.pizzalgustmobile/LoginDataModel///PointingToDeclaration/app/com.joanet.pizzalgustmobile/-login-data-model/index.html
+$dokka.location:com.joanet.pizzalgustmobile/LoginDataModel/LoginDataModel/#kotlin.String#kotlin.String#kotlin.String#kotlin.String#kotlin.String#kotlin.String#kotlin.Boolean#kotlin.String/PointingToDeclaration/app/com.joanet.pizzalgustmobile/-login-data-model/-login-data-model.html
+$dokka.location:com.joanet.pizzalgustmobile/LoginDataModel/email/#/PointingToDeclaration/app/com.joanet.pizzalgustmobile/-login-data-model/email.html
+$dokka.location:com.joanet.pizzalgustmobile/LoginDataModel/first_name/#/PointingToDeclaration/app/com.joanet.pizzalgustmobile/-login-data-model/first_name.html
+$dokka.location:com.joanet.pizzalgustmobile/LoginDataModel/is_admin/#/PointingToDeclaration/app/com.joanet.pizzalgustmobile/-login-data-model/is_admin.html
+$dokka.location:com.joanet.pizzalgustmobile/LoginDataModel/last_name/#/PointingToDeclaration/app/com.joanet.pizzalgustmobile/-login-data-model/last_name.html
+$dokka.location:com.joanet.pizzalgustmobile/LoginDataModel/msg/#/PointingToDeclaration/app/com.joanet.pizzalgustmobile/-login-data-model/msg.html
+$dokka.location:com.joanet.pizzalgustmobile/LoginDataModel/password/#/PointingToDeclaration/app/com.joanet.pizzalgustmobile/-login-data-model/password.html
+$dokka.location:com.joanet.pizzalgustmobile/LoginDataModel/token/#/PointingToDeclaration/app/com.joanet.pizzalgustmobile/-login-data-model/token.html
+$dokka.location:com.joanet.pizzalgustmobile/LoginDataModel/user_name/#/PointingToDeclaration/app/com.joanet.pizzalgustmobile/-login-data-model/user_name.html
+$dokka.location:com.joanet.pizzalgustmobile/LogoutDataModel///PointingToDeclaration/app/com.joanet.pizzalgustmobile/-logout-data-model/index.html
+$dokka.location:com.joanet.pizzalgustmobile/LogoutDataModel/LogoutDataModel/#kotlin.String#kotlin.String/PointingToDeclaration/app/com.joanet.pizzalgustmobile/-logout-data-model/-logout-data-model.html
+$dokka.location:com.joanet.pizzalgustmobile/LogoutDataModel/msg/#/PointingToDeclaration/app/com.joanet.pizzalgustmobile/-logout-data-model/msg.html
+$dokka.location:com.joanet.pizzalgustmobile/LogoutDataModel/token/#/PointingToDeclaration/app/com.joanet.pizzalgustmobile/-logout-data-model/token.html
+$dokka.location:com.joanet.pizzalgustmobile/MainActivity///PointingToDeclaration/app/com.joanet.pizzalgustmobile/-main-activity/index.html
+$dokka.location:com.joanet.pizzalgustmobile/MainActivity/MainActivity/#/PointingToDeclaration/app/com.joanet.pizzalgustmobile/-main-activity/-main-activity.html
+$dokka.location:com.joanet.pizzalgustmobile/UserActivity///PointingToDeclaration/app/com.joanet.pizzalgustmobile/-user-activity/index.html
+$dokka.location:com.joanet.pizzalgustmobile/UserActivity/UserActivity/#/PointingToDeclaration/app/com.joanet.pizzalgustmobile/-user-activity/-user-activity.html
+com.joanet.pizzalgustmobile
+

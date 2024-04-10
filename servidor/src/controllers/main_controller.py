@@ -14,6 +14,8 @@ from .controllers import (LoginController,
                           LogoutController,
                           GetAllUsersController,
                           CreateUserController,
+                          DeleteUserController,
+                          UpdateUserController,
                           UserNotLoggedInError,
                           UserNotAdminError)
 
@@ -67,6 +69,11 @@ def get_all_users():
 def create_user():
     return __make_response(CreateUserController, verify=False)
 
+def delete_user():
+    return __make_response(DeleteUserController)
+
+def update_user():
+    return __make_response(UpdateUserController)
 
 def test():
     nombre = request.json['nombre']

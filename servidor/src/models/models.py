@@ -181,11 +181,17 @@ class User(DBModel):
     def store(self):
         raise NotImplementedError()
 
-    def update(self):
-        raise NotImplementedError()
+    def update(self, **fields_to_udpate):
+
+        db.update_one(User._database,
+                      User._collection,
+                      self._id,
+                      **fields_to_udpate)
     
     def delete(self):
-        raise NotImplementedError()
+        return db.delete_document_from_db(User._database,
+                                   User._collection,
+                                   _id=self._id)
     
 
 

@@ -1,5 +1,10 @@
 package com.joanet.pizzalgustmobile
 
+<<<<<<< HEAD
+=======
+import com.google.gson.annotations.SerializedName
+
+>>>>>>> 664d56c90739684e84c8faa9443c820412bbdcd4
 /**
  * Clase de modelo para los datos de inicio de sesión.
  *

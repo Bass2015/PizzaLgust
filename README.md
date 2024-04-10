@@ -48,7 +48,7 @@ Cierra sesión.
 **Parámetros de Entrada**
 token (cadena): token de autenticación enviado al `login`
 
-```POST /login HTTP/1.1
+```POST /logout HTTP/1.1
 Content-Type: application/json
 
 {
@@ -74,7 +74,7 @@ Devuelve una lista con todos los usuarios. Sólo funciona si la petición viene 
 **Parámetros de Entrada**
 token (cadena): token de autenticación enviado al `login`
 
-```POST /login HTTP/1.1
+```POST /get-all-users HTTP/1.1
 Content-Type: application/json
 
 {
@@ -124,7 +124,7 @@ first_name (cadena): El nombre del usuario.
 last_name (cadena): El apellido del usuario.
 password (cadena): La contraseña elegida por el usuario.
 
-```POST /login HTTP/1.1
+```POST /create-user HTTP/1.1
 Content-Type: application/json
 
 {
@@ -140,9 +140,156 @@ Content-Type: application/json
 ```
 {
     "msg": "Usuario creado con éxito",
+    "user_id": "65ef5f89ee038e9346215ecb"
 }
 ```
 
 - Código 400: Se devuelve si los datos de inicio de sesión son incorrectos o faltantes.
 - Código 410: Se devuelve si el usuario no está en la base de datos.
+- Código 500: Se devuelve con cualquier otro error no contemplado en los ya mencionados.
+
+####  DELETE `/delete-user`
+Borra el usuario correspondiente al user_id enviado. Sólo funciona si la petición viene de un usuario admin.
+
+**Parámetros de Entrada**
+token (cadena): token de autenticación enviado al `login`
+user_id (cadena): Id del usuario que se quiere borrar. Se puede conseguir con `get-all-users`
+
+```DELETE /delete-user HTTP/1.1
+Content-Type: application/json
+
+{
+    "token": "token",
+    "user_id": "65ef5f89ee038e9346215ecb"
+}
+```
+**Respuestas**
+- Código 200: Se devuelve cuando el usuario se ha borrado con éxito.
+```
+{'msg': 'Usuario borrado con éxito'}
+```
+
+- Código 400: Se devuelve si los datos de inicio de sesión son incorrectos o faltantes.
+- Código 410: Se devuelve si el usuario no está en la base de datos.
+- Código 401: Se devuelve si el usuario no ha hecho log in o si el usuario no es admin.
+- Código 500: Se devuelve con cualquier otro error no contemplado en los ya mencionados.
+
+####  PUT `/update-user`
+Actualiza los datos del usuario. Los parámetros de entrada son opcionales (se puede mandar lo que se quiera).
+
+Si la petición viene de un usuario que *no* es admin, se actualizan los datos del propio usuario. 
+
+Si la petición viene de un usuario administrador, es **OBLIGATORIO** enviar un parámetro `user_id` para saber los datos
+de qué usuario hay que actualizar.
+
+**Parámetros de Entrada**
+token (cadena): token de autenticación enviado al `login`
+
+Cualquier campo de los contemplados en create_user, menos password:
+user_name (cadena)
+email (cadena)
+first_name
+last_name (cadena)
+
+*Solo si la petición viene de un admin*:
+user_id (cadena): Id del usuario que se quiere actualizar. Se puede conseguir con `get-all-users`
+
+```PUT /update-user HTTP/1.1
+Content-Type: application/json
+
+{
+    "token": "token",
+    "first_name": "Wenceslao",
+    "last_name": "Jiménez"
+}
+```
+**Respuestas**
+- Código 200: Se devuelve cuando el usuario se ha borrado con éxito.
+```
+{'msg': 'Usuario actualizado con éxito'}
+```
+
+- Código 400: Se devuelve si los datos de inicio de sesión son incorrectos o faltantes.
+- Código 410: Se devuelve si el usuario no está en la base de datos.
+- Código 401: Se devuelve si el usuario no ha hecho log in o si el usuario no es admin.
+- Código 500: Se devuelve con cualquier otro error no contemplado en los ya mencionados.
+
+####  PUT `/update-user`
+Actualiza los datos del usuario. Los parámetros de entrada son opcionales (se puede mandar lo que se quiera).
+
+Si la petición viene de un usuario que *no* es admin, se actualizan los datos del propio usuario. 
+
+Si la petición viene de un usuario administrador, es **OBLIGATORIO** enviar un parámetro `user_id` para saber los datos
+de qué usuario hay que actualizar.
+
+**Parámetros de Entrada**
+token (cadena): token de autenticación enviado al `login`
+
+Cualquier campo de los contemplados en create_user, menos password:
+user_name (cadena)
+email (cadena)
+first_name
+last_name (cadena)
+
+*Solo si la petición viene de un admin*:
+user_id (cadena): Id del usuario que se quiere actualizar. Se puede conseguir con `get-all-users`
+
+```PUT /update-user HTTP/1.1
+Content-Type: application/json
+
+{
+    "token": "token",
+    "first_name": "Wenceslao",
+    "last_name": "Jiménez"
+}
+```
+**Respuestas**
+- Código 200: Se devuelve cuando el usuario se ha borrado con éxito.
+```
+{'msg': 'Usuario actualizado con éxito'}
+```
+
+- Código 400: Se devuelve si los datos de inicio de sesión son incorrectos o faltantes.
+- Código 410: Se devuelve si el usuario no está en la base de datos.
+- Código 401: Se devuelve si el usuario no ha hecho log in o si el usuario no es admin.
+- Código 500: Se devuelve con cualquier otro error no contemplado en los ya mencionados.
+
+####  PUT `/update-user`
+Actualiza los datos del usuario. Los parámetros de entrada son opcionales (se puede mandar lo que se quiera).
+
+Si la petición viene de un usuario que *no* es admin, se actualizan los datos del propio usuario. 
+
+Si la petición viene de un usuario administrador, es **OBLIGATORIO** enviar un parámetro `user_id` para saber los datos
+de qué usuario hay que actualizar.
+
+**Parámetros de Entrada**
+token (cadena): token de autenticación enviado al `login`
+
+Cualquier campo de los contemplados en create_user, menos password:
+user_name (cadena)
+email (cadena)
+first_name
+last_name (cadena)
+
+*Solo si la petición viene de un admin*:
+user_id (cadena): Id del usuario que se quiere actualizar. Se puede conseguir con `get-all-users`
+
+```PUT /update-user HTTP/1.1
+Content-Type: application/json
+
+{
+    "token": "token",
+    "first_name": "Wenceslao",
+    "last_name": "Jiménez"
+}
+```
+**Respuestas**
+- Código 200: Se devuelve cuando el usuario se ha borrado con éxito.
+```
+{'msg': 'Usuario actualizado con éxito'}
+```
+
+- Código 400: Se devuelve si los datos de inicio de sesión son incorrectos o faltantes.
+- Código 410: Se devuelve si el usuario no está en la base de datos.
+- Código 401: Se devuelve si el usuario no ha hecho log in.
 - Código 500: Se devuelve con cualquier otro error no contemplado en los ya mencionados.
