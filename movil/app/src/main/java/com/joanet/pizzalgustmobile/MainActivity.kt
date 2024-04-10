@@ -1,7 +1,6 @@
 package com.joanet.pizzalgustmobile
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -9,9 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
-import com.google.gson.Gson
-import com.google.gson.JsonObject
-
+import androidx.appcompat.app.AppCompatActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -56,7 +53,7 @@ class MainActivity : AppCompatActivity() {
 
         val apiService = retrofit.create(ApiService::class.java)
 
-        val model = LoginDataModel("bwayne@gotham.com", "batman", "", "", "", "", false,"")
+        val model = LoginDataModel("", "", "", "", "", "", false,"","")
         val call = apiService.getUserData(model)
 
         call.enqueue(object : Callback<LoginDataModel> {
