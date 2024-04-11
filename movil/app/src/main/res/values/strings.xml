@@ -8,6 +8,7 @@
     <string name="tv_email">Email</string>
     <string name="tv_contraseña">Contraseña</string>
     <string name="tv_Bienvenido">Bienvenidos a PizzaLgust!</string>
+    <string name="tv_Registration">Registrate aquí</string>
 
     <!-- admin activity -->
     <string name="tv_admin_name">Name :</string>

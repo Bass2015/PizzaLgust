@@ -7,12 +7,10 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-<<<<<<< HEAD
-=======
 import com.google.gson.Gson
->>>>>>> 664d56c90739684e84c8faa9443c820412bbdcd4
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var etPassword: EditText
     private lateinit var btnEntrar: Button
     private lateinit var progressBar: ProgressBar
+    private lateinit var tvRegistration: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         etPassword = findViewById(R.id.etPassword)
         btnEntrar = findViewById(R.id.btnEntrar1)
         progressBar = findViewById(R.id.idLoadingPB)
+        tvRegistration = findViewById(R.id.tvRegistration)
 
         btnEntrar.setOnClickListener {
             val email = etEmail.text.toString().trim()
@@ -51,7 +51,13 @@ class MainActivity : AppCompatActivity() {
                 login(email, password)
             }
         }
+
+        tvRegistration.setOnClickListener{
+            val intent = Intent(this@MainActivity,CreateUsers::class.java)
+            startActivity(intent)
+        }
     }
+
 
     /**
      * Método para iniciar sesión en la aplicación.
@@ -67,15 +73,13 @@ class MainActivity : AppCompatActivity() {
 
         val apiService = retrofit.create(ApiService::class.java)
 
-<<<<<<< HEAD
-        val model = LoginDataModel("", "", "", "", "", "", false,"","")
-=======
-        val model = LoginDataModel(email, password, "", "", "", "", false, "")
->>>>>>> 664d56c90739684e84c8faa9443c820412bbdcd4
+
+        val model = Login(email, password, "", "", "", "", false, "","")
+
         val call = apiService.getUserData(model)
 
-        call.enqueue(object : Callback<LoginDataModel> {
-            override fun onResponse(call: Call<LoginDataModel>, response: Response<LoginDataModel>) {
+        call.enqueue(object : Callback<Login> {
+            override fun onResponse(call: Call<Login>, response: Response<Login>) {
                 if (response.isSuccessful) {
                     val dataModel = response.body()
                     if (dataModel?.token.isNullOrEmpty()) {
@@ -85,6 +89,7 @@ class MainActivity : AppCompatActivity() {
                         Log.i("INFO","¡Correcto! Token recibido: ${dataModel?.token}")
                         Log.i("INFO","¡dame nombre: ${dataModel?.first_name}")
                         Log.i("INFO","¡Correcto! isadmin: ${dataModel?.is_admin}")
+                        Log.i("INFO","¡Correcto! usertype: ${dataModel?.user_type}")
 
                         val gson = Gson()
                         val jsonString = gson.toJson(dataModel)
@@ -112,7 +117,7 @@ class MainActivity : AppCompatActivity() {
                 progressBar.visibility = View.GONE
             }
 
-            override fun onFailure(call: Call<LoginDataModel>, t: Throwable) {
+            override fun onFailure(call: Call<Login>, t: Throwable) {
                 Toast.makeText(this@MainActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
                 progressBar.visibility = View.GONE
             }

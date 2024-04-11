@@ -67,11 +67,11 @@ class AdminActivity : AppCompatActivity() {
         val logoutService = retrofit.create(ApiService.ApiLogout::class.java)
 
         // Realiza la llamada al servicio de logout
-        val call = logoutService.logout(LogoutDataModel(token,""))
+        val call = logoutService.logout(Logout(token,""))
 
         // Maneja la respuesta de la llamada asíncrona
-        call.enqueue(object : Callback<LogoutDataModel> {
-            override fun onResponse(call: Call<LogoutDataModel>, response: Response<LogoutDataModel>) {
+        call.enqueue(object : Callback<Logout> {
+            override fun onResponse(call: Call<Logout>, response: Response<Logout>) {
                 if (response.isSuccessful) {
                     val responseData = response.body()
                     responseData?.let {
@@ -89,7 +89,7 @@ class AdminActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<LogoutDataModel>, t: Throwable) {
+            override fun onFailure(call: Call<Logout>, t: Throwable) {
                 // Muestra un mensaje de error en caso de fallo en la llamada de logout
                 Toast.makeText(this@AdminActivity, "Fallo en la llamada de logout: ${t.message}", Toast.LENGTH_SHORT).show()
                 Log.e("ERROR", "Fallo en la llamada de logout: ${t.message}")
