@@ -1,16 +1,17 @@
 
+import bcrypt
+from time import time
 from jwt import (decode, 
                  encode,
                  InvalidAlgorithmError, 
                  InvalidSignatureError,
                  ExpiredSignatureError, 
                  MissingRequiredClaimError)
-from config import JWT_SECRET_KEY, N_REQ_CLAIMS
-from services.database import is_document_in_collection
-from events.events import TOKEN_VERIFIED_EVENT
-from time import time
 
-import bcrypt
+from config import JWT_SECRET_KEY, N_REQ_CLAIMS
+from events.events import TOKEN_VERIFIED_EVENT
+from services.database import is_document_in_collection
+
 
 
 def hash_password(password: str):
