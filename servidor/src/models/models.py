@@ -138,11 +138,10 @@ class User(DBModel):
     @classmethod
     def read(cls, user_id):
         """
-        Método para leer un usuario por su ID y contraseña.
+        Método para leer un usuario por su ID.
 
         Parámetros:
         - user_id (str): ID del usuario.
-        - password (str): Contraseña del usuario.
 
         Retorna:
         - user: Objeto de usuario leído.
