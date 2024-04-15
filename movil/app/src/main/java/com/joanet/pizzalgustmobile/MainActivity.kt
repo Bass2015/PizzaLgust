@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var etPassword: EditText
     private lateinit var btnEntrar: Button
     private lateinit var progressBar: ProgressBar
+    private lateinit var tvRegistration: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         etPassword = findViewById(R.id.etPassword)
         btnEntrar = findViewById(R.id.btnEntrar1)
         progressBar = findViewById(R.id.idLoadingPB)
+        tvRegistration = findViewById(R.id.tvRegistration)
 
         btnEntrar.setOnClickListener {
             val email = etEmail.text.toString().trim()
@@ -48,7 +51,14 @@ class MainActivity : AppCompatActivity() {
                 login(email, password)
             }
         }
+
+        tvRegistration.setOnClickListener{
+            val intent = Intent(this@MainActivity,CreateUsersActivity::class.java)
+            startActivity(intent)
+        }
+        PreferenceManager.init(applicationContext)
     }
+
 
     /**
      * Método para iniciar sesión en la aplicación.
@@ -64,11 +74,13 @@ class MainActivity : AppCompatActivity() {
 
         val apiService = retrofit.create(ApiService::class.java)
 
-        val model = LoginDataModel(email, password, "", "", "", "", false, "")
+
+        val model = Login(email, password, "", "", "", "", false, "","")
+
         val call = apiService.getUserData(model)
 
-        call.enqueue(object : Callback<LoginDataModel> {
-            override fun onResponse(call: Call<LoginDataModel>, response: Response<LoginDataModel>) {
+        call.enqueue(object : Callback<Login> {
+            override fun onResponse(call: Call<Login>, response: Response<Login>) {
                 if (response.isSuccessful) {
                     val dataModel = response.body()
                     if (dataModel?.token.isNullOrEmpty()) {
@@ -78,6 +90,8 @@ class MainActivity : AppCompatActivity() {
                         Log.i("INFO","¡Correcto! Token recibido: ${dataModel?.token}")
                         Log.i("INFO","¡dame nombre: ${dataModel?.first_name}")
                         Log.i("INFO","¡Correcto! isadmin: ${dataModel?.is_admin}")
+                        Log.i("INFO","¡Correcto! usertype: ${dataModel?.user_type}")
+
 
                         val gson = Gson()
                         val jsonString = gson.toJson(dataModel)
@@ -89,12 +103,14 @@ class MainActivity : AppCompatActivity() {
                             intent.putExtra("authToken", dataModel.token)
                             intent.putExtra("firstName", dataModel.first_name)
                             intent.putExtra("message", dataModel.msg)
+
                             startActivity(intent)
                         } else {
                             val intent = Intent(this@MainActivity, UserActivity::class.java)
                             intent.putExtra("authToken", dataModel?.token)
                             intent.putExtra("firstName", dataModel?.first_name)
                             intent.putExtra("message", dataModel?.msg)
+
                             startActivity(intent)
                         }
                         finish()
@@ -105,7 +121,7 @@ class MainActivity : AppCompatActivity() {
                 progressBar.visibility = View.GONE
             }
 
-            override fun onFailure(call: Call<LoginDataModel>, t: Throwable) {
+            override fun onFailure(call: Call<Login>, t: Throwable) {
                 Toast.makeText(this@MainActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
                 progressBar.visibility = View.GONE
             }
