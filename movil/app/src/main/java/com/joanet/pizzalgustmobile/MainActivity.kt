@@ -53,9 +53,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         tvRegistration.setOnClickListener{
-            val intent = Intent(this@MainActivity,CreateUsers::class.java)
+            val intent = Intent(this@MainActivity,CreateUsersActivity::class.java)
             startActivity(intent)
         }
+        PreferenceManager.init(applicationContext)
     }
 
 
@@ -91,6 +92,7 @@ class MainActivity : AppCompatActivity() {
                         Log.i("INFO","¡Correcto! isadmin: ${dataModel?.is_admin}")
                         Log.i("INFO","¡Correcto! usertype: ${dataModel?.user_type}")
 
+
                         val gson = Gson()
                         val jsonString = gson.toJson(dataModel)
                         Log.d("JSON Response", jsonString)
@@ -101,12 +103,14 @@ class MainActivity : AppCompatActivity() {
                             intent.putExtra("authToken", dataModel.token)
                             intent.putExtra("firstName", dataModel.first_name)
                             intent.putExtra("message", dataModel.msg)
+
                             startActivity(intent)
                         } else {
                             val intent = Intent(this@MainActivity, UserActivity::class.java)
                             intent.putExtra("authToken", dataModel?.token)
                             intent.putExtra("firstName", dataModel?.first_name)
                             intent.putExtra("message", dataModel?.msg)
+
                             startActivity(intent)
                         }
                         finish()

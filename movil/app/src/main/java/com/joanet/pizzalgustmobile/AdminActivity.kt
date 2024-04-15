@@ -39,7 +39,7 @@ class AdminActivity : AppCompatActivity() {
         tvFirstName1.text = "Nombre :$firstName"
         tvMessage1.text = "Mensaje:$message"
 
-        // Configura el listener para el botón de salir
+
         btnSalir1.setOnClickListener {
             authToken?.let { token ->
                 logoutUser(token)

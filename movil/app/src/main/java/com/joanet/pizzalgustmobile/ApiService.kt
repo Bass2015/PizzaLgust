@@ -40,7 +40,7 @@ interface ApiService {
      */
     @Headers("Content-Type: application/json")
     @POST("pizzalgust/create-user")
-    fun createUser(@Body requestBody: CreateUsers): Call<CreateUsers>
+    fun createUser(@Body requestBody: CreateUser): Call<UserResponse>
 
     /* =========================================↓ GET ALL USERS ↓============================ */
 
@@ -67,7 +67,7 @@ interface ApiService {
      */
     @Headers("Content-Type: application/json")
     @PUT("pizzalgust/update-user")
-    fun updateUser(@Body requestBody: UpdateUser): Call<UpdateUser>
+    fun updateUser(@Body requestBody: UpdateUser): Call<UpdateResponse>
 
     /* =========================================↓ DELETE ↓============================ */
     /**

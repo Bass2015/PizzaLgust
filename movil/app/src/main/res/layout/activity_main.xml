@@ -111,16 +111,16 @@
         android:id="@+id/tvRegistration"
         android:layout_width="157dp"
         android:layout_height="40dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="256dp"
         android:clickable="true"
         android:padding="8dp"
         android:text="@string/tv_Registration"
-        android:textSize="18sp"
 
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/btnEntrar1" />
 
     <ProgressBar
         android:id="@+id/idLoadingPB"

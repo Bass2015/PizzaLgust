@@ -52,6 +52,10 @@ data class CreateUser(
     val first_name: String,
     val last_name: String,
     val password: String,
+
+    ) : java.io.Serializable
+
+data class UserResponse(
     val msg: String,
     val user_id: String
 ) : java.io.Serializable
@@ -62,7 +66,7 @@ data class CreateUser(
  * @property users La lista de usuarios obtenidos del servidor.
  */
 data class GetAllUsers(
-    val users: List<CreateUsers>
+    val users: List<CreateUsersActivity>
 ) : java.io.Serializable
 
 /**
@@ -76,11 +80,21 @@ data class DeleteUser(
     val token: String,
     val user_id: String,
     val msg: String
-) : java.io.Serializable
+    ) : java.io.Serializable
+
+
 
 data class UpdateUser(
     val token: String,
-    val first_name: String,
-    val last_name: String,
+    val user_name: String?,
+    val email: String?,
+    val first_name: String?,
+    val last_name: String?
+) : java.io.Serializable
+
+
+
+
+data class UpdateResponse(
     val msg: String
-)
+) : java.io.Serializable
