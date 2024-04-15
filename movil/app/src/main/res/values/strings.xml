@@ -8,19 +8,38 @@
     <string name="tv_email">Email</string>
     <string name="tv_contraseña">Contraseña</string>
     <string name="tv_Bienvenido">Bienvenidos a PizzaLgust!</string>
+    <string name="tv_Registration">Registrate aquí</string>
 
     <!-- admin activity -->
-    <string name="tv_admin_name">Name :</string>
+    <string name="tv_admin_name"></string>
     <string name="btn_salir">LOGOUT</string>
     <string name="tv_bienvenidaAdmin">Bienvenido Admin</string>
     <string name="tv_Bienvenida">Bienvenido Sr.Wayne</string>
     <string name="tv_admin">Administrador</string>
+    <string name="tv_deleteText_description">Eliminar usuario</string>
+    <string name="deleteUser_description">Eliminar usuario</string>
+
 
     <!-- User activity -->
 
     <string name="tv_bienvenida_user">Bienvenid@</string>
     <string name="tv_user">Usuario</string>
+    <string name="et_delete">Borrar\nUsuario</string>
+    <string name="et_update">Actualizar\nUsuario</string>
 
+    <!-- User activity -->
+    <string name="tv_UserName">User Name</string>
+    <string name="tv_FirtsName">Nombre</string>
+    <string name="tv_LastName">Apellido</string>
+    <string name="tv_Password">Password</string>
+    <string name="et_UserName">Nombre usuario</string>
+    <string name="tv_Crear">Creación de usuarios</string>
+    <string name="tv_Mensaje">Rellena los campos para crear un usuario nuevo.</string>
+
+
+    <!-- User activity -->
+    <string name="tv_UpdateIndexText">Actualización de usuario</string>
+    <string name="tv_MensajeUpdate">Rellena los campos para Actualizar el usuario nuevo.</string>
 
 
 </resources>

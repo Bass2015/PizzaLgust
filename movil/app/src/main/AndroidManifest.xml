@@ -27,6 +27,10 @@
             android:exported="true" />
         <activity android:name=".UserActivity"
             android:exported="true" />
+        <activity android:name=".CreateUsersActivity"
+            android:exported="true" />
+        <activity android:name=".UpdateUserActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

@@ -137,7 +137,6 @@ def get_all_documents_from_database(database:str, collection: str, projection=No
     return results
 
 def get_many_documents(database: str, collection: str, ids_array:list):
-    # llogic from anothr DB
     ids = [ObjectId(id) for id in ids_array]
     with __get_db(database) as db:
         messages = db.messages.find({'_id': {'$in': ids}})

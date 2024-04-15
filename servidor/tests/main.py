@@ -67,6 +67,9 @@ class PizzalgustTests(TestCase):
         assert response.status_code == 500
 
     def test_get_all_users(self):  
+        """
+        Método para probar la solicitud de obtener todos los usuarios.
+        """
         body = {'email': 'bwayne@gotham.com',
                 'password': 'batman'}
         response = requests.post(url=URL + '/login',
@@ -83,6 +86,9 @@ class PizzalgustTests(TestCase):
         assert isinstance(response.json()['users'], list)
     
     def test_get_all_users_no_admin(self):  
+        """
+        Método para probar el endpoint `get-all-users` sin ser admin.
+        """
         body = {"email": "pparker@newyork.com",
                 "password": "spiderman",}
         response = requests.post(url=URL + '/login',
@@ -97,6 +103,9 @@ class PizzalgustTests(TestCase):
         assert response.status_code == 401
     
     def test_create_user(self):
+        """
+        Método para probar la creación de usuario.
+        """
         body = dict(user_name="homer",
             email="hsimpson@springfield.com",
             first_name="Homer",
@@ -109,6 +118,9 @@ class PizzalgustTests(TestCase):
         assert response.json()['msg'] == 'Usuario creado con éxito'
 
     def test_delete_user(self):
+        """
+        Método para probar la eliminación de usuario.
+        """
         body = {'email': 'bwayne@gotham.com',
                 'password': 'batman'}
         response = requests.post(url=URL + '/login',
@@ -132,6 +144,9 @@ class PizzalgustTests(TestCase):
         assert response.json()['msg'] == 'Usuario borrado con éxito'
     
     def test_update_user(self):
+        """
+        Método para probar la actualización de usuario.
+        """
         body = dict(user_name="homer",
             email="hsimpson@springfield.com",
             first_name="Homer",

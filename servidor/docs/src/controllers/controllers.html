@@ -76,6 +76,66 @@
 
             </li>
             <li>
+                    <a class="class" href="#GetAllUsersController">GetAllUsersController</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#GetAllUsersController.__init__">GetAllUsersController</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#GetAllUsersController.token">token</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#GetAllUsersController.run">run</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
+                    <a class="class" href="#CreateUserController">CreateUserController</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#CreateUserController.__init__">CreateUserController</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#CreateUserController.user">user</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#CreateUserController.run">run</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
+                    <a class="class" href="#DeleteUserController">DeleteUserController</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#DeleteUserController.__init__">DeleteUserController</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#DeleteUserController.request">request</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#DeleteUserController.run">run</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
+                    <a class="class" href="#UpdateUserController">UpdateUserController</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#UpdateUserController.__init__">UpdateUserController</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#UpdateUserController.user_info">user_info</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#UpdateUserController.run">run</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
                     <a class="class" href="#UserNotLoggedInError">UserNotLoggedInError</a>
                             <ul class="memberlist">
                         <li>
@@ -83,6 +143,18 @@
                         </li>
                         <li>
                                 <a class="variable" href="#UserNotLoggedInError.message">message</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
+                    <a class="class" href="#UserNotAdminError">UserNotAdminError</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#UserNotAdminError.__init__">UserNotAdminError</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#UserNotAdminError.message">message</a>
                         </li>
                 </ul>
 
@@ -113,7 +185,12 @@
 <li>BaseController: Clase base abstracta para definir la funcionalidad básica del controlador.</li>
 <li>LoginController: Controlador para manejar la funcionalidad de inicio de sesión de usuario.</li>
 <li>LogoutController: Controlador para manejar la funcionalidad de cierre de sesión de usuario.</li>
+<li>GetAllUsersController: Controlador para manejar la funcionalidad de cierre de sesión de usuario.</li>
+<li>CreateUserController: Controlador para manejar la funcionalidad de creación de usuario.</li>
+<li>DeleteUserController: Controlador para manejar la funcionalidad de eliminación de usuario.</li>
+<li>UpdateUserController: Controlador para manejar la funcionalidad de  de actualización usuario.</li>
 <li>UserNotLoggedInError: Excepción personalizada generada cuando un usuario intenta realizar acciones sin haber iniciado sesión.</li>
+<li>UserNotAdminInError: Excepción personalizada generada cuando un usuario no admin intenta realizar acciones que necesitan acceso de administrador.</li>
 </ul>
 </div>
 
@@ -121,86 +198,169 @@
 
                         <label class="view-source-button" for="mod-controllers-view-source"><span>View Source</span></label>
 
-                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos"> 1</span></a><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-2"><a href="#L-2"><span class="linenos"> 2</span></a><span class="sd">Documentación del Módulo: controllers</span>
-</span><span id="L-3"><a href="#L-3"><span class="linenos"> 3</span></a>
-</span><span id="L-4"><a href="#L-4"><span class="linenos"> 4</span></a><span class="sd">Este módulo proporciona controladores para manejar la autenticación de usuarios y la gestión de sesiones en una aplicación Flask.</span>
-</span><span id="L-5"><a href="#L-5"><span class="linenos"> 5</span></a>
-</span><span id="L-6"><a href="#L-6"><span class="linenos"> 6</span></a><span class="sd">Clases:</span>
-</span><span id="L-7"><a href="#L-7"><span class="linenos"> 7</span></a><span class="sd">- BaseController: Clase base abstracta para definir la funcionalidad básica del controlador.</span>
-</span><span id="L-8"><a href="#L-8"><span class="linenos"> 8</span></a><span class="sd">- LoginController: Controlador para manejar la funcionalidad de inicio de sesión de usuario.</span>
-</span><span id="L-9"><a href="#L-9"><span class="linenos"> 9</span></a><span class="sd">- LogoutController: Controlador para manejar la funcionalidad de cierre de sesión de usuario.</span>
-</span><span id="L-10"><a href="#L-10"><span class="linenos">10</span></a><span class="sd">- UserNotLoggedInError: Excepción personalizada generada cuando un usuario intenta realizar acciones sin haber iniciado sesión.</span>
-</span><span id="L-11"><a href="#L-11"><span class="linenos">11</span></a><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-12"><a href="#L-12"><span class="linenos">12</span></a><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span><span class="p">,</span> <span class="n">abstractclassmethod</span>
-</span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a><span class="kn">from</span> <span class="nn">src.utils.async_utils</span> <span class="kn">import</span> <span class="n">run_task_in_background</span>
-</span><span id="L-14"><a href="#L-14"><span class="linenos">14</span></a><span class="kn">from</span> <span class="nn">src.utils.auth_utils</span> <span class="kn">import</span> <span class="n">create_token</span>
-</span><span id="L-15"><a href="#L-15"><span class="linenos">15</span></a><span class="kn">from</span> <span class="nn">src.services</span> <span class="kn">import</span> <span class="n">database</span> <span class="k">as</span> <span class="n">db</span>
-</span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a><span class="kn">from</span> <span class="nn">src.models.models</span> <span class="kn">import</span> <span class="n">DBModel</span><span class="p">,</span> <span class="n">User</span>
-</span><span id="L-17"><a href="#L-17"><span class="linenos">17</span></a>
-</span><span id="L-18"><a href="#L-18"><span class="linenos">18</span></a>
-</span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a><span class="k">class</span> <span class="nc">BaseController</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
-</span><span id="L-20"><a href="#L-20"><span class="linenos">20</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;BaseController: Clase base abstracta para definir la funcionalidad básica del controlador.</span>
-</span><span id="L-21"><a href="#L-21"><span class="linenos">21</span></a>
-</span><span id="L-22"><a href="#L-22"><span class="linenos">22</span></a><span class="sd">    Métodos:</span>
-</span><span id="L-23"><a href="#L-23"><span class="linenos">23</span></a><span class="sd">    - __init__(self, request, config=None): Método constructor.</span>
-</span><span id="L-24"><a href="#L-24"><span class="linenos">24</span></a><span class="sd">    - run(self) -&gt; tuple: Método abstracto que debe ser implementado por subclases para ejecutar la lógica del controlador.</span>
-</span><span id="L-25"><a href="#L-25"><span class="linenos">25</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="L-26"><a href="#L-26"><span class="linenos">26</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-</span><span id="L-27"><a href="#L-27"><span class="linenos">27</span></a>        <span class="k">pass</span>
-</span><span id="L-28"><a href="#L-28"><span class="linenos">28</span></a>
-</span><span id="L-29"><a href="#L-29"><span class="linenos">29</span></a>
-</span><span id="L-30"><a href="#L-30"><span class="linenos">30</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
-</span><span id="L-31"><a href="#L-31"><span class="linenos">31</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-32"><a href="#L-32"><span class="linenos">32</span></a><span class="sd">        Método para ejecutar la lógica del controlador.</span>
-</span><span id="L-33"><a href="#L-33"><span class="linenos">33</span></a>
-</span><span id="L-34"><a href="#L-34"><span class="linenos">34</span></a><span class="sd">        Retorna:</span>
-</span><span id="L-35"><a href="#L-35"><span class="linenos">35</span></a><span class="sd">        - tuple: Una tupla que contiene los datos de respuesta del controlador y el código de estado HTTP.</span>
-</span><span id="L-36"><a href="#L-36"><span class="linenos">36</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="L-37"><a href="#L-37"><span class="linenos">37</span></a>        <span class="n">message</span> <span class="o">=</span> <span class="n">DBModel</span> <span class="c1"># Some kind of DBModel</span>
-</span><span id="L-38"><a href="#L-38"><span class="linenos">38</span></a>        <span class="n">run_task_in_background</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__persist</span><span class="p">,</span> 
-</span><span id="L-39"><a href="#L-39"><span class="linenos">39</span></a>                               <span class="n">message</span><span class="o">=</span><span class="n">message</span><span class="p">)</span>
-</span><span id="L-40"><a href="#L-40"><span class="linenos">40</span></a>
-</span><span id="L-41"><a href="#L-41"><span class="linenos">41</span></a>    <span class="k">def</span> <span class="nf">__example</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="L-42"><a href="#L-42"><span class="linenos">42</span></a>        <span class="k">pass</span>        
-</span><span id="L-43"><a href="#L-43"><span class="linenos">43</span></a>    
-</span><span id="L-44"><a href="#L-44"><span class="linenos">44</span></a>    <span class="k">def</span> <span class="nf">_persist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">DBModel</span><span class="p">):</span>
-</span><span id="L-45"><a href="#L-45"><span class="linenos">45</span></a>        <span class="n">message_id</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">store</span><span class="p">()</span>
-</span><span id="L-46"><a href="#L-46"><span class="linenos">46</span></a>        
-</span><span id="L-47"><a href="#L-47"><span class="linenos">47</span></a><span class="k">class</span> <span class="nc">LoginController</span><span class="p">(</span><span class="n">BaseController</span><span class="p">):</span>
-</span><span id="L-48"><a href="#L-48"><span class="linenos">48</span></a>    <span class="n">logged_in_user_tokens</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span id="L-49"><a href="#L-49"><span class="linenos">49</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-</span><span id="L-50"><a href="#L-50"><span class="linenos">50</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">read_from_email</span><span class="p">(</span><span class="n">email</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">],</span>
-</span><span id="L-51"><a href="#L-51"><span class="linenos">51</span></a>                                         <span class="n">password</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">])</span>
-</span><span id="L-52"><a href="#L-52"><span class="linenos">52</span></a>
-</span><span id="L-53"><a href="#L-53"><span class="linenos">53</span></a>
-</span><span id="L-54"><a href="#L-54"><span class="linenos">54</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
-</span><span id="L-55"><a href="#L-55"><span class="linenos">55</span></a>        <span class="n">token</span> <span class="o">=</span> <span class="n">create_token</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">_id</span><span class="p">,</span> 
-</span><span id="L-56"><a href="#L-56"><span class="linenos">56</span></a>                             <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
-</span><span id="L-57"><a href="#L-57"><span class="linenos">57</span></a>        <span class="n">LoginController</span><span class="o">.</span><span class="n">logged_in_user_tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
-</span><span id="L-58"><a href="#L-58"><span class="linenos">58</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;Login succesful&#39;</span><span class="p">,</span> 
-</span><span id="L-59"><a href="#L-59"><span class="linenos">59</span></a>                <span class="s1">&#39;user_name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">user_name</span><span class="p">,</span>
-</span><span id="L-60"><a href="#L-60"><span class="linenos">60</span></a>                <span class="s1">&#39;first_name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">first_name</span><span class="p">,</span>
-</span><span id="L-61"><a href="#L-61"><span class="linenos">61</span></a>                <span class="s1">&#39;last_name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">last_name</span><span class="p">,</span>
-</span><span id="L-62"><a href="#L-62"><span class="linenos">62</span></a>                <span class="s1">&#39;is_admin&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">,</span>
-</span><span id="L-63"><a href="#L-63"><span class="linenos">63</span></a>                <span class="s1">&#39;token&#39;</span><span class="p">:</span> <span class="n">token</span><span class="p">}</span>
-</span><span id="L-64"><a href="#L-64"><span class="linenos">64</span></a>        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="mi">200</span>
-</span><span id="L-65"><a href="#L-65"><span class="linenos">65</span></a><span class="k">class</span> <span class="nc">LogoutController</span><span class="p">(</span><span class="n">BaseController</span><span class="p">):</span>
-</span><span id="L-66"><a href="#L-66"><span class="linenos">66</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-</span><span id="L-67"><a href="#L-67"><span class="linenos">67</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;token&#39;</span><span class="p">]</span>
-</span><span id="L-68"><a href="#L-68"><span class="linenos">68</span></a>
-</span><span id="L-69"><a href="#L-69"><span class="linenos">69</span></a>
-</span><span id="L-70"><a href="#L-70"><span class="linenos">70</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
-</span><span id="L-71"><a href="#L-71"><span class="linenos">71</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="ow">in</span> <span class="n">LoginController</span><span class="o">.</span><span class="n">logged_in_user_tokens</span><span class="p">:</span>
-</span><span id="L-72"><a href="#L-72"><span class="linenos">72</span></a>            <span class="k">raise</span> <span class="n">UserNotLoggedInError</span><span class="p">()</span>
-</span><span id="L-73"><a href="#L-73"><span class="linenos">73</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;Logout succesful&#39;</span><span class="p">,}</span>
-</span><span id="L-74"><a href="#L-74"><span class="linenos">74</span></a>        <span class="n">LoginController</span><span class="o">.</span><span class="n">logged_in_user_tokens</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">token</span><span class="p">)</span>
-</span><span id="L-75"><a href="#L-75"><span class="linenos">75</span></a>        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="mi">200</span>
-</span><span id="L-76"><a href="#L-76"><span class="linenos">76</span></a>
-</span><span id="L-77"><a href="#L-77"><span class="linenos">77</span></a><span class="k">class</span> <span class="nc">UserNotLoggedInError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-</span><span id="L-78"><a href="#L-78"><span class="linenos">78</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;The user is not logged in&quot;</span><span class="p">):</span>
-</span><span id="L-79"><a href="#L-79"><span class="linenos">79</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">message</span>
-</span><span id="L-80"><a href="#L-80"><span class="linenos">80</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+                        <div class="pdoc-code codehilite"><pre><span></span><span id="L-1"><a href="#L-1"><span class="linenos">  1</span></a><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-2"><a href="#L-2"><span class="linenos">  2</span></a><span class="sd">Documentación del Módulo: controllers</span>
+</span><span id="L-3"><a href="#L-3"><span class="linenos">  3</span></a>
+</span><span id="L-4"><a href="#L-4"><span class="linenos">  4</span></a><span class="sd">Este módulo proporciona controladores para manejar la autenticación de usuarios y la gestión de sesiones en una aplicación Flask.</span>
+</span><span id="L-5"><a href="#L-5"><span class="linenos">  5</span></a>
+</span><span id="L-6"><a href="#L-6"><span class="linenos">  6</span></a><span class="sd">Clases:</span>
+</span><span id="L-7"><a href="#L-7"><span class="linenos">  7</span></a><span class="sd">- BaseController: Clase base abstracta para definir la funcionalidad básica del controlador.</span>
+</span><span id="L-8"><a href="#L-8"><span class="linenos">  8</span></a><span class="sd">- LoginController: Controlador para manejar la funcionalidad de inicio de sesión de usuario.</span>
+</span><span id="L-9"><a href="#L-9"><span class="linenos">  9</span></a><span class="sd">- LogoutController: Controlador para manejar la funcionalidad de cierre de sesión de usuario.</span>
+</span><span id="L-10"><a href="#L-10"><span class="linenos"> 10</span></a><span class="sd">- GetAllUsersController: Controlador para manejar la funcionalidad de cierre de sesión de usuario.</span>
+</span><span id="L-11"><a href="#L-11"><span class="linenos"> 11</span></a><span class="sd">- CreateUserController: Controlador para manejar la funcionalidad de creación de usuario.</span>
+</span><span id="L-12"><a href="#L-12"><span class="linenos"> 12</span></a><span class="sd">- DeleteUserController: Controlador para manejar la funcionalidad de eliminación de usuario.</span>
+</span><span id="L-13"><a href="#L-13"><span class="linenos"> 13</span></a><span class="sd">- UpdateUserController: Controlador para manejar la funcionalidad de  de actualización usuario.</span>
+</span><span id="L-14"><a href="#L-14"><span class="linenos"> 14</span></a><span class="sd">- UserNotLoggedInError: Excepción personalizada generada cuando un usuario intenta realizar acciones sin haber iniciado sesión.</span>
+</span><span id="L-15"><a href="#L-15"><span class="linenos"> 15</span></a><span class="sd">- UserNotAdminInError: Excepción personalizada generada cuando un usuario no admin intenta realizar acciones que necesitan acceso de administrador.</span>
+</span><span id="L-16"><a href="#L-16"><span class="linenos"> 16</span></a><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-17"><a href="#L-17"><span class="linenos"> 17</span></a><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span><span class="p">,</span> <span class="n">abstractclassmethod</span>
+</span><span id="L-18"><a href="#L-18"><span class="linenos"> 18</span></a>
+</span><span id="L-19"><a href="#L-19"><span class="linenos"> 19</span></a><span class="kn">from</span> <span class="nn">src.utils.async_utils</span> <span class="kn">import</span> <span class="n">run_task_in_background</span>
+</span><span id="L-20"><a href="#L-20"><span class="linenos"> 20</span></a><span class="kn">from</span> <span class="nn">src.utils.auth_utils</span> <span class="kn">import</span> <span class="n">create_token</span>
+</span><span id="L-21"><a href="#L-21"><span class="linenos"> 21</span></a><span class="kn">from</span> <span class="nn">src.events.events</span> <span class="kn">import</span> <span class="n">TokenVerifiedEventListener</span>
+</span><span id="L-22"><a href="#L-22"><span class="linenos"> 22</span></a><span class="kn">from</span> <span class="nn">src.services</span> <span class="kn">import</span> <span class="n">database</span> <span class="k">as</span> <span class="n">db</span>
+</span><span id="L-23"><a href="#L-23"><span class="linenos"> 23</span></a><span class="kn">from</span> <span class="nn">src.models.models</span> <span class="kn">import</span> <span class="n">DBModel</span><span class="p">,</span> <span class="n">User</span>
+</span><span id="L-24"><a href="#L-24"><span class="linenos"> 24</span></a>
+</span><span id="L-25"><a href="#L-25"><span class="linenos"> 25</span></a>
+</span><span id="L-26"><a href="#L-26"><span class="linenos"> 26</span></a><span class="k">class</span> <span class="nc">BaseController</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+</span><span id="L-27"><a href="#L-27"><span class="linenos"> 27</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;BaseController: Clase base abstracta para definir la funcionalidad básica del controlador.</span>
+</span><span id="L-28"><a href="#L-28"><span class="linenos"> 28</span></a>
+</span><span id="L-29"><a href="#L-29"><span class="linenos"> 29</span></a><span class="sd">    Métodos:</span>
+</span><span id="L-30"><a href="#L-30"><span class="linenos"> 30</span></a><span class="sd">    - __init__(self, request, config=None): Método constructor.</span>
+</span><span id="L-31"><a href="#L-31"><span class="linenos"> 31</span></a><span class="sd">    - run(self) -&gt; tuple: Método abstracto que debe ser implementado por subclases para ejecutar la lógica del controlador.</span>
+</span><span id="L-32"><a href="#L-32"><span class="linenos"> 32</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="L-33"><a href="#L-33"><span class="linenos"> 33</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="L-34"><a href="#L-34"><span class="linenos"> 34</span></a>        <span class="k">pass</span>
+</span><span id="L-35"><a href="#L-35"><span class="linenos"> 35</span></a>
+</span><span id="L-36"><a href="#L-36"><span class="linenos"> 36</span></a>
+</span><span id="L-37"><a href="#L-37"><span class="linenos"> 37</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+</span><span id="L-38"><a href="#L-38"><span class="linenos"> 38</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="L-39"><a href="#L-39"><span class="linenos"> 39</span></a><span class="sd">        Método para ejecutar la lógica del controlador.</span>
+</span><span id="L-40"><a href="#L-40"><span class="linenos"> 40</span></a>
+</span><span id="L-41"><a href="#L-41"><span class="linenos"> 41</span></a><span class="sd">        Retorna:</span>
+</span><span id="L-42"><a href="#L-42"><span class="linenos"> 42</span></a><span class="sd">        - tuple: Una tupla que contiene los datos de respuesta del controlador y el código de estado HTTP.</span>
+</span><span id="L-43"><a href="#L-43"><span class="linenos"> 43</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="L-44"><a href="#L-44"><span class="linenos"> 44</span></a>        <span class="n">message</span> <span class="o">=</span> <span class="n">DBModel</span> <span class="c1"># Some kind of DBModel</span>
+</span><span id="L-45"><a href="#L-45"><span class="linenos"> 45</span></a>        <span class="n">run_task_in_background</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__persist</span><span class="p">,</span> 
+</span><span id="L-46"><a href="#L-46"><span class="linenos"> 46</span></a>                               <span class="n">message</span><span class="o">=</span><span class="n">message</span><span class="p">)</span>
+</span><span id="L-47"><a href="#L-47"><span class="linenos"> 47</span></a>
+</span><span id="L-48"><a href="#L-48"><span class="linenos"> 48</span></a>    <span class="k">def</span> <span class="nf">__example</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="L-49"><a href="#L-49"><span class="linenos"> 49</span></a>        <span class="k">pass</span>        
+</span><span id="L-50"><a href="#L-50"><span class="linenos"> 50</span></a>    
+</span><span id="L-51"><a href="#L-51"><span class="linenos"> 51</span></a>    <span class="k">def</span> <span class="nf">_persist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">DBModel</span><span class="p">):</span>
+</span><span id="L-52"><a href="#L-52"><span class="linenos"> 52</span></a>        <span class="n">message_id</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">store</span><span class="p">()</span>
+</span><span id="L-53"><a href="#L-53"><span class="linenos"> 53</span></a>        
+</span><span id="L-54"><a href="#L-54"><span class="linenos"> 54</span></a><span class="k">class</span> <span class="nc">LoginController</span><span class="p">(</span><span class="n">BaseController</span><span class="p">):</span>
+</span><span id="L-55"><a href="#L-55"><span class="linenos"> 55</span></a>    <span class="n">logged_in_user_tokens</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="L-56"><a href="#L-56"><span class="linenos"> 56</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="L-57"><a href="#L-57"><span class="linenos"> 57</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">read_from_email</span><span class="p">(</span><span class="n">email</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">],</span>
+</span><span id="L-58"><a href="#L-58"><span class="linenos"> 58</span></a>                                         <span class="n">password</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">])</span>
+</span><span id="L-59"><a href="#L-59"><span class="linenos"> 59</span></a>
+</span><span id="L-60"><a href="#L-60"><span class="linenos"> 60</span></a>
+</span><span id="L-61"><a href="#L-61"><span class="linenos"> 61</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+</span><span id="L-62"><a href="#L-62"><span class="linenos"> 62</span></a>        <span class="n">token</span> <span class="o">=</span> <span class="n">create_token</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">_id</span><span class="p">,</span> 
+</span><span id="L-63"><a href="#L-63"><span class="linenos"> 63</span></a>                             <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
+</span><span id="L-64"><a href="#L-64"><span class="linenos"> 64</span></a>        <span class="n">LoginController</span><span class="o">.</span><span class="n">logged_in_user_tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+</span><span id="L-65"><a href="#L-65"><span class="linenos"> 65</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;Login succesful&#39;</span><span class="p">,</span> 
+</span><span id="L-66"><a href="#L-66"><span class="linenos"> 66</span></a>                <span class="s1">&#39;user_name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">user_name</span><span class="p">,</span>
+</span><span id="L-67"><a href="#L-67"><span class="linenos"> 67</span></a>                <span class="s1">&#39;first_name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">first_name</span><span class="p">,</span>
+</span><span id="L-68"><a href="#L-68"><span class="linenos"> 68</span></a>                <span class="s1">&#39;last_name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">last_name</span><span class="p">,</span>
+</span><span id="L-69"><a href="#L-69"><span class="linenos"> 69</span></a>                <span class="s1">&#39;is_admin&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">,</span>
+</span><span id="L-70"><a href="#L-70"><span class="linenos"> 70</span></a>                <span class="s1">&#39;user_type&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">user_type</span><span class="p">,</span>
+</span><span id="L-71"><a href="#L-71"><span class="linenos"> 71</span></a>                <span class="s1">&#39;token&#39;</span><span class="p">:</span> <span class="n">token</span><span class="p">}</span>
+</span><span id="L-72"><a href="#L-72"><span class="linenos"> 72</span></a>        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="mi">200</span>
+</span><span id="L-73"><a href="#L-73"><span class="linenos"> 73</span></a><span class="k">class</span> <span class="nc">LogoutController</span><span class="p">(</span><span class="n">BaseController</span><span class="p">):</span>
+</span><span id="L-74"><a href="#L-74"><span class="linenos"> 74</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="L-75"><a href="#L-75"><span class="linenos"> 75</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;token&#39;</span><span class="p">]</span>
+</span><span id="L-76"><a href="#L-76"><span class="linenos"> 76</span></a>
+</span><span id="L-77"><a href="#L-77"><span class="linenos"> 77</span></a>
+</span><span id="L-78"><a href="#L-78"><span class="linenos"> 78</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+</span><span id="L-79"><a href="#L-79"><span class="linenos"> 79</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="ow">in</span> <span class="n">LoginController</span><span class="o">.</span><span class="n">logged_in_user_tokens</span><span class="p">:</span>
+</span><span id="L-80"><a href="#L-80"><span class="linenos"> 80</span></a>            <span class="k">raise</span> <span class="n">UserNotLoggedInError</span><span class="p">()</span>
+</span><span id="L-81"><a href="#L-81"><span class="linenos"> 81</span></a>        
+</span><span id="L-82"><a href="#L-82"><span class="linenos"> 82</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;Logout succesful&#39;</span><span class="p">,}</span>
+</span><span id="L-83"><a href="#L-83"><span class="linenos"> 83</span></a>        <span class="n">LoginController</span><span class="o">.</span><span class="n">logged_in_user_tokens</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">token</span><span class="p">)</span>
+</span><span id="L-84"><a href="#L-84"><span class="linenos"> 84</span></a>        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="mi">200</span>
+</span><span id="L-85"><a href="#L-85"><span class="linenos"> 85</span></a>
+</span><span id="L-86"><a href="#L-86"><span class="linenos"> 86</span></a><span class="k">class</span> <span class="nc">GetAllUsersController</span><span class="p">(</span><span class="n">TokenVerifiedEventListener</span><span class="p">,</span> <span class="n">BaseController</span><span class="p">):</span>
+</span><span id="L-87"><a href="#L-87"><span class="linenos"> 87</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="L-88"><a href="#L-88"><span class="linenos"> 88</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;token&#39;</span><span class="p">]</span>
+</span><span id="L-89"><a href="#L-89"><span class="linenos"> 89</span></a>        <span class="nb">super</span><span class="p">(</span><span class="n">GetAllUsersController</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span><span id="L-90"><a href="#L-90"><span class="linenos"> 90</span></a>
+</span><span id="L-91"><a href="#L-91"><span class="linenos"> 91</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+</span><span id="L-92"><a href="#L-92"><span class="linenos"> 92</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="ow">in</span> <span class="n">LoginController</span><span class="o">.</span><span class="n">logged_in_user_tokens</span><span class="p">:</span>
+</span><span id="L-93"><a href="#L-93"><span class="linenos"> 93</span></a>            <span class="k">raise</span> <span class="n">UserNotLoggedInError</span><span class="p">()</span>
+</span><span id="L-94"><a href="#L-94"><span class="linenos"> 94</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">GetAllUsersController</span><span class="o">.</span><span class="n">_user_id</span><span class="p">)</span>
+</span><span id="L-95"><a href="#L-95"><span class="linenos"> 95</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">:</span>
+</span><span id="L-96"><a href="#L-96"><span class="linenos"> 96</span></a>            <span class="k">raise</span> <span class="n">UserNotAdminError</span><span class="p">()</span>
+</span><span id="L-97"><a href="#L-97"><span class="linenos"> 97</span></a>        <span class="n">results</span> <span class="o">=</span>  <span class="n">db</span><span class="o">.</span><span class="n">get_all_documents_from_database</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
+</span><span id="L-98"><a href="#L-98"><span class="linenos"> 98</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;users&#39;</span><span class="p">:</span> <span class="p">[]}</span>
+</span><span id="L-99"><a href="#L-99"><span class="linenos"> 99</span></a>        <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+</span><span id="L-100"><a href="#L-100"><span class="linenos">100</span></a>            <span class="n">result</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">)</span>
+</span><span id="L-101"><a href="#L-101"><span class="linenos">101</span></a>            <span class="n">data</span><span class="p">[</span><span class="s1">&#39;users&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span><span id="L-102"><a href="#L-102"><span class="linenos">102</span></a>        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="mi">200</span>
+</span><span id="L-103"><a href="#L-103"><span class="linenos">103</span></a>
+</span><span id="L-104"><a href="#L-104"><span class="linenos">104</span></a><span class="k">class</span> <span class="nc">CreateUserController</span><span class="p">(</span><span class="n">BaseController</span><span class="p">):</span>
+</span><span id="L-105"><a href="#L-105"><span class="linenos">105</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="L-106"><a href="#L-106"><span class="linenos">106</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span>
+</span><span id="L-107"><a href="#L-107"><span class="linenos">107</span></a>
+</span><span id="L-108"><a href="#L-108"><span class="linenos">108</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+</span><span id="L-109"><a href="#L-109"><span class="linenos">109</span></a>        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">new_user</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+</span><span id="L-110"><a href="#L-110"><span class="linenos">110</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;Usuario creado con éxito&#39;</span><span class="p">,</span>
+</span><span id="L-111"><a href="#L-111"><span class="linenos">111</span></a>                <span class="s1">&#39;user_id&#39;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">_id</span><span class="p">}</span>
+</span><span id="L-112"><a href="#L-112"><span class="linenos">112</span></a>        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="mi">200</span>
+</span><span id="L-113"><a href="#L-113"><span class="linenos">113</span></a>
+</span><span id="L-114"><a href="#L-114"><span class="linenos">114</span></a><span class="k">class</span> <span class="nc">DeleteUserController</span><span class="p">(</span><span class="n">TokenVerifiedEventListener</span><span class="p">,</span> <span class="n">BaseController</span><span class="p">):</span>
+</span><span id="L-115"><a href="#L-115"><span class="linenos">115</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="L-116"><a href="#L-116"><span class="linenos">116</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">request</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span>
+</span><span id="L-117"><a href="#L-117"><span class="linenos">117</span></a>        <span class="nb">super</span><span class="p">(</span><span class="n">DeleteUserController</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span><span id="L-118"><a href="#L-118"><span class="linenos">118</span></a>
+</span><span id="L-119"><a href="#L-119"><span class="linenos">119</span></a>
+</span><span id="L-120"><a href="#L-120"><span class="linenos">120</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+</span><span id="L-121"><a href="#L-121"><span class="linenos">121</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">DeleteUserController</span><span class="o">.</span><span class="n">_token</span> <span class="ow">in</span> <span class="n">LoginController</span><span class="o">.</span><span class="n">logged_in_user_tokens</span><span class="p">:</span>
+</span><span id="L-122"><a href="#L-122"><span class="linenos">122</span></a>            <span class="k">raise</span> <span class="n">UserNotLoggedInError</span><span class="p">()</span>
+</span><span id="L-123"><a href="#L-123"><span class="linenos">123</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">DeleteUserController</span><span class="o">.</span><span class="n">_user_id</span><span class="p">)</span>
+</span><span id="L-124"><a href="#L-124"><span class="linenos">124</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">:</span>
+</span><span id="L-125"><a href="#L-125"><span class="linenos">125</span></a>            <span class="k">raise</span> <span class="n">UserNotAdminError</span><span class="p">()</span>
+</span><span id="L-126"><a href="#L-126"><span class="linenos">126</span></a>        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">])</span>
+</span><span id="L-127"><a href="#L-127"><span class="linenos">127</span></a>        <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">delete</span><span class="p">():</span>
+</span><span id="L-128"><a href="#L-128"><span class="linenos">128</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;Usuario borrado con éxito&#39;</span><span class="p">}</span>
+</span><span id="L-129"><a href="#L-129"><span class="linenos">129</span></a>            <span class="n">code</span> <span class="o">=</span> <span class="mi">200</span>
+</span><span id="L-130"><a href="#L-130"><span class="linenos">130</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="L-131"><a href="#L-131"><span class="linenos">131</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;El usuario no se ha podido borrar&#39;</span><span class="p">}</span>
+</span><span id="L-132"><a href="#L-132"><span class="linenos">132</span></a>            <span class="n">code</span> <span class="o">=</span> <span class="mi">500</span>
+</span><span id="L-133"><a href="#L-133"><span class="linenos">133</span></a>        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">code</span>
+</span><span id="L-134"><a href="#L-134"><span class="linenos">134</span></a>    
+</span><span id="L-135"><a href="#L-135"><span class="linenos">135</span></a><span class="k">class</span> <span class="nc">UpdateUserController</span><span class="p">(</span><span class="n">TokenVerifiedEventListener</span><span class="p">,</span> <span class="n">BaseController</span><span class="p">):</span>
+</span><span id="L-136"><a href="#L-136"><span class="linenos">136</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="L-137"><a href="#L-137"><span class="linenos">137</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">user_info</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span><span id="L-138"><a href="#L-138"><span class="linenos">138</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">user_info</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">)</span>
+</span><span id="L-139"><a href="#L-139"><span class="linenos">139</span></a>        <span class="nb">super</span><span class="p">(</span><span class="n">UpdateUserController</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span><span id="L-140"><a href="#L-140"><span class="linenos">140</span></a>
+</span><span id="L-141"><a href="#L-141"><span class="linenos">141</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+</span><span id="L-142"><a href="#L-142"><span class="linenos">142</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">DeleteUserController</span><span class="o">.</span><span class="n">_token</span> <span class="ow">in</span> <span class="n">LoginController</span><span class="o">.</span><span class="n">logged_in_user_tokens</span><span class="p">:</span>
+</span><span id="L-143"><a href="#L-143"><span class="linenos">143</span></a>            <span class="k">raise</span> <span class="n">UserNotLoggedInError</span><span class="p">()</span>
+</span><span id="L-144"><a href="#L-144"><span class="linenos">144</span></a>        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">DeleteUserController</span><span class="o">.</span><span class="n">_user_id</span><span class="p">)</span>
+</span><span id="L-145"><a href="#L-145"><span class="linenos">145</span></a>        <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">:</span>
+</span><span id="L-146"><a href="#L-146"><span class="linenos">146</span></a>            <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user_info</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">])</span>
+</span><span id="L-147"><a href="#L-147"><span class="linenos">147</span></a>        <span class="k">if</span> <span class="s1">&#39;user_id&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_info</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+</span><span id="L-148"><a href="#L-148"><span class="linenos">148</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">user_info</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">)</span>
+</span><span id="L-149"><a href="#L-149"><span class="linenos">149</span></a>        <span class="k">if</span> <span class="s1">&#39;password&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_info</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+</span><span id="L-150"><a href="#L-150"><span class="linenos">150</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">user_info</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">)</span>
+</span><span id="L-151"><a href="#L-151"><span class="linenos">151</span></a>        <span class="n">user</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">user_info</span><span class="p">)</span>
+</span><span id="L-152"><a href="#L-152"><span class="linenos">152</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;Usuario actualizado con éxito&#39;</span><span class="p">}</span>
+</span><span id="L-153"><a href="#L-153"><span class="linenos">153</span></a>        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="mi">200</span>
+</span><span id="L-154"><a href="#L-154"><span class="linenos">154</span></a>
+</span><span id="L-155"><a href="#L-155"><span class="linenos">155</span></a><span class="k">class</span> <span class="nc">UserNotLoggedInError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+</span><span id="L-156"><a href="#L-156"><span class="linenos">156</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;The user is not logged in&quot;</span><span class="p">):</span>
+</span><span id="L-157"><a href="#L-157"><span class="linenos">157</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">message</span>
+</span><span id="L-158"><a href="#L-158"><span class="linenos">158</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+</span><span id="L-159"><a href="#L-159"><span class="linenos">159</span></a>
+</span><span id="L-160"><a href="#L-160"><span class="linenos">160</span></a><span class="k">class</span> <span class="nc">UserNotAdminError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+</span><span id="L-161"><a href="#L-161"><span class="linenos">161</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;The user is not admin&quot;</span><span class="p">):</span>
+</span><span id="L-162"><a href="#L-162"><span class="linenos">162</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">message</span>
+</span><span id="L-163"><a href="#L-163"><span class="linenos">163</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -216,33 +376,33 @@
 
     </div>
     <a class="headerlink" href="#BaseController"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="BaseController-20"><a href="#BaseController-20"><span class="linenos">20</span></a><span class="k">class</span> <span class="nc">BaseController</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
-</span><span id="BaseController-21"><a href="#BaseController-21"><span class="linenos">21</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;BaseController: Clase base abstracta para definir la funcionalidad básica del controlador.</span>
-</span><span id="BaseController-22"><a href="#BaseController-22"><span class="linenos">22</span></a>
-</span><span id="BaseController-23"><a href="#BaseController-23"><span class="linenos">23</span></a><span class="sd">    Métodos:</span>
-</span><span id="BaseController-24"><a href="#BaseController-24"><span class="linenos">24</span></a><span class="sd">    - __init__(self, request, config=None): Método constructor.</span>
-</span><span id="BaseController-25"><a href="#BaseController-25"><span class="linenos">25</span></a><span class="sd">    - run(self) -&gt; tuple: Método abstracto que debe ser implementado por subclases para ejecutar la lógica del controlador.</span>
-</span><span id="BaseController-26"><a href="#BaseController-26"><span class="linenos">26</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="BaseController-27"><a href="#BaseController-27"><span class="linenos">27</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-</span><span id="BaseController-28"><a href="#BaseController-28"><span class="linenos">28</span></a>        <span class="k">pass</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="BaseController-27"><a href="#BaseController-27"><span class="linenos">27</span></a><span class="k">class</span> <span class="nc">BaseController</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+</span><span id="BaseController-28"><a href="#BaseController-28"><span class="linenos">28</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;BaseController: Clase base abstracta para definir la funcionalidad básica del controlador.</span>
 </span><span id="BaseController-29"><a href="#BaseController-29"><span class="linenos">29</span></a>
-</span><span id="BaseController-30"><a href="#BaseController-30"><span class="linenos">30</span></a>
-</span><span id="BaseController-31"><a href="#BaseController-31"><span class="linenos">31</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
-</span><span id="BaseController-32"><a href="#BaseController-32"><span class="linenos">32</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="BaseController-33"><a href="#BaseController-33"><span class="linenos">33</span></a><span class="sd">        Método para ejecutar la lógica del controlador.</span>
-</span><span id="BaseController-34"><a href="#BaseController-34"><span class="linenos">34</span></a>
-</span><span id="BaseController-35"><a href="#BaseController-35"><span class="linenos">35</span></a><span class="sd">        Retorna:</span>
-</span><span id="BaseController-36"><a href="#BaseController-36"><span class="linenos">36</span></a><span class="sd">        - tuple: Una tupla que contiene los datos de respuesta del controlador y el código de estado HTTP.</span>
-</span><span id="BaseController-37"><a href="#BaseController-37"><span class="linenos">37</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="BaseController-38"><a href="#BaseController-38"><span class="linenos">38</span></a>        <span class="n">message</span> <span class="o">=</span> <span class="n">DBModel</span> <span class="c1"># Some kind of DBModel</span>
-</span><span id="BaseController-39"><a href="#BaseController-39"><span class="linenos">39</span></a>        <span class="n">run_task_in_background</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__persist</span><span class="p">,</span> 
-</span><span id="BaseController-40"><a href="#BaseController-40"><span class="linenos">40</span></a>                               <span class="n">message</span><span class="o">=</span><span class="n">message</span><span class="p">)</span>
+</span><span id="BaseController-30"><a href="#BaseController-30"><span class="linenos">30</span></a><span class="sd">    Métodos:</span>
+</span><span id="BaseController-31"><a href="#BaseController-31"><span class="linenos">31</span></a><span class="sd">    - __init__(self, request, config=None): Método constructor.</span>
+</span><span id="BaseController-32"><a href="#BaseController-32"><span class="linenos">32</span></a><span class="sd">    - run(self) -&gt; tuple: Método abstracto que debe ser implementado por subclases para ejecutar la lógica del controlador.</span>
+</span><span id="BaseController-33"><a href="#BaseController-33"><span class="linenos">33</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="BaseController-34"><a href="#BaseController-34"><span class="linenos">34</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="BaseController-35"><a href="#BaseController-35"><span class="linenos">35</span></a>        <span class="k">pass</span>
+</span><span id="BaseController-36"><a href="#BaseController-36"><span class="linenos">36</span></a>
+</span><span id="BaseController-37"><a href="#BaseController-37"><span class="linenos">37</span></a>
+</span><span id="BaseController-38"><a href="#BaseController-38"><span class="linenos">38</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+</span><span id="BaseController-39"><a href="#BaseController-39"><span class="linenos">39</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="BaseController-40"><a href="#BaseController-40"><span class="linenos">40</span></a><span class="sd">        Método para ejecutar la lógica del controlador.</span>
 </span><span id="BaseController-41"><a href="#BaseController-41"><span class="linenos">41</span></a>
-</span><span id="BaseController-42"><a href="#BaseController-42"><span class="linenos">42</span></a>    <span class="k">def</span> <span class="nf">__example</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-</span><span id="BaseController-43"><a href="#BaseController-43"><span class="linenos">43</span></a>        <span class="k">pass</span>        
-</span><span id="BaseController-44"><a href="#BaseController-44"><span class="linenos">44</span></a>    
-</span><span id="BaseController-45"><a href="#BaseController-45"><span class="linenos">45</span></a>    <span class="k">def</span> <span class="nf">_persist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">DBModel</span><span class="p">):</span>
-</span><span id="BaseController-46"><a href="#BaseController-46"><span class="linenos">46</span></a>        <span class="n">message_id</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">store</span><span class="p">()</span>
+</span><span id="BaseController-42"><a href="#BaseController-42"><span class="linenos">42</span></a><span class="sd">        Retorna:</span>
+</span><span id="BaseController-43"><a href="#BaseController-43"><span class="linenos">43</span></a><span class="sd">        - tuple: Una tupla que contiene los datos de respuesta del controlador y el código de estado HTTP.</span>
+</span><span id="BaseController-44"><a href="#BaseController-44"><span class="linenos">44</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="BaseController-45"><a href="#BaseController-45"><span class="linenos">45</span></a>        <span class="n">message</span> <span class="o">=</span> <span class="n">DBModel</span> <span class="c1"># Some kind of DBModel</span>
+</span><span id="BaseController-46"><a href="#BaseController-46"><span class="linenos">46</span></a>        <span class="n">run_task_in_background</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__persist</span><span class="p">,</span> 
+</span><span id="BaseController-47"><a href="#BaseController-47"><span class="linenos">47</span></a>                               <span class="n">message</span><span class="o">=</span><span class="n">message</span><span class="p">)</span>
+</span><span id="BaseController-48"><a href="#BaseController-48"><span class="linenos">48</span></a>
+</span><span id="BaseController-49"><a href="#BaseController-49"><span class="linenos">49</span></a>    <span class="k">def</span> <span class="nf">__example</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="BaseController-50"><a href="#BaseController-50"><span class="linenos">50</span></a>        <span class="k">pass</span>        
+</span><span id="BaseController-51"><a href="#BaseController-51"><span class="linenos">51</span></a>    
+</span><span id="BaseController-52"><a href="#BaseController-52"><span class="linenos">52</span></a>    <span class="k">def</span> <span class="nf">_persist</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="n">DBModel</span><span class="p">):</span>
+</span><span id="BaseController-53"><a href="#BaseController-53"><span class="linenos">53</span></a>        <span class="n">message_id</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">store</span><span class="p">()</span>
 </span></pre></div>
 
 
@@ -261,14 +421,14 @@
                                         <input id="BaseController.__init__-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr function">
             
-        <span class="name">BaseController</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">request</span>, </span><span class="param"><span class="n">config</span><span class="o">=</span><span class="kc">None</span></span>)</span>
+        <span class="name">BaseController</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">config</span><span class="o">=</span><span class="kc">None</span></span>)</span>
 
                 <label class="view-source-button" for="BaseController.__init__-view-source"><span>View Source</span></label>
 
     </div>
     <a class="headerlink" href="#BaseController.__init__"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="BaseController.__init__-27"><a href="#BaseController.__init__-27"><span class="linenos">27</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-</span><span id="BaseController.__init__-28"><a href="#BaseController.__init__-28"><span class="linenos">28</span></a>        <span class="k">pass</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="BaseController.__init__-34"><a href="#BaseController.__init__-34"><span class="linenos">34</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="BaseController.__init__-35"><a href="#BaseController.__init__-35"><span class="linenos">35</span></a>        <span class="k">pass</span>
 </span></pre></div>
 
 
@@ -286,16 +446,16 @@
 
     </div>
     <a class="headerlink" href="#BaseController.run"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="BaseController.run-31"><a href="#BaseController.run-31"><span class="linenos">31</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
-</span><span id="BaseController.run-32"><a href="#BaseController.run-32"><span class="linenos">32</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="BaseController.run-33"><a href="#BaseController.run-33"><span class="linenos">33</span></a><span class="sd">        Método para ejecutar la lógica del controlador.</span>
-</span><span id="BaseController.run-34"><a href="#BaseController.run-34"><span class="linenos">34</span></a>
-</span><span id="BaseController.run-35"><a href="#BaseController.run-35"><span class="linenos">35</span></a><span class="sd">        Retorna:</span>
-</span><span id="BaseController.run-36"><a href="#BaseController.run-36"><span class="linenos">36</span></a><span class="sd">        - tuple: Una tupla que contiene los datos de respuesta del controlador y el código de estado HTTP.</span>
-</span><span id="BaseController.run-37"><a href="#BaseController.run-37"><span class="linenos">37</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="BaseController.run-38"><a href="#BaseController.run-38"><span class="linenos">38</span></a>        <span class="n">message</span> <span class="o">=</span> <span class="n">DBModel</span> <span class="c1"># Some kind of DBModel</span>
-</span><span id="BaseController.run-39"><a href="#BaseController.run-39"><span class="linenos">39</span></a>        <span class="n">run_task_in_background</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__persist</span><span class="p">,</span> 
-</span><span id="BaseController.run-40"><a href="#BaseController.run-40"><span class="linenos">40</span></a>                               <span class="n">message</span><span class="o">=</span><span class="n">message</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="BaseController.run-38"><a href="#BaseController.run-38"><span class="linenos">38</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+</span><span id="BaseController.run-39"><a href="#BaseController.run-39"><span class="linenos">39</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="BaseController.run-40"><a href="#BaseController.run-40"><span class="linenos">40</span></a><span class="sd">        Método para ejecutar la lógica del controlador.</span>
+</span><span id="BaseController.run-41"><a href="#BaseController.run-41"><span class="linenos">41</span></a>
+</span><span id="BaseController.run-42"><a href="#BaseController.run-42"><span class="linenos">42</span></a><span class="sd">        Retorna:</span>
+</span><span id="BaseController.run-43"><a href="#BaseController.run-43"><span class="linenos">43</span></a><span class="sd">        - tuple: Una tupla que contiene los datos de respuesta del controlador y el código de estado HTTP.</span>
+</span><span id="BaseController.run-44"><a href="#BaseController.run-44"><span class="linenos">44</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="BaseController.run-45"><a href="#BaseController.run-45"><span class="linenos">45</span></a>        <span class="n">message</span> <span class="o">=</span> <span class="n">DBModel</span> <span class="c1"># Some kind of DBModel</span>
+</span><span id="BaseController.run-46"><a href="#BaseController.run-46"><span class="linenos">46</span></a>        <span class="n">run_task_in_background</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__persist</span><span class="p">,</span> 
+</span><span id="BaseController.run-47"><a href="#BaseController.run-47"><span class="linenos">47</span></a>                               <span class="n">message</span><span class="o">=</span><span class="n">message</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -322,24 +482,25 @@
 
     </div>
     <a class="headerlink" href="#LoginController"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="LoginController-48"><a href="#LoginController-48"><span class="linenos">48</span></a><span class="k">class</span> <span class="nc">LoginController</span><span class="p">(</span><span class="n">BaseController</span><span class="p">):</span>
-</span><span id="LoginController-49"><a href="#LoginController-49"><span class="linenos">49</span></a>    <span class="n">logged_in_user_tokens</span> <span class="o">=</span> <span class="p">[]</span>
-</span><span id="LoginController-50"><a href="#LoginController-50"><span class="linenos">50</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-</span><span id="LoginController-51"><a href="#LoginController-51"><span class="linenos">51</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">read_from_email</span><span class="p">(</span><span class="n">email</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">],</span>
-</span><span id="LoginController-52"><a href="#LoginController-52"><span class="linenos">52</span></a>                                         <span class="n">password</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">])</span>
-</span><span id="LoginController-53"><a href="#LoginController-53"><span class="linenos">53</span></a>
-</span><span id="LoginController-54"><a href="#LoginController-54"><span class="linenos">54</span></a>
-</span><span id="LoginController-55"><a href="#LoginController-55"><span class="linenos">55</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
-</span><span id="LoginController-56"><a href="#LoginController-56"><span class="linenos">56</span></a>        <span class="n">token</span> <span class="o">=</span> <span class="n">create_token</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">_id</span><span class="p">,</span> 
-</span><span id="LoginController-57"><a href="#LoginController-57"><span class="linenos">57</span></a>                             <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
-</span><span id="LoginController-58"><a href="#LoginController-58"><span class="linenos">58</span></a>        <span class="n">LoginController</span><span class="o">.</span><span class="n">logged_in_user_tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
-</span><span id="LoginController-59"><a href="#LoginController-59"><span class="linenos">59</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;Login succesful&#39;</span><span class="p">,</span> 
-</span><span id="LoginController-60"><a href="#LoginController-60"><span class="linenos">60</span></a>                <span class="s1">&#39;user_name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">user_name</span><span class="p">,</span>
-</span><span id="LoginController-61"><a href="#LoginController-61"><span class="linenos">61</span></a>                <span class="s1">&#39;first_name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">first_name</span><span class="p">,</span>
-</span><span id="LoginController-62"><a href="#LoginController-62"><span class="linenos">62</span></a>                <span class="s1">&#39;last_name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">last_name</span><span class="p">,</span>
-</span><span id="LoginController-63"><a href="#LoginController-63"><span class="linenos">63</span></a>                <span class="s1">&#39;is_admin&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">,</span>
-</span><span id="LoginController-64"><a href="#LoginController-64"><span class="linenos">64</span></a>                <span class="s1">&#39;token&#39;</span><span class="p">:</span> <span class="n">token</span><span class="p">}</span>
-</span><span id="LoginController-65"><a href="#LoginController-65"><span class="linenos">65</span></a>        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="mi">200</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="LoginController-55"><a href="#LoginController-55"><span class="linenos">55</span></a><span class="k">class</span> <span class="nc">LoginController</span><span class="p">(</span><span class="n">BaseController</span><span class="p">):</span>
+</span><span id="LoginController-56"><a href="#LoginController-56"><span class="linenos">56</span></a>    <span class="n">logged_in_user_tokens</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="LoginController-57"><a href="#LoginController-57"><span class="linenos">57</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="LoginController-58"><a href="#LoginController-58"><span class="linenos">58</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">read_from_email</span><span class="p">(</span><span class="n">email</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">],</span>
+</span><span id="LoginController-59"><a href="#LoginController-59"><span class="linenos">59</span></a>                                         <span class="n">password</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">])</span>
+</span><span id="LoginController-60"><a href="#LoginController-60"><span class="linenos">60</span></a>
+</span><span id="LoginController-61"><a href="#LoginController-61"><span class="linenos">61</span></a>
+</span><span id="LoginController-62"><a href="#LoginController-62"><span class="linenos">62</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+</span><span id="LoginController-63"><a href="#LoginController-63"><span class="linenos">63</span></a>        <span class="n">token</span> <span class="o">=</span> <span class="n">create_token</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">_id</span><span class="p">,</span> 
+</span><span id="LoginController-64"><a href="#LoginController-64"><span class="linenos">64</span></a>                             <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
+</span><span id="LoginController-65"><a href="#LoginController-65"><span class="linenos">65</span></a>        <span class="n">LoginController</span><span class="o">.</span><span class="n">logged_in_user_tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+</span><span id="LoginController-66"><a href="#LoginController-66"><span class="linenos">66</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;Login succesful&#39;</span><span class="p">,</span> 
+</span><span id="LoginController-67"><a href="#LoginController-67"><span class="linenos">67</span></a>                <span class="s1">&#39;user_name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">user_name</span><span class="p">,</span>
+</span><span id="LoginController-68"><a href="#LoginController-68"><span class="linenos">68</span></a>                <span class="s1">&#39;first_name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">first_name</span><span class="p">,</span>
+</span><span id="LoginController-69"><a href="#LoginController-69"><span class="linenos">69</span></a>                <span class="s1">&#39;last_name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">last_name</span><span class="p">,</span>
+</span><span id="LoginController-70"><a href="#LoginController-70"><span class="linenos">70</span></a>                <span class="s1">&#39;is_admin&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">,</span>
+</span><span id="LoginController-71"><a href="#LoginController-71"><span class="linenos">71</span></a>                <span class="s1">&#39;user_type&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">user_type</span><span class="p">,</span>
+</span><span id="LoginController-72"><a href="#LoginController-72"><span class="linenos">72</span></a>                <span class="s1">&#39;token&#39;</span><span class="p">:</span> <span class="n">token</span><span class="p">}</span>
+</span><span id="LoginController-73"><a href="#LoginController-73"><span class="linenos">73</span></a>        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="mi">200</span>
 </span></pre></div>
 
 
@@ -364,9 +525,9 @@
 
     </div>
     <a class="headerlink" href="#LoginController.__init__"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="LoginController.__init__-50"><a href="#LoginController.__init__-50"><span class="linenos">50</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-</span><span id="LoginController.__init__-51"><a href="#LoginController.__init__-51"><span class="linenos">51</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">read_from_email</span><span class="p">(</span><span class="n">email</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">],</span>
-</span><span id="LoginController.__init__-52"><a href="#LoginController.__init__-52"><span class="linenos">52</span></a>                                         <span class="n">password</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">])</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="LoginController.__init__-57"><a href="#LoginController.__init__-57"><span class="linenos">57</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="LoginController.__init__-58"><a href="#LoginController.__init__-58"><span class="linenos">58</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">read_from_email</span><span class="p">(</span><span class="n">email</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;email&#39;</span><span class="p">],</span>
+</span><span id="LoginController.__init__-59"><a href="#LoginController.__init__-59"><span class="linenos">59</span></a>                                         <span class="n">password</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">])</span>
 </span></pre></div>
 
 
@@ -407,17 +568,18 @@
 
     </div>
     <a class="headerlink" href="#LoginController.run"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="LoginController.run-55"><a href="#LoginController.run-55"><span class="linenos">55</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
-</span><span id="LoginController.run-56"><a href="#LoginController.run-56"><span class="linenos">56</span></a>        <span class="n">token</span> <span class="o">=</span> <span class="n">create_token</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">_id</span><span class="p">,</span> 
-</span><span id="LoginController.run-57"><a href="#LoginController.run-57"><span class="linenos">57</span></a>                             <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
-</span><span id="LoginController.run-58"><a href="#LoginController.run-58"><span class="linenos">58</span></a>        <span class="n">LoginController</span><span class="o">.</span><span class="n">logged_in_user_tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
-</span><span id="LoginController.run-59"><a href="#LoginController.run-59"><span class="linenos">59</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;Login succesful&#39;</span><span class="p">,</span> 
-</span><span id="LoginController.run-60"><a href="#LoginController.run-60"><span class="linenos">60</span></a>                <span class="s1">&#39;user_name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">user_name</span><span class="p">,</span>
-</span><span id="LoginController.run-61"><a href="#LoginController.run-61"><span class="linenos">61</span></a>                <span class="s1">&#39;first_name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">first_name</span><span class="p">,</span>
-</span><span id="LoginController.run-62"><a href="#LoginController.run-62"><span class="linenos">62</span></a>                <span class="s1">&#39;last_name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">last_name</span><span class="p">,</span>
-</span><span id="LoginController.run-63"><a href="#LoginController.run-63"><span class="linenos">63</span></a>                <span class="s1">&#39;is_admin&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">,</span>
-</span><span id="LoginController.run-64"><a href="#LoginController.run-64"><span class="linenos">64</span></a>                <span class="s1">&#39;token&#39;</span><span class="p">:</span> <span class="n">token</span><span class="p">}</span>
-</span><span id="LoginController.run-65"><a href="#LoginController.run-65"><span class="linenos">65</span></a>        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="mi">200</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="LoginController.run-62"><a href="#LoginController.run-62"><span class="linenos">62</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+</span><span id="LoginController.run-63"><a href="#LoginController.run-63"><span class="linenos">63</span></a>        <span class="n">token</span> <span class="o">=</span> <span class="n">create_token</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">_id</span><span class="p">,</span> 
+</span><span id="LoginController.run-64"><a href="#LoginController.run-64"><span class="linenos">64</span></a>                             <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">email</span><span class="p">)</span>
+</span><span id="LoginController.run-65"><a href="#LoginController.run-65"><span class="linenos">65</span></a>        <span class="n">LoginController</span><span class="o">.</span><span class="n">logged_in_user_tokens</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+</span><span id="LoginController.run-66"><a href="#LoginController.run-66"><span class="linenos">66</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;Login succesful&#39;</span><span class="p">,</span> 
+</span><span id="LoginController.run-67"><a href="#LoginController.run-67"><span class="linenos">67</span></a>                <span class="s1">&#39;user_name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">user_name</span><span class="p">,</span>
+</span><span id="LoginController.run-68"><a href="#LoginController.run-68"><span class="linenos">68</span></a>                <span class="s1">&#39;first_name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">first_name</span><span class="p">,</span>
+</span><span id="LoginController.run-69"><a href="#LoginController.run-69"><span class="linenos">69</span></a>                <span class="s1">&#39;last_name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">last_name</span><span class="p">,</span>
+</span><span id="LoginController.run-70"><a href="#LoginController.run-70"><span class="linenos">70</span></a>                <span class="s1">&#39;is_admin&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">,</span>
+</span><span id="LoginController.run-71"><a href="#LoginController.run-71"><span class="linenos">71</span></a>                <span class="s1">&#39;user_type&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">user_type</span><span class="p">,</span>
+</span><span id="LoginController.run-72"><a href="#LoginController.run-72"><span class="linenos">72</span></a>                <span class="s1">&#39;token&#39;</span><span class="p">:</span> <span class="n">token</span><span class="p">}</span>
+</span><span id="LoginController.run-73"><a href="#LoginController.run-73"><span class="linenos">73</span></a>        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="mi">200</span>
 </span></pre></div>
 
 
@@ -444,17 +606,18 @@
 
     </div>
     <a class="headerlink" href="#LogoutController"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="LogoutController-66"><a href="#LogoutController-66"><span class="linenos">66</span></a><span class="k">class</span> <span class="nc">LogoutController</span><span class="p">(</span><span class="n">BaseController</span><span class="p">):</span>
-</span><span id="LogoutController-67"><a href="#LogoutController-67"><span class="linenos">67</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-</span><span id="LogoutController-68"><a href="#LogoutController-68"><span class="linenos">68</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;token&#39;</span><span class="p">]</span>
-</span><span id="LogoutController-69"><a href="#LogoutController-69"><span class="linenos">69</span></a>
-</span><span id="LogoutController-70"><a href="#LogoutController-70"><span class="linenos">70</span></a>
-</span><span id="LogoutController-71"><a href="#LogoutController-71"><span class="linenos">71</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
-</span><span id="LogoutController-72"><a href="#LogoutController-72"><span class="linenos">72</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="ow">in</span> <span class="n">LoginController</span><span class="o">.</span><span class="n">logged_in_user_tokens</span><span class="p">:</span>
-</span><span id="LogoutController-73"><a href="#LogoutController-73"><span class="linenos">73</span></a>            <span class="k">raise</span> <span class="n">UserNotLoggedInError</span><span class="p">()</span>
-</span><span id="LogoutController-74"><a href="#LogoutController-74"><span class="linenos">74</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;Logout succesful&#39;</span><span class="p">,}</span>
-</span><span id="LogoutController-75"><a href="#LogoutController-75"><span class="linenos">75</span></a>        <span class="n">LoginController</span><span class="o">.</span><span class="n">logged_in_user_tokens</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">token</span><span class="p">)</span>
-</span><span id="LogoutController-76"><a href="#LogoutController-76"><span class="linenos">76</span></a>        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="mi">200</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="LogoutController-74"><a href="#LogoutController-74"><span class="linenos">74</span></a><span class="k">class</span> <span class="nc">LogoutController</span><span class="p">(</span><span class="n">BaseController</span><span class="p">):</span>
+</span><span id="LogoutController-75"><a href="#LogoutController-75"><span class="linenos">75</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="LogoutController-76"><a href="#LogoutController-76"><span class="linenos">76</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;token&#39;</span><span class="p">]</span>
+</span><span id="LogoutController-77"><a href="#LogoutController-77"><span class="linenos">77</span></a>
+</span><span id="LogoutController-78"><a href="#LogoutController-78"><span class="linenos">78</span></a>
+</span><span id="LogoutController-79"><a href="#LogoutController-79"><span class="linenos">79</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+</span><span id="LogoutController-80"><a href="#LogoutController-80"><span class="linenos">80</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="ow">in</span> <span class="n">LoginController</span><span class="o">.</span><span class="n">logged_in_user_tokens</span><span class="p">:</span>
+</span><span id="LogoutController-81"><a href="#LogoutController-81"><span class="linenos">81</span></a>            <span class="k">raise</span> <span class="n">UserNotLoggedInError</span><span class="p">()</span>
+</span><span id="LogoutController-82"><a href="#LogoutController-82"><span class="linenos">82</span></a>        
+</span><span id="LogoutController-83"><a href="#LogoutController-83"><span class="linenos">83</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;Logout succesful&#39;</span><span class="p">,}</span>
+</span><span id="LogoutController-84"><a href="#LogoutController-84"><span class="linenos">84</span></a>        <span class="n">LoginController</span><span class="o">.</span><span class="n">logged_in_user_tokens</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">token</span><span class="p">)</span>
+</span><span id="LogoutController-85"><a href="#LogoutController-85"><span class="linenos">85</span></a>        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="mi">200</span>
 </span></pre></div>
 
 
@@ -479,8 +642,8 @@
 
     </div>
     <a class="headerlink" href="#LogoutController.__init__"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="LogoutController.__init__-67"><a href="#LogoutController.__init__-67"><span class="linenos">67</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-</span><span id="LogoutController.__init__-68"><a href="#LogoutController.__init__-68"><span class="linenos">68</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;token&#39;</span><span class="p">]</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="LogoutController.__init__-75"><a href="#LogoutController.__init__-75"><span class="linenos">75</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="LogoutController.__init__-76"><a href="#LogoutController.__init__-76"><span class="linenos">76</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;token&#39;</span><span class="p">]</span>
 </span></pre></div>
 
 
@@ -509,12 +672,13 @@
 
     </div>
     <a class="headerlink" href="#LogoutController.run"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="LogoutController.run-71"><a href="#LogoutController.run-71"><span class="linenos">71</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
-</span><span id="LogoutController.run-72"><a href="#LogoutController.run-72"><span class="linenos">72</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="ow">in</span> <span class="n">LoginController</span><span class="o">.</span><span class="n">logged_in_user_tokens</span><span class="p">:</span>
-</span><span id="LogoutController.run-73"><a href="#LogoutController.run-73"><span class="linenos">73</span></a>            <span class="k">raise</span> <span class="n">UserNotLoggedInError</span><span class="p">()</span>
-</span><span id="LogoutController.run-74"><a href="#LogoutController.run-74"><span class="linenos">74</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;Logout succesful&#39;</span><span class="p">,}</span>
-</span><span id="LogoutController.run-75"><a href="#LogoutController.run-75"><span class="linenos">75</span></a>        <span class="n">LoginController</span><span class="o">.</span><span class="n">logged_in_user_tokens</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">token</span><span class="p">)</span>
-</span><span id="LogoutController.run-76"><a href="#LogoutController.run-76"><span class="linenos">76</span></a>        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="mi">200</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="LogoutController.run-79"><a href="#LogoutController.run-79"><span class="linenos">79</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+</span><span id="LogoutController.run-80"><a href="#LogoutController.run-80"><span class="linenos">80</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="ow">in</span> <span class="n">LoginController</span><span class="o">.</span><span class="n">logged_in_user_tokens</span><span class="p">:</span>
+</span><span id="LogoutController.run-81"><a href="#LogoutController.run-81"><span class="linenos">81</span></a>            <span class="k">raise</span> <span class="n">UserNotLoggedInError</span><span class="p">()</span>
+</span><span id="LogoutController.run-82"><a href="#LogoutController.run-82"><span class="linenos">82</span></a>        
+</span><span id="LogoutController.run-83"><a href="#LogoutController.run-83"><span class="linenos">83</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;Logout succesful&#39;</span><span class="p">,}</span>
+</span><span id="LogoutController.run-84"><a href="#LogoutController.run-84"><span class="linenos">84</span></a>        <span class="n">LoginController</span><span class="o">.</span><span class="n">logged_in_user_tokens</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">token</span><span class="p">)</span>
+</span><span id="LogoutController.run-85"><a href="#LogoutController.run-85"><span class="linenos">85</span></a>        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="mi">200</span>
 </span></pre></div>
 
 
@@ -530,6 +694,511 @@
 
                             </div>
                 </section>
+                <section id="GetAllUsersController">
+                            <input id="GetAllUsersController-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">GetAllUsersController</span><wbr>(<span class="base"><a href="../events/events.html#TokenVerifiedEventListener">src.events.events.TokenVerifiedEventListener</a></span>, <span class="base"><a href="#BaseController">BaseController</a></span>):
+
+                <label class="view-source-button" for="GetAllUsersController-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#GetAllUsersController"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="GetAllUsersController-87"><a href="#GetAllUsersController-87"><span class="linenos"> 87</span></a><span class="k">class</span> <span class="nc">GetAllUsersController</span><span class="p">(</span><span class="n">TokenVerifiedEventListener</span><span class="p">,</span> <span class="n">BaseController</span><span class="p">):</span>
+</span><span id="GetAllUsersController-88"><a href="#GetAllUsersController-88"><span class="linenos"> 88</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="GetAllUsersController-89"><a href="#GetAllUsersController-89"><span class="linenos"> 89</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;token&#39;</span><span class="p">]</span>
+</span><span id="GetAllUsersController-90"><a href="#GetAllUsersController-90"><span class="linenos"> 90</span></a>        <span class="nb">super</span><span class="p">(</span><span class="n">GetAllUsersController</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span><span id="GetAllUsersController-91"><a href="#GetAllUsersController-91"><span class="linenos"> 91</span></a>
+</span><span id="GetAllUsersController-92"><a href="#GetAllUsersController-92"><span class="linenos"> 92</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+</span><span id="GetAllUsersController-93"><a href="#GetAllUsersController-93"><span class="linenos"> 93</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="ow">in</span> <span class="n">LoginController</span><span class="o">.</span><span class="n">logged_in_user_tokens</span><span class="p">:</span>
+</span><span id="GetAllUsersController-94"><a href="#GetAllUsersController-94"><span class="linenos"> 94</span></a>            <span class="k">raise</span> <span class="n">UserNotLoggedInError</span><span class="p">()</span>
+</span><span id="GetAllUsersController-95"><a href="#GetAllUsersController-95"><span class="linenos"> 95</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">GetAllUsersController</span><span class="o">.</span><span class="n">_user_id</span><span class="p">)</span>
+</span><span id="GetAllUsersController-96"><a href="#GetAllUsersController-96"><span class="linenos"> 96</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">:</span>
+</span><span id="GetAllUsersController-97"><a href="#GetAllUsersController-97"><span class="linenos"> 97</span></a>            <span class="k">raise</span> <span class="n">UserNotAdminError</span><span class="p">()</span>
+</span><span id="GetAllUsersController-98"><a href="#GetAllUsersController-98"><span class="linenos"> 98</span></a>        <span class="n">results</span> <span class="o">=</span>  <span class="n">db</span><span class="o">.</span><span class="n">get_all_documents_from_database</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
+</span><span id="GetAllUsersController-99"><a href="#GetAllUsersController-99"><span class="linenos"> 99</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;users&#39;</span><span class="p">:</span> <span class="p">[]}</span>
+</span><span id="GetAllUsersController-100"><a href="#GetAllUsersController-100"><span class="linenos">100</span></a>        <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+</span><span id="GetAllUsersController-101"><a href="#GetAllUsersController-101"><span class="linenos">101</span></a>            <span class="n">result</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">)</span>
+</span><span id="GetAllUsersController-102"><a href="#GetAllUsersController-102"><span class="linenos">102</span></a>            <span class="n">data</span><span class="p">[</span><span class="s1">&#39;users&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span><span id="GetAllUsersController-103"><a href="#GetAllUsersController-103"><span class="linenos">103</span></a>        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="mi">200</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Clase TokenVerifiedEventListener: Observador específico para el evento de verificación de token.</p>
+
+<p>Atributos:</p>
+
+<ul>
+<li>_user_id: Identificador de usuario verificado.</li>
+<li>_token: Token verificado.</li>
+</ul>
+
+<p>Métodos:</p>
+
+<ul>
+<li>__init__(self, <em>args, *</em>kwargs): Constructor de la clase.</li>
+<li>notify(self, user_id, token): Método para manejar la notificación del evento.</li>
+</ul>
+</div>
+
+
+                            <div id="GetAllUsersController.__init__" class="classattr">
+                                        <input id="GetAllUsersController.__init__-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="name">GetAllUsersController</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">request</span>, </span><span class="param"><span class="n">config</span><span class="o">=</span><span class="kc">None</span></span>)</span>
+
+                <label class="view-source-button" for="GetAllUsersController.__init__-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#GetAllUsersController.__init__"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="GetAllUsersController.__init__-88"><a href="#GetAllUsersController.__init__-88"><span class="linenos">88</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="GetAllUsersController.__init__-89"><a href="#GetAllUsersController.__init__-89"><span class="linenos">89</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s1">&#39;token&#39;</span><span class="p">]</span>
+</span><span id="GetAllUsersController.__init__-90"><a href="#GetAllUsersController.__init__-90"><span class="linenos">90</span></a>        <span class="nb">super</span><span class="p">(</span><span class="n">GetAllUsersController</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Constructor de la clase EventListener.</p>
+
+<p>Parámetros:</p>
+
+<ul>
+<li>event: El evento al que se suscribe el observador.</li>
+</ul>
+</div>
+
+
+                            </div>
+                            <div id="GetAllUsersController.token" class="classattr">
+                                <div class="attr variable">
+            <span class="name">token</span>
+
+        
+    </div>
+    <a class="headerlink" href="#GetAllUsersController.token"></a>
+    
+    
+
+                            </div>
+                            <div id="GetAllUsersController.run" class="classattr">
+                                        <input id="GetAllUsersController.run-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">run</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">) -> <span class="nb">tuple</span>:</span></span>
+
+                <label class="view-source-button" for="GetAllUsersController.run-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#GetAllUsersController.run"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="GetAllUsersController.run-92"><a href="#GetAllUsersController.run-92"><span class="linenos"> 92</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+</span><span id="GetAllUsersController.run-93"><a href="#GetAllUsersController.run-93"><span class="linenos"> 93</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="ow">in</span> <span class="n">LoginController</span><span class="o">.</span><span class="n">logged_in_user_tokens</span><span class="p">:</span>
+</span><span id="GetAllUsersController.run-94"><a href="#GetAllUsersController.run-94"><span class="linenos"> 94</span></a>            <span class="k">raise</span> <span class="n">UserNotLoggedInError</span><span class="p">()</span>
+</span><span id="GetAllUsersController.run-95"><a href="#GetAllUsersController.run-95"><span class="linenos"> 95</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">GetAllUsersController</span><span class="o">.</span><span class="n">_user_id</span><span class="p">)</span>
+</span><span id="GetAllUsersController.run-96"><a href="#GetAllUsersController.run-96"><span class="linenos"> 96</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">:</span>
+</span><span id="GetAllUsersController.run-97"><a href="#GetAllUsersController.run-97"><span class="linenos"> 97</span></a>            <span class="k">raise</span> <span class="n">UserNotAdminError</span><span class="p">()</span>
+</span><span id="GetAllUsersController.run-98"><a href="#GetAllUsersController.run-98"><span class="linenos"> 98</span></a>        <span class="n">results</span> <span class="o">=</span>  <span class="n">db</span><span class="o">.</span><span class="n">get_all_documents_from_database</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">,</span><span class="s1">&#39;users&#39;</span><span class="p">)</span>
+</span><span id="GetAllUsersController.run-99"><a href="#GetAllUsersController.run-99"><span class="linenos"> 99</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;users&#39;</span><span class="p">:</span> <span class="p">[]}</span>
+</span><span id="GetAllUsersController.run-100"><a href="#GetAllUsersController.run-100"><span class="linenos">100</span></a>        <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+</span><span id="GetAllUsersController.run-101"><a href="#GetAllUsersController.run-101"><span class="linenos">101</span></a>            <span class="n">result</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">)</span>
+</span><span id="GetAllUsersController.run-102"><a href="#GetAllUsersController.run-102"><span class="linenos">102</span></a>            <span class="n">data</span><span class="p">[</span><span class="s1">&#39;users&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span><span id="GetAllUsersController.run-103"><a href="#GetAllUsersController.run-103"><span class="linenos">103</span></a>        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="mi">200</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Método para ejecutar la lógica del controlador.</p>
+
+<p>Retorna:</p>
+
+<ul>
+<li>tuple: Una tupla que contiene los datos de respuesta del controlador y el código de estado HTTP.</li>
+</ul>
+</div>
+
+
+                            </div>
+                            <div class="inherited">
+                                <h5>Inherited Members</h5>
+                                <dl>
+                                    <div><dt><a href="../events/events.html#TokenVerifiedEventListener">src.events.events.TokenVerifiedEventListener</a></dt>
+                                <dd id="GetAllUsersController.notify" class="function"><a href="../events/events.html#TokenVerifiedEventListener.notify">notify</a></dd>
+
+            </div>
+                                </dl>
+                            </div>
+                </section>
+                <section id="CreateUserController">
+                            <input id="CreateUserController-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">CreateUserController</span><wbr>(<span class="base"><a href="#BaseController">BaseController</a></span>):
+
+                <label class="view-source-button" for="CreateUserController-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#CreateUserController"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="CreateUserController-105"><a href="#CreateUserController-105"><span class="linenos">105</span></a><span class="k">class</span> <span class="nc">CreateUserController</span><span class="p">(</span><span class="n">BaseController</span><span class="p">):</span>
+</span><span id="CreateUserController-106"><a href="#CreateUserController-106"><span class="linenos">106</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="CreateUserController-107"><a href="#CreateUserController-107"><span class="linenos">107</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span>
+</span><span id="CreateUserController-108"><a href="#CreateUserController-108"><span class="linenos">108</span></a>
+</span><span id="CreateUserController-109"><a href="#CreateUserController-109"><span class="linenos">109</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+</span><span id="CreateUserController-110"><a href="#CreateUserController-110"><span class="linenos">110</span></a>        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">new_user</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+</span><span id="CreateUserController-111"><a href="#CreateUserController-111"><span class="linenos">111</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;Usuario creado con éxito&#39;</span><span class="p">,</span>
+</span><span id="CreateUserController-112"><a href="#CreateUserController-112"><span class="linenos">112</span></a>                <span class="s1">&#39;user_id&#39;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">_id</span><span class="p">}</span>
+</span><span id="CreateUserController-113"><a href="#CreateUserController-113"><span class="linenos">113</span></a>        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="mi">200</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>BaseController: Clase base abstracta para definir la funcionalidad básica del controlador.</p>
+
+<p>Métodos:</p>
+
+<ul>
+<li>__init__(self, request, config=None): Método constructor.</li>
+<li>run(self) -> tuple: Método abstracto que debe ser implementado por subclases para ejecutar la lógica del controlador.</li>
+</ul>
+</div>
+
+
+                            <div id="CreateUserController.__init__" class="classattr">
+                                        <input id="CreateUserController.__init__-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="name">CreateUserController</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">request</span>, </span><span class="param"><span class="n">config</span><span class="o">=</span><span class="kc">None</span></span>)</span>
+
+                <label class="view-source-button" for="CreateUserController.__init__-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#CreateUserController.__init__"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="CreateUserController.__init__-106"><a href="#CreateUserController.__init__-106"><span class="linenos">106</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="CreateUserController.__init__-107"><a href="#CreateUserController.__init__-107"><span class="linenos">107</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span>
+</span></pre></div>
+
+
+    
+
+                            </div>
+                            <div id="CreateUserController.user" class="classattr">
+                                <div class="attr variable">
+            <span class="name">user</span>
+
+        
+    </div>
+    <a class="headerlink" href="#CreateUserController.user"></a>
+    
+    
+
+                            </div>
+                            <div id="CreateUserController.run" class="classattr">
+                                        <input id="CreateUserController.run-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">run</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">) -> <span class="nb">tuple</span>:</span></span>
+
+                <label class="view-source-button" for="CreateUserController.run-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#CreateUserController.run"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="CreateUserController.run-109"><a href="#CreateUserController.run-109"><span class="linenos">109</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+</span><span id="CreateUserController.run-110"><a href="#CreateUserController.run-110"><span class="linenos">110</span></a>        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">new_user</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
+</span><span id="CreateUserController.run-111"><a href="#CreateUserController.run-111"><span class="linenos">111</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;Usuario creado con éxito&#39;</span><span class="p">,</span>
+</span><span id="CreateUserController.run-112"><a href="#CreateUserController.run-112"><span class="linenos">112</span></a>                <span class="s1">&#39;user_id&#39;</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">_id</span><span class="p">}</span>
+</span><span id="CreateUserController.run-113"><a href="#CreateUserController.run-113"><span class="linenos">113</span></a>        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="mi">200</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Método para ejecutar la lógica del controlador.</p>
+
+<p>Retorna:</p>
+
+<ul>
+<li>tuple: Una tupla que contiene los datos de respuesta del controlador y el código de estado HTTP.</li>
+</ul>
+</div>
+
+
+                            </div>
+                </section>
+                <section id="DeleteUserController">
+                            <input id="DeleteUserController-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">DeleteUserController</span><wbr>(<span class="base"><a href="../events/events.html#TokenVerifiedEventListener">src.events.events.TokenVerifiedEventListener</a></span>, <span class="base"><a href="#BaseController">BaseController</a></span>):
+
+                <label class="view-source-button" for="DeleteUserController-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#DeleteUserController"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="DeleteUserController-115"><a href="#DeleteUserController-115"><span class="linenos">115</span></a><span class="k">class</span> <span class="nc">DeleteUserController</span><span class="p">(</span><span class="n">TokenVerifiedEventListener</span><span class="p">,</span> <span class="n">BaseController</span><span class="p">):</span>
+</span><span id="DeleteUserController-116"><a href="#DeleteUserController-116"><span class="linenos">116</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="DeleteUserController-117"><a href="#DeleteUserController-117"><span class="linenos">117</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">request</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span>
+</span><span id="DeleteUserController-118"><a href="#DeleteUserController-118"><span class="linenos">118</span></a>        <span class="nb">super</span><span class="p">(</span><span class="n">DeleteUserController</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span><span id="DeleteUserController-119"><a href="#DeleteUserController-119"><span class="linenos">119</span></a>
+</span><span id="DeleteUserController-120"><a href="#DeleteUserController-120"><span class="linenos">120</span></a>
+</span><span id="DeleteUserController-121"><a href="#DeleteUserController-121"><span class="linenos">121</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+</span><span id="DeleteUserController-122"><a href="#DeleteUserController-122"><span class="linenos">122</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">DeleteUserController</span><span class="o">.</span><span class="n">_token</span> <span class="ow">in</span> <span class="n">LoginController</span><span class="o">.</span><span class="n">logged_in_user_tokens</span><span class="p">:</span>
+</span><span id="DeleteUserController-123"><a href="#DeleteUserController-123"><span class="linenos">123</span></a>            <span class="k">raise</span> <span class="n">UserNotLoggedInError</span><span class="p">()</span>
+</span><span id="DeleteUserController-124"><a href="#DeleteUserController-124"><span class="linenos">124</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">DeleteUserController</span><span class="o">.</span><span class="n">_user_id</span><span class="p">)</span>
+</span><span id="DeleteUserController-125"><a href="#DeleteUserController-125"><span class="linenos">125</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">:</span>
+</span><span id="DeleteUserController-126"><a href="#DeleteUserController-126"><span class="linenos">126</span></a>            <span class="k">raise</span> <span class="n">UserNotAdminError</span><span class="p">()</span>
+</span><span id="DeleteUserController-127"><a href="#DeleteUserController-127"><span class="linenos">127</span></a>        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">])</span>
+</span><span id="DeleteUserController-128"><a href="#DeleteUserController-128"><span class="linenos">128</span></a>        <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">delete</span><span class="p">():</span>
+</span><span id="DeleteUserController-129"><a href="#DeleteUserController-129"><span class="linenos">129</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;Usuario borrado con éxito&#39;</span><span class="p">}</span>
+</span><span id="DeleteUserController-130"><a href="#DeleteUserController-130"><span class="linenos">130</span></a>            <span class="n">code</span> <span class="o">=</span> <span class="mi">200</span>
+</span><span id="DeleteUserController-131"><a href="#DeleteUserController-131"><span class="linenos">131</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="DeleteUserController-132"><a href="#DeleteUserController-132"><span class="linenos">132</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;El usuario no se ha podido borrar&#39;</span><span class="p">}</span>
+</span><span id="DeleteUserController-133"><a href="#DeleteUserController-133"><span class="linenos">133</span></a>            <span class="n">code</span> <span class="o">=</span> <span class="mi">500</span>
+</span><span id="DeleteUserController-134"><a href="#DeleteUserController-134"><span class="linenos">134</span></a>        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">code</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Clase TokenVerifiedEventListener: Observador específico para el evento de verificación de token.</p>
+
+<p>Atributos:</p>
+
+<ul>
+<li>_user_id: Identificador de usuario verificado.</li>
+<li>_token: Token verificado.</li>
+</ul>
+
+<p>Métodos:</p>
+
+<ul>
+<li>__init__(self, <em>args, *</em>kwargs): Constructor de la clase.</li>
+<li>notify(self, user_id, token): Método para manejar la notificación del evento.</li>
+</ul>
+</div>
+
+
+                            <div id="DeleteUserController.__init__" class="classattr">
+                                        <input id="DeleteUserController.__init__-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="name">DeleteUserController</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">request</span>, </span><span class="param"><span class="n">config</span><span class="o">=</span><span class="kc">None</span></span>)</span>
+
+                <label class="view-source-button" for="DeleteUserController.__init__-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#DeleteUserController.__init__"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="DeleteUserController.__init__-116"><a href="#DeleteUserController.__init__-116"><span class="linenos">116</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="DeleteUserController.__init__-117"><a href="#DeleteUserController.__init__-117"><span class="linenos">117</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">request</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span>
+</span><span id="DeleteUserController.__init__-118"><a href="#DeleteUserController.__init__-118"><span class="linenos">118</span></a>        <span class="nb">super</span><span class="p">(</span><span class="n">DeleteUserController</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Constructor de la clase EventListener.</p>
+
+<p>Parámetros:</p>
+
+<ul>
+<li>event: El evento al que se suscribe el observador.</li>
+</ul>
+</div>
+
+
+                            </div>
+                            <div id="DeleteUserController.request" class="classattr">
+                                <div class="attr variable">
+            <span class="name">request</span>
+
+        
+    </div>
+    <a class="headerlink" href="#DeleteUserController.request"></a>
+    
+    
+
+                            </div>
+                            <div id="DeleteUserController.run" class="classattr">
+                                        <input id="DeleteUserController.run-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">run</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">) -> <span class="nb">tuple</span>:</span></span>
+
+                <label class="view-source-button" for="DeleteUserController.run-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#DeleteUserController.run"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="DeleteUserController.run-121"><a href="#DeleteUserController.run-121"><span class="linenos">121</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+</span><span id="DeleteUserController.run-122"><a href="#DeleteUserController.run-122"><span class="linenos">122</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">DeleteUserController</span><span class="o">.</span><span class="n">_token</span> <span class="ow">in</span> <span class="n">LoginController</span><span class="o">.</span><span class="n">logged_in_user_tokens</span><span class="p">:</span>
+</span><span id="DeleteUserController.run-123"><a href="#DeleteUserController.run-123"><span class="linenos">123</span></a>            <span class="k">raise</span> <span class="n">UserNotLoggedInError</span><span class="p">()</span>
+</span><span id="DeleteUserController.run-124"><a href="#DeleteUserController.run-124"><span class="linenos">124</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">DeleteUserController</span><span class="o">.</span><span class="n">_user_id</span><span class="p">)</span>
+</span><span id="DeleteUserController.run-125"><a href="#DeleteUserController.run-125"><span class="linenos">125</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">:</span>
+</span><span id="DeleteUserController.run-126"><a href="#DeleteUserController.run-126"><span class="linenos">126</span></a>            <span class="k">raise</span> <span class="n">UserNotAdminError</span><span class="p">()</span>
+</span><span id="DeleteUserController.run-127"><a href="#DeleteUserController.run-127"><span class="linenos">127</span></a>        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">])</span>
+</span><span id="DeleteUserController.run-128"><a href="#DeleteUserController.run-128"><span class="linenos">128</span></a>        <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">delete</span><span class="p">():</span>
+</span><span id="DeleteUserController.run-129"><a href="#DeleteUserController.run-129"><span class="linenos">129</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;Usuario borrado con éxito&#39;</span><span class="p">}</span>
+</span><span id="DeleteUserController.run-130"><a href="#DeleteUserController.run-130"><span class="linenos">130</span></a>            <span class="n">code</span> <span class="o">=</span> <span class="mi">200</span>
+</span><span id="DeleteUserController.run-131"><a href="#DeleteUserController.run-131"><span class="linenos">131</span></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="DeleteUserController.run-132"><a href="#DeleteUserController.run-132"><span class="linenos">132</span></a>            <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;El usuario no se ha podido borrar&#39;</span><span class="p">}</span>
+</span><span id="DeleteUserController.run-133"><a href="#DeleteUserController.run-133"><span class="linenos">133</span></a>            <span class="n">code</span> <span class="o">=</span> <span class="mi">500</span>
+</span><span id="DeleteUserController.run-134"><a href="#DeleteUserController.run-134"><span class="linenos">134</span></a>        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">code</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Método para ejecutar la lógica del controlador.</p>
+
+<p>Retorna:</p>
+
+<ul>
+<li>tuple: Una tupla que contiene los datos de respuesta del controlador y el código de estado HTTP.</li>
+</ul>
+</div>
+
+
+                            </div>
+                            <div class="inherited">
+                                <h5>Inherited Members</h5>
+                                <dl>
+                                    <div><dt><a href="../events/events.html#TokenVerifiedEventListener">src.events.events.TokenVerifiedEventListener</a></dt>
+                                <dd id="DeleteUserController.notify" class="function"><a href="../events/events.html#TokenVerifiedEventListener.notify">notify</a></dd>
+
+            </div>
+                                </dl>
+                            </div>
+                </section>
+                <section id="UpdateUserController">
+                            <input id="UpdateUserController-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">UpdateUserController</span><wbr>(<span class="base"><a href="../events/events.html#TokenVerifiedEventListener">src.events.events.TokenVerifiedEventListener</a></span>, <span class="base"><a href="#BaseController">BaseController</a></span>):
+
+                <label class="view-source-button" for="UpdateUserController-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#UpdateUserController"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="UpdateUserController-136"><a href="#UpdateUserController-136"><span class="linenos">136</span></a><span class="k">class</span> <span class="nc">UpdateUserController</span><span class="p">(</span><span class="n">TokenVerifiedEventListener</span><span class="p">,</span> <span class="n">BaseController</span><span class="p">):</span>
+</span><span id="UpdateUserController-137"><a href="#UpdateUserController-137"><span class="linenos">137</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="UpdateUserController-138"><a href="#UpdateUserController-138"><span class="linenos">138</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">user_info</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span><span id="UpdateUserController-139"><a href="#UpdateUserController-139"><span class="linenos">139</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">user_info</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">)</span>
+</span><span id="UpdateUserController-140"><a href="#UpdateUserController-140"><span class="linenos">140</span></a>        <span class="nb">super</span><span class="p">(</span><span class="n">UpdateUserController</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span><span id="UpdateUserController-141"><a href="#UpdateUserController-141"><span class="linenos">141</span></a>
+</span><span id="UpdateUserController-142"><a href="#UpdateUserController-142"><span class="linenos">142</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+</span><span id="UpdateUserController-143"><a href="#UpdateUserController-143"><span class="linenos">143</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">DeleteUserController</span><span class="o">.</span><span class="n">_token</span> <span class="ow">in</span> <span class="n">LoginController</span><span class="o">.</span><span class="n">logged_in_user_tokens</span><span class="p">:</span>
+</span><span id="UpdateUserController-144"><a href="#UpdateUserController-144"><span class="linenos">144</span></a>            <span class="k">raise</span> <span class="n">UserNotLoggedInError</span><span class="p">()</span>
+</span><span id="UpdateUserController-145"><a href="#UpdateUserController-145"><span class="linenos">145</span></a>        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">DeleteUserController</span><span class="o">.</span><span class="n">_user_id</span><span class="p">)</span>
+</span><span id="UpdateUserController-146"><a href="#UpdateUserController-146"><span class="linenos">146</span></a>        <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">:</span>
+</span><span id="UpdateUserController-147"><a href="#UpdateUserController-147"><span class="linenos">147</span></a>            <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user_info</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">])</span>
+</span><span id="UpdateUserController-148"><a href="#UpdateUserController-148"><span class="linenos">148</span></a>        <span class="k">if</span> <span class="s1">&#39;user_id&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_info</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+</span><span id="UpdateUserController-149"><a href="#UpdateUserController-149"><span class="linenos">149</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">user_info</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">)</span>
+</span><span id="UpdateUserController-150"><a href="#UpdateUserController-150"><span class="linenos">150</span></a>        <span class="k">if</span> <span class="s1">&#39;password&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_info</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+</span><span id="UpdateUserController-151"><a href="#UpdateUserController-151"><span class="linenos">151</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">user_info</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">)</span>
+</span><span id="UpdateUserController-152"><a href="#UpdateUserController-152"><span class="linenos">152</span></a>        <span class="n">user</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">user_info</span><span class="p">)</span>
+</span><span id="UpdateUserController-153"><a href="#UpdateUserController-153"><span class="linenos">153</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;Usuario actualizado con éxito&#39;</span><span class="p">}</span>
+</span><span id="UpdateUserController-154"><a href="#UpdateUserController-154"><span class="linenos">154</span></a>        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="mi">200</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Clase TokenVerifiedEventListener: Observador específico para el evento de verificación de token.</p>
+
+<p>Atributos:</p>
+
+<ul>
+<li>_user_id: Identificador de usuario verificado.</li>
+<li>_token: Token verificado.</li>
+</ul>
+
+<p>Métodos:</p>
+
+<ul>
+<li>__init__(self, <em>args, *</em>kwargs): Constructor de la clase.</li>
+<li>notify(self, user_id, token): Método para manejar la notificación del evento.</li>
+</ul>
+</div>
+
+
+                            <div id="UpdateUserController.__init__" class="classattr">
+                                        <input id="UpdateUserController.__init__-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="name">UpdateUserController</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">request</span>, </span><span class="param"><span class="n">config</span><span class="o">=</span><span class="kc">None</span></span>)</span>
+
+                <label class="view-source-button" for="UpdateUserController.__init__-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#UpdateUserController.__init__"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="UpdateUserController.__init__-137"><a href="#UpdateUserController.__init__-137"><span class="linenos">137</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="UpdateUserController.__init__-138"><a href="#UpdateUserController.__init__-138"><span class="linenos">138</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">user_info</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span><span id="UpdateUserController.__init__-139"><a href="#UpdateUserController.__init__-139"><span class="linenos">139</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">user_info</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">)</span>
+</span><span id="UpdateUserController.__init__-140"><a href="#UpdateUserController.__init__-140"><span class="linenos">140</span></a>        <span class="nb">super</span><span class="p">(</span><span class="n">UpdateUserController</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Constructor de la clase EventListener.</p>
+
+<p>Parámetros:</p>
+
+<ul>
+<li>event: El evento al que se suscribe el observador.</li>
+</ul>
+</div>
+
+
+                            </div>
+                            <div id="UpdateUserController.user_info" class="classattr">
+                                <div class="attr variable">
+            <span class="name">user_info</span>
+
+        
+    </div>
+    <a class="headerlink" href="#UpdateUserController.user_info"></a>
+    
+    
+
+                            </div>
+                            <div id="UpdateUserController.run" class="classattr">
+                                        <input id="UpdateUserController.run-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">run</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">) -> <span class="nb">tuple</span>:</span></span>
+
+                <label class="view-source-button" for="UpdateUserController.run-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#UpdateUserController.run"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="UpdateUserController.run-142"><a href="#UpdateUserController.run-142"><span class="linenos">142</span></a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+</span><span id="UpdateUserController.run-143"><a href="#UpdateUserController.run-143"><span class="linenos">143</span></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">DeleteUserController</span><span class="o">.</span><span class="n">_token</span> <span class="ow">in</span> <span class="n">LoginController</span><span class="o">.</span><span class="n">logged_in_user_tokens</span><span class="p">:</span>
+</span><span id="UpdateUserController.run-144"><a href="#UpdateUserController.run-144"><span class="linenos">144</span></a>            <span class="k">raise</span> <span class="n">UserNotLoggedInError</span><span class="p">()</span>
+</span><span id="UpdateUserController.run-145"><a href="#UpdateUserController.run-145"><span class="linenos">145</span></a>        <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">DeleteUserController</span><span class="o">.</span><span class="n">_user_id</span><span class="p">)</span>
+</span><span id="UpdateUserController.run-146"><a href="#UpdateUserController.run-146"><span class="linenos">146</span></a>        <span class="k">if</span> <span class="n">user</span><span class="o">.</span><span class="n">is_admin</span><span class="p">:</span>
+</span><span id="UpdateUserController.run-147"><a href="#UpdateUserController.run-147"><span class="linenos">147</span></a>            <span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user_info</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">])</span>
+</span><span id="UpdateUserController.run-148"><a href="#UpdateUserController.run-148"><span class="linenos">148</span></a>        <span class="k">if</span> <span class="s1">&#39;user_id&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_info</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+</span><span id="UpdateUserController.run-149"><a href="#UpdateUserController.run-149"><span class="linenos">149</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">user_info</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">)</span>
+</span><span id="UpdateUserController.run-150"><a href="#UpdateUserController.run-150"><span class="linenos">150</span></a>        <span class="k">if</span> <span class="s1">&#39;password&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">user_info</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+</span><span id="UpdateUserController.run-151"><a href="#UpdateUserController.run-151"><span class="linenos">151</span></a>            <span class="bp">self</span><span class="o">.</span><span class="n">user_info</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;password&#39;</span><span class="p">)</span>
+</span><span id="UpdateUserController.run-152"><a href="#UpdateUserController.run-152"><span class="linenos">152</span></a>        <span class="n">user</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">user_info</span><span class="p">)</span>
+</span><span id="UpdateUserController.run-153"><a href="#UpdateUserController.run-153"><span class="linenos">153</span></a>        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="s1">&#39;Usuario actualizado con éxito&#39;</span><span class="p">}</span>
+</span><span id="UpdateUserController.run-154"><a href="#UpdateUserController.run-154"><span class="linenos">154</span></a>        <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="mi">200</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Método para ejecutar la lógica del controlador.</p>
+
+<p>Retorna:</p>
+
+<ul>
+<li>tuple: Una tupla que contiene los datos de respuesta del controlador y el código de estado HTTP.</li>
+</ul>
+</div>
+
+
+                            </div>
+                            <div class="inherited">
+                                <h5>Inherited Members</h5>
+                                <dl>
+                                    <div><dt><a href="../events/events.html#TokenVerifiedEventListener">src.events.events.TokenVerifiedEventListener</a></dt>
+                                <dd id="UpdateUserController.notify" class="function"><a href="../events/events.html#TokenVerifiedEventListener.notify">notify</a></dd>
+
+            </div>
+                                </dl>
+                            </div>
+                </section>
                 <section id="UserNotLoggedInError">
                             <input id="UserNotLoggedInError-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
 <div class="attr class">
@@ -541,10 +1210,10 @@
 
     </div>
     <a class="headerlink" href="#UserNotLoggedInError"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="UserNotLoggedInError-78"><a href="#UserNotLoggedInError-78"><span class="linenos">78</span></a><span class="k">class</span> <span class="nc">UserNotLoggedInError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-</span><span id="UserNotLoggedInError-79"><a href="#UserNotLoggedInError-79"><span class="linenos">79</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;The user is not logged in&quot;</span><span class="p">):</span>
-</span><span id="UserNotLoggedInError-80"><a href="#UserNotLoggedInError-80"><span class="linenos">80</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">message</span>
-</span><span id="UserNotLoggedInError-81"><a href="#UserNotLoggedInError-81"><span class="linenos">81</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="UserNotLoggedInError-156"><a href="#UserNotLoggedInError-156"><span class="linenos">156</span></a><span class="k">class</span> <span class="nc">UserNotLoggedInError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+</span><span id="UserNotLoggedInError-157"><a href="#UserNotLoggedInError-157"><span class="linenos">157</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;The user is not logged in&quot;</span><span class="p">):</span>
+</span><span id="UserNotLoggedInError-158"><a href="#UserNotLoggedInError-158"><span class="linenos">158</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">message</span>
+</span><span id="UserNotLoggedInError-159"><a href="#UserNotLoggedInError-159"><span class="linenos">159</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -562,9 +1231,9 @@
 
     </div>
     <a class="headerlink" href="#UserNotLoggedInError.__init__"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="UserNotLoggedInError.__init__-79"><a href="#UserNotLoggedInError.__init__-79"><span class="linenos">79</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;The user is not logged in&quot;</span><span class="p">):</span>
-</span><span id="UserNotLoggedInError.__init__-80"><a href="#UserNotLoggedInError.__init__-80"><span class="linenos">80</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">message</span>
-</span><span id="UserNotLoggedInError.__init__-81"><a href="#UserNotLoggedInError.__init__-81"><span class="linenos">81</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="UserNotLoggedInError.__init__-157"><a href="#UserNotLoggedInError.__init__-157"><span class="linenos">157</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;The user is not logged in&quot;</span><span class="p">):</span>
+</span><span id="UserNotLoggedInError.__init__-158"><a href="#UserNotLoggedInError.__init__-158"><span class="linenos">158</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">message</span>
+</span><span id="UserNotLoggedInError.__init__-159"><a href="#UserNotLoggedInError.__init__-159"><span class="linenos">159</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -589,6 +1258,70 @@
                                 <dd id="UserNotLoggedInError.with_traceback" class="function">with_traceback</dd>
                 <dd id="UserNotLoggedInError.add_note" class="function">add_note</dd>
                 <dd id="UserNotLoggedInError.args" class="variable">args</dd>
+
+            </div>
+                                </dl>
+                            </div>
+                </section>
+                <section id="UserNotAdminError">
+                            <input id="UserNotAdminError-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">UserNotAdminError</span><wbr>(<span class="base">builtins.Exception</span>):
+
+                <label class="view-source-button" for="UserNotAdminError-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#UserNotAdminError"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="UserNotAdminError-161"><a href="#UserNotAdminError-161"><span class="linenos">161</span></a><span class="k">class</span> <span class="nc">UserNotAdminError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+</span><span id="UserNotAdminError-162"><a href="#UserNotAdminError-162"><span class="linenos">162</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;The user is not admin&quot;</span><span class="p">):</span>
+</span><span id="UserNotAdminError-163"><a href="#UserNotAdminError-163"><span class="linenos">163</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">message</span>
+</span><span id="UserNotAdminError-164"><a href="#UserNotAdminError-164"><span class="linenos">164</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+</span></pre></div>
+
+
+            <div class="docstring"><p>Common base class for all non-exit exceptions.</p>
+</div>
+
+
+                            <div id="UserNotAdminError.__init__" class="classattr">
+                                        <input id="UserNotAdminError.__init__-view-source" class="view-source-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+<div class="attr function">
+            
+        <span class="name">UserNotAdminError</span><span class="signature pdoc-code condensed">(<span class="param"><span class="n">message</span><span class="o">=</span><span class="s1">&#39;The user is not admin&#39;</span></span>)</span>
+
+                <label class="view-source-button" for="UserNotAdminError.__init__-view-source"><span>View Source</span></label>
+
+    </div>
+    <a class="headerlink" href="#UserNotAdminError.__init__"></a>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="UserNotAdminError.__init__-162"><a href="#UserNotAdminError.__init__-162"><span class="linenos">162</span></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;The user is not admin&quot;</span><span class="p">):</span>
+</span><span id="UserNotAdminError.__init__-163"><a href="#UserNotAdminError.__init__-163"><span class="linenos">163</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">message</span>
+</span><span id="UserNotAdminError.__init__-164"><a href="#UserNotAdminError.__init__-164"><span class="linenos">164</span></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+</span></pre></div>
+
+
+    
+
+                            </div>
+                            <div id="UserNotAdminError.message" class="classattr">
+                                <div class="attr variable">
+            <span class="name">message</span>
+
+        
+    </div>
+    <a class="headerlink" href="#UserNotAdminError.message"></a>
+    
+    
+
+                            </div>
+                            <div class="inherited">
+                                <h5>Inherited Members</h5>
+                                <dl>
+                                    <div><dt>builtins.BaseException</dt>
+                                <dd id="UserNotAdminError.with_traceback" class="function">with_traceback</dd>
+                <dd id="UserNotAdminError.add_note" class="function">add_note</dd>
+                <dd id="UserNotAdminError.args" class="variable">args</dd>
 
             </div>
                                 </dl>

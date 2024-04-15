@@ -7,11 +7,17 @@ Clases:
 - BaseController: Clase base abstracta para definir la funcionalidad básica del controlador.
 - LoginController: Controlador para manejar la funcionalidad de inicio de sesión de usuario.
 - LogoutController: Controlador para manejar la funcionalidad de cierre de sesión de usuario.
+- GetAllUsersController: Controlador para manejar la funcionalidad de cierre de sesión de usuario.
+- CreateUserController: Controlador para manejar la funcionalidad de creación de usuario.
+- DeleteUserController: Controlador para manejar la funcionalidad de eliminación de usuario.
+- UpdateUserController: Controlador para manejar la funcionalidad de  de actualización usuario.
 - UserNotLoggedInError: Excepción personalizada generada cuando un usuario intenta realizar acciones sin haber iniciado sesión.
+- UserNotAdminInError: Excepción personalizada generada cuando un usuario no admin intenta realizar acciones que necesitan acceso de administrador.
 """
+from abc import ABC, abstractmethod, abstractclassmethod
+
 from utils.async_utils import run_task_in_background
 from utils.auth_utils import create_token
-from abc import ABC, abstractmethod, abstractclassmethod
 from events.events import TokenVerifiedEventListener
 from services import database as db
 from models.models import DBModel, User

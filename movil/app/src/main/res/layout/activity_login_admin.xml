@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/loginAdmin"
     android:layout_width="match_parent"
@@ -14,6 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="56dp"
         android:text="@string/btn_salir"
+        android:background="@drawable/edittext_rounded_corner"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -22,20 +24,21 @@
         android:id="@+id/tvBienvenidaAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="24dp"
         android:text="@string/tv_Bienvenida"
         android:textColor="@color/white"
         android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMessage1" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvFirstNameAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="84dp"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +48,8 @@
         android:id="@+id/tvMessageAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,11 +59,94 @@
         android:id="@+id/tvAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:text="@string/tv_admin"
         android:textColor="@color/red"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <FrameLayout
+        android:layout_width="40dp"
+        android:layout_height="47dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/border_back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tv_deleteText">
+
+        <ImageView
+            android:id="@+id/deleteUser"
+            android:layout_width="39dp"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:contentDescription="@string/deleteUser_description"
+            android:focusable="true"
+            android:src="@drawable/user_delete" />
+    </FrameLayout>
+
+    <EditText
+        android:id="@+id/tv_deleteText"
+        android:layout_width="73dp"
+        android:layout_height="47dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/edittext_rounded_corner"
+        android:contentDescription="@string/tv_deleteText_description"
+        android:hint="User_Id"
+        android:textColorHint="#04DDFA"
+        android:padding="15dp"
+        android:textColor="#04DDFA"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.875"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/FLFondoLila"
+        android:layout_width="53dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="88dp"
+        android:background="@drawable/border_back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tv_updateText">
+
+        <ImageView
+            android:id="@+id/updateUser"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:clickable="true"
+            android:src="@drawable/update_user" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_updateText"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="88dp"
+        android:padding="5dp"
+        android:text="@string/et_update"
+        android:textColor="#04DDFA"
+        android:textSize="11dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.841"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RvListado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
