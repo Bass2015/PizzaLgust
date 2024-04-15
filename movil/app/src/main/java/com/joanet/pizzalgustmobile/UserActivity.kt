@@ -26,7 +26,7 @@ class UserActivity : AppCompatActivity() {
     private lateinit var btnUpdate: ImageView
 
 
-    private lateinit var tvUserId: TextView
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,16 +63,7 @@ class UserActivity : AppCompatActivity() {
     }
 
 
-    private fun updateUser(token: String) {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:5002/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
 
-        // Crea un servicio de logout usando Retrofit
-        val logoutService = retrofit.create(ApiService.ApiLogout::class.java)
-
-    }
 
     /**
      * Método para realizar el logout del usuario.

@@ -80,19 +80,16 @@ data class DeleteUser(
     val token: String,
     val user_id: String,
     val msg: String
-    ) : java.io.Serializable
-
+) : java.io.Serializable
 
 
 data class UpdateUser(
     val token: String,
-    val user_name: String?,
-    val email: String?,
-    val first_name: String?,
-    val last_name: String?
+    val user_name: String? = null,
+    val email: String? = null,
+    val first_name: String? = null,
+    val last_name: String? = null,
 ) : java.io.Serializable
-
-
 
 
 data class UpdateResponse(
