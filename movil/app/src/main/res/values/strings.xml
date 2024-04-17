@@ -50,6 +50,9 @@
     <string name="tv_UserNameRV">User Name</string>
     <string name="tv_UserTypeRV">Tipo de Usuario</string>
     <string name="tv_isAdminRV">Eres Admin?</string>
-    <string name="tv_mensajeElimin">Añade user_id para eliminar usuario.</string>
-    <string name="tv_mensajeUpdate">Actualizar datos usuario.</string>
+    <string name="tv_mensajeElimin">Escribe user_id para eliminar usuario.</string>
+    <string name="tv_mensajeUpdateAdmin">Pon el user ID para actualizar datos usuario.</string>
+    <string name="tv_UpdateText_description">Actualizar usuario</string>
+    <string name="USER_ID">USER ID</string>
+
 </resources>

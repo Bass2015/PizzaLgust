@@ -97,7 +97,10 @@ data class User(
 data class DeleteUser(
     val token: String,
     val user_id: String,
-    val msg: String
+) : java.io.Serializable
+
+data class DeleteUserResponse(
+val msg: String
 ) : java.io.Serializable
 
 
