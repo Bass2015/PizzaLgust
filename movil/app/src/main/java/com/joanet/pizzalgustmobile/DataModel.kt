@@ -66,7 +66,25 @@ data class UserResponse(
  * @property users La lista de usuarios obtenidos del servidor.
  */
 data class GetAllUsers(
-    val users: List<CreateUsersActivity>
+    val users: List<User>
+) : java.io.Serializable
+
+data class GetAllUsersRequest(
+    val token: String
+) : java.io.Serializable
+
+/**
+ * Clase de datos que se usa para obtener el recyclerview. para poder llenar la lista users
+ * de getallusers
+ */
+data class User(
+    val _id: String,
+    val email: String,
+    val first_name: String,
+    val is_admin: Boolean,
+    val last_name: String,
+    val user_name: String,
+    val user_type: String
 ) : java.io.Serializable
 
 /**

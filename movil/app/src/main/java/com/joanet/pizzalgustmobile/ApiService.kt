@@ -54,7 +54,7 @@ interface ApiService {
 
     @Headers("Content-Type: application/json")
     @POST("pizzalgust/get-all-users")
-    fun getAllUsers(@Body requestBody: GetAllUsers): Call<GetAllUsers>
+    fun getAllUsers(@Body requestBody: GetAllUsersRequest): Call<GetAllUsers>
 
     /* =========================================↓ UPDATE-USER ↓============================ */
     /**

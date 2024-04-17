@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_batman">
+
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="408dp"
+        android:layout_height="418dp"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/tv_UserIDRV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_UserIdRV"
+            android:textColor="@android:color/holo_purple"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_EmailRV"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_EmailRV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_EmailRV"
+            android:textColor="@android:color/holo_purple"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_FirstNameRV"
+            app:layout_constraintStart_toStartOf="@+id/tv_UserIDRV"
+            app:layout_constraintTop_toBottomOf="@+id/tv_UserIDRV" />
+
+        <TextView
+            android:id="@+id/tv_FirstNameRV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_FirstNameRV"
+            android:textColor="@android:color/holo_purple"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_LastNameRV"
+            app:layout_constraintStart_toStartOf="@+id/tv_EmailRV"
+            app:layout_constraintTop_toBottomOf="@+id/tv_EmailRV" />
+
+        <TextView
+            android:id="@+id/tv_LastNameRV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_LastNameRV"
+            android:textColor="@android:color/holo_purple"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_UserNameRV"
+            app:layout_constraintStart_toStartOf="@+id/tv_FirstNameRV"
+            app:layout_constraintTop_toBottomOf="@+id/tv_FirstNameRV" />
+
+        <TextView
+            android:id="@+id/tv_UserNameRV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_UserNameRV"
+            android:textColor="@android:color/holo_purple"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_UserTypeRV"
+            app:layout_constraintStart_toStartOf="@+id/tv_LastNameRV"
+            app:layout_constraintTop_toBottomOf="@+id/tv_LastNameRV" />
+
+        <TextView
+            android:id="@+id/tv_UserTypeRV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_UserTypeRV"
+            android:textColor="@android:color/holo_purple"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_IsAdminRv"
+            app:layout_constraintStart_toStartOf="@+id/tv_UserNameRV"
+            app:layout_constraintTop_toBottomOf="@+id/tv_UserNameRV" />
+
+        <TextView
+            android:id="@+id/tv_IsAdminRv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_isAdminRV"
+            android:textColor="@android:color/holo_purple"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/tv_UserTypeRV"
+            app:layout_constraintTop_toBottomOf="@+id/tv_UserTypeRV" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="63dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="140dp"
+        android:background="@drawable/border_back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.134"
+        app:layout_constraintStart_toEndOf="@+id/tv_deleteText">
+
+        <ImageView
+            android:id="@+id/btnDeleteUser"
+            android:layout_width="64dp"
+            android:layout_height="70dp"
+            android:clickable="true"
+            android:contentDescription="@string/deleteUser_description"
+            android:focusable="true"
+            android:src="@drawable/user_delete" />
+    </FrameLayout>
+
+    <EditText
+        android:id="@+id/tv_deleteText"
+        android:layout_width="112dp"
+        android:layout_height="68dp"
+        android:layout_marginBottom="140dp"
+        android:background="@drawable/edittext_rounded_corner"
+        android:contentDescription="@string/tv_deleteText_description"
+        android:hint="User_Id"
+        android:padding="15dp"
+        android:textColor="#04DDFA"
+        android:textColorHint="#04DDFA"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.351"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_mensajeElimin"
+        android:layout_width="417dp"
+        android:layout_height="42dp"
+        android:gravity="center"
+        android:text="@string/tv_mensajeElimin"
+        android:textColor="@color/red"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_deleteText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_mensajeUpdate"
+        android:layout_width="417dp"
+        android:layout_height="42dp"
+        android:gravity="center"
+        android:text="@string/tv_MensajeUpdate"
+        android:textColor="@color/red"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_deleteText"
+        app:layout_constraintVertical_bias="0.132" />
+
+    <FrameLayout
+        android:id="@+id/FLFondoLila"
+        android:layout_width="66dp"
+        android:layout_height="71dp"
+        android:layout_marginEnd="168dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/border_back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tv_updateText">
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/updateUser"
+        android:layout_width="65dp"
+        android:layout_height="75dp"
+        android:clickable="true"
+        android:src="@drawable/update_user"
+        tools:layout_editor_absoluteX="175dp"
+        tools:layout_editor_absoluteY="645dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
