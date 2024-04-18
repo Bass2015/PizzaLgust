@@ -86,6 +86,10 @@ class AdminActivity : AppCompatActivity() {
     }
 
 
+    /**
+     * Método que maneja el comportamiento del botón de retroceso.
+     * Si el RecyclerView está visible, lo oculta; de lo contrario, finaliza la actividad actual.
+     */
     override fun onBackPressed() {
         if (rvUserList.visibility == View.VISIBLE) {
             // Si el RecyclerView está visible, ocúltalo
@@ -96,9 +100,9 @@ class AdminActivity : AppCompatActivity() {
         }
     }
 
-
-
-
+    /**
+     * Método para obtener la lista de usuarios desde el servidor.
+     */
 
     private fun fetchUsers() {
         val sharedPref = getSharedPreferences("AppPrefs", Context.MODE_PRIVATE)
@@ -151,6 +155,11 @@ class AdminActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Método para eliminar un usuario.
+     *
+     * @param userId El ID del usuario a eliminar.
+     */
     private fun deleteUser(userId: String) {
         val sharedPref = getSharedPreferences("AppPrefs", Context.MODE_PRIVATE)
         val authToken = sharedPref.getString("authToken", null)

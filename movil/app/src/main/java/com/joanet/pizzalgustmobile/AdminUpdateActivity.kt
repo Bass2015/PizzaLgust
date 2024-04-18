@@ -12,6 +12,9 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+/**
+ * Actividad para actualizar los datos de un usuario desde administrador.
+ */
 class AdminUpdateActivity : AppCompatActivity() {
 
     private lateinit var etUpdateUserName: EditText
@@ -48,6 +51,16 @@ class AdminUpdateActivity : AppCompatActivity() {
             }
         }
     }
+/**
+ * Método para actualizar los datos del usuario desde administrador.
+ *
+ * @param authToken El token de autenticación del usuario.
+ * @param userId El ID del usuario a actualizar.
+ * @param userName El nuevo nombre de usuario.
+ * @param email El nuevo correo electrónico.
+ * @param firstName El nuevo nombre.
+ * @param lastName El nuevo apellido.
+ * */
 
     private fun updateUser(
         authToken: String,

@@ -7,12 +7,32 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
+/**
+ * Adaptador para la lista de usuarios.
+ * Este adaptador se encarga de mostrar la lista de usuarios en un RecyclerView.
+ *
+ * @property users La lista de usuarios a mostrar.
+ */
 class UserListAdapter(private val users: List<User>) : RecyclerView.Adapter<UserListAdapter.UserViewHolder>() {
 
+
+    /**
+     * Crea una nueva instancia de UserViewHolder.
+     *
+     * @param parent El ViewGroup padre en el que se añadirá la nueva vista.
+     * @param viewType El tipo de vista de la nueva vista.
+     * @return Una nueva instancia de UserViewHolder.
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_user, parent, false)
         return UserViewHolder(view)
     }
+    /**
+     * Enlaza los datos del usuario en la posición especificada con la vista correspondiente.
+     *
+     * @param holder El UserViewHolder que representa la vista del usuario.
+     * @param position La posición del usuario en la lista.
+     */
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val user = users[position]
@@ -26,9 +46,19 @@ class UserListAdapter(private val users: List<User>) : RecyclerView.Adapter<User
 
 
     }
+    /**
+     * Obtiene el número total de usuarios en la lista.
+     *
+     * @return El número total de usuarios.
+     */
 
     override fun getItemCount(): Int = users.size
 
+    /**
+     * Clase que representa la vista de cada elemento de usuario en el RecyclerView.
+     *
+     * @property itemView La vista que representa el elemento de usuario.
+     */
     class UserViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val idTextView: TextView = itemView.findViewById(R.id.tv_UserIDRV)
         private val emailTextView: TextView = itemView.findViewById(R.id.tv_EmailRV)
