@@ -116,3 +116,16 @@ data class UpdateUser(
 data class UpdateResponse(
     val msg: String
 ) : java.io.Serializable
+
+data class AdminUpdateUser(
+    val token: String,
+    val user_id: String,
+    val user_name: String? = null,
+    val email: String? = null,
+    val first_name: String? = null,
+    val last_name: String? = null
+) : java.io.Serializable
+
+data class AdminUpdateResponse(
+    val msg: String
+)

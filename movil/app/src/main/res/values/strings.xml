@@ -27,7 +27,7 @@
     <string name="et_delete">Borrar\nUsuario</string>
     <string name="et_userslist">Lista\nUsuarios</string>
 
-    <!-- User activity -->
+    <!-- Update Admin activity -->
     <string name="tv_UserName">User Name</string>
     <string name="tv_FirtsName">Nombre</string>
     <string name="tv_LastName">Apellido</string>
@@ -35,6 +35,8 @@
     <string name="et_UserName">Nombre usuario</string>
     <string name="tv_Crear">Creación de usuarios</string>
     <string name="tv_Mensaje">Rellena los campos para crear un usuario nuevo.</string>
+    <string name="tv_UserIdAdmin">UserId</string>
+    <string name="tv_MensajeUpdateAdmin">Rellena los campos para Actualizar el usuario nuevo.\n Obligatorio ID</string>
 
 
     <!-- User activity -->

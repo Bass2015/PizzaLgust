@@ -68,6 +68,10 @@ interface ApiService {
     @Headers("Content-Type: application/json")
     @PUT("pizzalgust/update-user")
     fun updateUser(@Body requestBody: UpdateUser): Call<UpdateResponse>
+    /* =========================================↓ UPDATE DESDE ADMIN ↓============================ */
+    @Headers("Content-Type: application/json")
+    @PUT("pizzalgust/update-user")
+    fun updateAdminUser(@Body requestBody: AdminUpdateUser): Call<AdminUpdateResponse>
 
     /* =========================================↓ DELETE ↓============================ */
     /**

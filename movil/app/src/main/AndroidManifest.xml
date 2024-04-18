@@ -31,6 +31,8 @@
             android:exported="true" />
         <activity android:name=".UpdateUserActivity"
             android:exported="true" />
+        <activity android:name=".AdminUpdateActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

@@ -89,7 +89,7 @@
         android:layout_height="50dp"
         android:layout_marginBottom="4dp"
         android:padding="5dp"
-        android:text="@string/et_userslist"
+        android:text="@string/tv_UpdateIndexText"
         android:textSize="11dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -9,8 +9,8 @@
 
     <LinearLayout
         android:id="@+id/linear_layout"
-        android:layout_width="409dp"
-        android:layout_height="420dp"
+        android:layout_width="414dp"
+        android:layout_height="686dp"
         android:orientation="vertical"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -97,8 +97,6 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_UserTypeRV" />
 
     </LinearLayout>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
