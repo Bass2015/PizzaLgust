@@ -1,144 +1,154 @@
 package application;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
+import org.junit.*;
+import org.junit.runners.MethodSorters;
+import org.testfx.framework.junit.ApplicationTest;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
-import org.junit.Test;
-
-public class MainTest {
-	String first_name = null;
-    boolean is_admin = false;
-    String last_name = null;
-    String msg = null;
-    String token = null;
-    String user_name = null;
-	@Test
-	public void testServer() {
-		try {
-			URL url = new URL("http://localhost:5002/pizzalgust/test");
-
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-            connection.setRequestMethod("POST");
-
-            connection.setRequestProperty("Content-Type", "application/json");
-
-            connection.setDoOutput(true);
-
-            String name = "Raul";
-            
-            String jsonInputString = "{\"nombre\": \""+name+"\"}";
-            
-            try (OutputStream os = connection.getOutputStream()) {
-                byte[] input = jsonInputString.getBytes("utf-8");
-                os.write(input, 0, input.length);
-            }
-
-            int responseCode = connection.getResponseCode();
-            assertEquals(200, responseCode);
-            connection.disconnect();
-		} catch (Exception e) {
-			
-		}
-	}
-	
-	@Test
-	public void testLoginLogoutHandlers() {
-		try {
-			URL url = new URL("http://localhost:5002/pizzalgust/login");
-
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-            connection.setRequestMethod("POST");
-
-            connection.setRequestProperty("Content-Type", "application/json");
-
-            connection.setDoOutput(true);
-
-            String email = "pparker@newyork.com";
-            String password = "spiderman";
-            
-            String jsonInputString = "{\"email\": \""+email+"\", \"password\": \""+password+"\"}";
-            
-            try (OutputStream os = connection.getOutputStream()) {
-                byte[] input = jsonInputString.getBytes("utf-8");
-                os.write(input, 0, input.length);
-            }
-
-            int responseCode = connection.getResponseCode();
-            assertEquals(200, responseCode);
-            
-            try (BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
-                String line;
-                StringBuilder response = new StringBuilder();
-                while ((line = br.readLine()) != null) {
-                    response.append(line);
-                }
-                
-                String json = response.toString();
-                String[] pairs = json.replaceAll("[{}\"]", "").split(",");
-                
-                for (String pair : pairs) {
-                    String[] keyValue = pair.split(":");
-                    String key = keyValue[0].trim();
-                    String value = keyValue[1].trim();
-
-                    switch (key) {
-                        case "first_name":
-                            first_name = value;
-                            break;
-                        case "is_admin":
-                            is_admin = Boolean.parseBoolean(value);
-                            break;
-                        case "last_name":
-                            last_name = value;
-                            break;
-                        case "msg":
-                            msg = value;
-                            break;
-                        case "token":
-                            token = value;
-                            break;
-                        case "user_name":
-                            user_name = value;
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }
-            connection.disconnect();
-		} catch (Exception e) {
-			
-		}
-		
-		try {
-			URL url = new URL("http://localhost:5002/pizzalgust/logout");
-
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-            connection.setRequestMethod("POST");
-
-            connection.setRequestProperty("Content-Type", "application/json");
-
-            connection.setDoOutput(true);
-
-            String jsonInputString = "{\"token\": \""+token+"\"}";
-            
-            try (OutputStream os = connection.getOutputStream()) {
-                byte[] input = jsonInputString.getBytes("utf-8");
-                os.write(input, 0, input.length);
-            }
-
-            int responseCode = connection.getResponseCode();
-            assertEquals(200, responseCode);
-            connection.disconnect();
-		} catch(Exception errorHandleLogout) {
-		}
-	}
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class MainTest extends ApplicationTest {
+    
+    private Main mainApp;
+    
+    @Override
+    public void start(Stage stage) {
+        mainApp = new Main();
+        mainApp.start(stage);
+    }
+    
+    @Test
+    public void testHandleLogin() {
+        clickOn("#usernameField").write("bwayne@gotham.com");
+        clickOn("#passwordField").write("batman");
+        clickOn("#loginButton");
+        VBox sessionProfile = find("#sessionProfile");
+        assertTrue(sessionProfile.isVisible());
+        Label userLabel = find("#userLabel");
+        assertEquals("bwayne", userLabel.getText());
+    }
+    
+    @Test
+    public void testHandleLogout() {
+        clickOn("#usernameField").write("bwayne@gotham.com");
+        clickOn("#passwordField").write("batman");
+        clickOn("#loginButton");
+        clickOn("#logoutButton");
+        VBox loginScreen = find("#loginScreen");
+        assertTrue(loginScreen.isVisible());
+    }
+    
+    @Test
+    public void testUserList() {
+        clickOn("#usernameField").write("bwayne@gotham.com");
+        clickOn("#passwordField").write("batman");
+        clickOn("#loginButton");
+        clickOn("#showUsers");
+        VBox userListScreen = find("#userListScreen");
+        assertTrue(userListScreen.isVisible());
+        ListView<?> userListView = find("#userListView");
+        assertTrue(userListView.getItems().size() > 0);
+    }
+    
+    @Test
+    public void testToRegisterScreen() {
+        clickOn("#toRegisterScreenButton");
+        VBox registerUserScreen = find("#registerUserScreen");
+        assertTrue(registerUserScreen.isVisible());
+    }
+    
+    @Test
+    public void test1HandleCreateUser() {
+        clickOn("#toRegisterScreenButton");
+        TextField usernameNew = find("#usernameNew");
+        clickOn(usernameNew).write("newuser@example.com");
+        TextField emailNew = find("#emailNew");
+        clickOn(emailNew).write("newuser@example.com");
+        TextField nameNew = find("#nameNew");
+        clickOn(nameNew).write("New");
+        TextField lastNameNew = find("#lastNameNew");
+        clickOn(lastNameNew).write("User");
+        TextField passwordNew = find("#passwordNew");
+        clickOn(passwordNew).write("password");
+        clickOn("#createUserButton");
+        VBox loginScreen = find("#loginScreen");
+        assertTrue(loginScreen.isVisible());
+    }
+    
+    @Test
+    public void testHandleUpdate() {
+        clickOn("#usernameField").write("newuser@example.com");
+        clickOn("#passwordField").write("password");
+        clickOn("#loginButton");
+        clickOn("#modifyButton");
+        TextField nameField = find("#nameField");
+        clickOn(nameField).write("New Name");
+        TextField lastnameField = find("#lastnameField");
+        clickOn(lastnameField).write("New Last Name");
+        clickOn("#modifyButton");
+        assertFalse(nameField.isEditable());
+        assertFalse(lastnameField.isEditable());
+    }
+    
+    @Test
+    public void testUserClicked() {
+        clickOn("#usernameField").write("bwayne@gotham.com");
+        clickOn("#passwordField").write("batman");
+        clickOn("#loginButton");
+        clickOn("#showUsers");
+        ListView<?> userListView = find("#userListView");
+        clickOn(userListView);
+        clickOn("#deleteUserButton");
+        Button exitUserList = find("#exitUserList");
+        assertEquals("Tornar enrere", exitUserList.getText());
+    }
+    
+    @Test
+    public void testDeleteUser() {
+        clickOn("#usernameField").write("bwayne@gotham.com");
+        clickOn("#passwordField").write("batman");
+        clickOn("#loginButton");
+        clickOn("#showUsers");
+        ListView<?> userListView = find("#userListView");
+        clickOn(userListView);
+        clickOn("#deleteUserButton");
+        Button exitUserList = find("#exitUserList");
+        assertEquals("Tornar enrere", exitUserList.getText());
+    }
+    
+    
+    
+    @Test
+    public void testHandleExitUserList() {
+        clickOn("#usernameField").write("bwayne@gotham.com");
+        clickOn("#passwordField").write("batman");
+        clickOn("#loginButton");
+        clickOn("#showUsers");
+        clickOn("#exitUserList");
+        VBox sessionProfile = find("#sessionProfile");
+        assertTrue(sessionProfile.isVisible());
+    }
+    
+    @Test
+    public void testHandleExitUserListBack() {
+        clickOn("#usernameField").write("bwayne@gotham.com");
+        clickOn("#passwordField").write("batman");
+        clickOn("#loginButton");
+        clickOn("#showUsers");
+        clickOn("#exitUserList");
+        clickOn("#exitUserList");
+        VBox userListScreen = find("#userListScreen");
+        assertFalse(userListScreen.isVisible());
+    }
+    
+    // Helper method to find UI elements
+    private <T extends javafx.scene.Node> T find(final String query) {
+        return lookup(query).query();
+    }
 }
