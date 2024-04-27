@@ -9,6 +9,11 @@ from services.database import DocumentNotFoundError
 from utils.auth_utils import verify_token, InvalidTokenError
 from utils.auth_utils import InvalidPasswordError
 from .user_controllers import *
+from .pizza_controllers import *
+
+def test():
+    nombre = request.json['nombre']
+    return jsonify({'msg': f'Hola {nombre}, todo ok!'}), 200
 
 def __make_response(controller, verify=True):
     try:
@@ -54,6 +59,11 @@ def login():
 def logout():
     return __make_response(LogoutController)
 
+# ##############################################################
+# #                                                            #
+# #                 USER ENDPOINTS                             #
+# #                 ``````````````                             #
+# ##############################################################
 def get_all_users():
     return __make_response(GetAllUsersController)
 
@@ -66,6 +76,21 @@ def delete_user():
 def update_user():
     return __make_response(UpdateUserController)
 
-def test():
-    nombre = request.json['nombre']
-    return jsonify({'msg': f'Hola {nombre}, todo ok!'}), 200
+
+# ##############################################################
+# #                                                            #
+# #                 PIZZA ENDPOINTS                            #
+# #                 ``````````````                             #
+# ##############################################################
+def get_all_pizzas():
+    return __make_response(GetAllPizzasController)
+
+def create_pizza():
+    return __make_response(CreatePizzaController)
+
+def delete_pizza():
+    return __make_response(DeletePizzaController)
+
+def update_pizza():
+    return __make_response(UpdatePizzaController)
+
