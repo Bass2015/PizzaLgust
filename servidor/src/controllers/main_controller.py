@@ -8,14 +8,7 @@ from utils.async_utils import run_task_in_background
 from services.database import DocumentNotFoundError
 from utils.auth_utils import verify_token, InvalidTokenError
 from utils.auth_utils import InvalidPasswordError
-from .controllers import (LoginController,
-                          LogoutController,
-                          GetAllUsersController,
-                          CreateUserController,
-                          DeleteUserController,
-                          UpdateUserController,
-                          UserNotLoggedInError,
-                          UserNotAdminError)
+from .user_controllers import *
 
 def __make_response(controller, verify=True):
     try:
