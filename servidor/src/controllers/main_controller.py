@@ -5,6 +5,7 @@ from config import (UNAUTHORIZED_CODE,
                     INVALID_TOKEN_CODE)
 from events.events import TOKEN_VERIFIED_EVENT
 from utils.async_utils import run_task_in_background
+from utils.encrypt_utils import encrypt, decrypt
 from services.database import DocumentNotFoundError
 from utils.auth_utils import verify_token, InvalidTokenError
 from utils.auth_utils import InvalidPasswordError
@@ -94,3 +95,11 @@ def delete_pizza():
 def update_pizza():
     return __make_response(UpdatePizzaController)
 
+
+
+
+
+def encrypt_test():
+    nombre = decrypt(request.json['nombre'])
+    msg = encrypt(f"Hola {nombre}, todo ok!")
+    return jsonify({'msg':msg}), 200
