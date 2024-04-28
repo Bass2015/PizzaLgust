@@ -15,4 +15,4 @@ CORS(app)
 app.register_blueprint(blueprint)
 
 if __name__ == '__main__': 
-    app.run(ssl_context='adhoc')
+    app.run(host='localhost', port=5002)

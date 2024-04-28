@@ -70,6 +70,7 @@ class MainActivity : AppCompatActivity() {
 
         val apiService = RetrofitClient.createApiService()
 
+        // Antes de construir Login, encriptar 'email' y 'password'
         val model = Login(email, password, "", "", "", "", false, "","")
 
         val call = apiService.getUserData(model)
