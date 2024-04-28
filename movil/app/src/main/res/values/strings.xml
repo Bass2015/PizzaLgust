@@ -25,9 +25,9 @@
     <string name="tv_bienvenida_user">Bienvenid@</string>
     <string name="tv_user">Usuario</string>
     <string name="et_delete">Borrar\nUsuario</string>
-    <string name="et_update">Actualizar\nUsuario</string>
+    <string name="et_userslist">Lista\nUsuarios</string>
 
-    <!-- User activity -->
+    <!-- Update Admin activity -->
     <string name="tv_UserName">User Name</string>
     <string name="tv_FirtsName">Nombre</string>
     <string name="tv_LastName">Apellido</string>
@@ -35,11 +35,26 @@
     <string name="et_UserName">Nombre usuario</string>
     <string name="tv_Crear">Creación de usuarios</string>
     <string name="tv_Mensaje">Rellena los campos para crear un usuario nuevo.</string>
+    <string name="tv_UserIdAdmin">UserId</string>
+    <string name="tv_MensajeUpdateAdmin">Rellena los campos para Actualizar el usuario nuevo.\n Obligatorio ID</string>
 
 
     <!-- User activity -->
     <string name="tv_UpdateIndexText">Actualización de usuario</string>
     <string name="tv_MensajeUpdate">Rellena los campos para Actualizar el usuario nuevo.</string>
 
+
+    <!-- Item User -->
+    <string name="tv_UserIdRV">User ID</string>
+    <string name="tv_EmailRV">Email</string>
+    <string name="tv_FirstNameRV">Nombre</string>
+    <string name="tv_LastNameRV">Apellido</string>
+    <string name="tv_UserNameRV">User Name</string>
+    <string name="tv_UserTypeRV">Tipo de Usuario</string>
+    <string name="tv_isAdminRV">Eres Admin?</string>
+    <string name="tv_mensajeElimin">Escribe user_id para eliminar usuario.</string>
+    <string name="tv_mensajeUpdateAdmin">Pon el user ID para actualizar datos usuario.</string>
+    <string name="tv_UpdateText_description">Actualizar usuario</string>
+    <string name="USER_ID">USER ID</string>
 
 </resources>

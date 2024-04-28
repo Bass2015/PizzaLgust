@@ -12,6 +12,9 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+/**
+ * Actividad para crear nuevos usuarios.
+ */
 class CreateUsersActivity : AppCompatActivity() {
 
     private lateinit var etUserName: EditText
@@ -52,6 +55,16 @@ class CreateUsersActivity : AppCompatActivity() {
 
         }
     }
+
+    /**
+     * Método para crear un nuevo usuario.
+     *
+     * @param userName El nombre de usuario del nuevo usuario.
+     * @param email El correo electrónico del nuevo usuario.
+     * @param firstName El nombre del nuevo usuario.
+     * @param lastName El apellido del nuevo usuario.
+     * @param password La contraseña del nuevo usuario.
+     */
 
     private fun createUser(
         userName: String,

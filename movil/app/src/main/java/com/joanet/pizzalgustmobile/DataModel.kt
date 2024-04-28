@@ -55,6 +55,12 @@ data class CreateUser(
 
     ) : java.io.Serializable
 
+/**
+ * Clase de modelo para la respuesta del servidor después de la creación de un usuario.
+ *
+ * @property msg Mensaje relacionado con la creación de usuario.
+ * @property user_id Identificador único del usuario.
+*/
 data class UserResponse(
     val msg: String,
     val user_id: String
@@ -66,7 +72,37 @@ data class UserResponse(
  * @property users La lista de usuarios obtenidos del servidor.
  */
 data class GetAllUsers(
-    val users: List<CreateUsersActivity>
+    val users: List<User>
+) : java.io.Serializable
+
+/**
+ * Clase de datos que representa la solicitud para obtener todos los usuarios.
+ *
+ * @property token El token de autenticación del usuario que realiza la solicitud.
+ */
+data class GetAllUsersRequest(
+    val token: String
+) : java.io.Serializable
+
+/**
+ * Clase de datos que representa un usuario.
+ *
+ * @property _id Identificador único del usuario.
+ * @property email Correo electrónico del usuario.
+ * @property first_name Primer nombre del usuario.
+ * @property is_admin Indica si el usuario es un administrador.
+ * @property last_name Apellido del usuario.
+ * @property user_name Nombre de usuario.
+ * @property user_type Tipo de usuario.
+ * */
+data class User(
+    val _id: String,
+    val email: String,
+    val first_name: String,
+    val is_admin: Boolean,
+    val last_name: String,
+    val user_name: String,
+    val user_type: String
 ) : java.io.Serializable
 
 /**
@@ -74,27 +110,71 @@ data class GetAllUsers(
  *
  * @property token El token de autenticación del usuario que realiza la solicitud.
  * @property user_id El ID del usuario que se desea eliminar.
- * @property msg Mensaje asociado con la solicitud de eliminación.
  */
 data class DeleteUser(
     val token: String,
     val user_id: String,
-    val msg: String
-    ) : java.io.Serializable
-
-
-
-data class UpdateUser(
-    val token: String,
-    val user_name: String?,
-    val email: String?,
-    val first_name: String?,
-    val last_name: String?
 ) : java.io.Serializable
 
+/**
+ * Clase de datos que representa la respuesta después de eliminar un usuario.
+ *
+ * @property msg Mensaje asociado con la solicitud de eliminación.
+ */
+data class DeleteUserResponse(
+val msg: String
+) : java.io.Serializable
 
+/**
+ * Clase de datos que representa la solicitud para actualizar un usuario.
+ *
+ * @property token El token de autenticación del usuario que realiza la solicitud.
+ * @property user_name El nuevo nombre de usuario.
+ * @property email El nuevo correo electrónico.
+ * @property first_name El nuevo primer nombre.
+ * @property last_name El nuevo apellido.
+ */
+data class UpdateUser(
+    val token: String,
+    val user_name: String? = null,
+    val email: String? = null,
+    val first_name: String? = null,
+    val last_name: String? = null,
+) : java.io.Serializable
 
-
+/**
+ * Clase de modelo para la respuesta del servidor después de actualizar un usuario.
+ *
+ * @property msg Mensaje asociado con la actualización del usuario.
+ */
 data class UpdateResponse(
     val msg: String
 ) : java.io.Serializable
+
+/**
+ * Clase de datos que representa la solicitud para actualizar un usuario administrador.
+ *
+ * @property token El token de autenticación del usuario que realiza la solicitud.
+ * @property user_id El ID del usuario que se desea actualizar.
+ * @property user_name El nuevo nombre de usuario.
+ * @property email El nuevo correo electrónico.
+ * @property first_name El nuevo primer nombre.
+ * @property last_name El nuevo apellido.
+ */
+data class AdminUpdateUser(
+    val token: String,
+    val user_id: String,
+    val user_name: String? = null,
+    val email: String? = null,
+    val first_name: String? = null,
+    val last_name: String? = null
+) : java.io.Serializable
+
+/**
+ * Clase de datos que representa la respuesta después de actualizar un usuario administrador.
+ *
+ * @property msg Mensaje asociado con la actualización del usuario.
+ */
+data class AdminUpdateResponse(
+    val msg: String
+)

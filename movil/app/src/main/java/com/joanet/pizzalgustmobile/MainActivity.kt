@@ -1,5 +1,7 @@
 package com.joanet.pizzalgustmobile
 
+import PreferenceManager
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -86,6 +88,12 @@ class MainActivity : AppCompatActivity() {
                     if (dataModel?.token.isNullOrEmpty()) {
                         Toast.makeText(this@MainActivity, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
                     } else {
+                        val sharedPref = getSharedPreferences("AppPrefs", Context.MODE_PRIVATE)
+                        with(sharedPref.edit()) {
+                            putString("authToken", dataModel?.token)
+                            apply()
+                        }
+
                         Toast.makeText(this@MainActivity, "¡Correcto!", Toast.LENGTH_SHORT).show()
                         Log.i("INFO","¡Correcto! Token recibido: ${dataModel?.token}")
                         Log.i("INFO","¡dame nombre: ${dataModel?.first_name}")

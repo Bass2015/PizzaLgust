@@ -2,7 +2,7 @@ package com.joanet.pizzalgustmobile
 
 import retrofit2.Call
 import retrofit2.http.Body
-import retrofit2.http.DELETE
+import retrofit2.http.HTTP
 import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.PUT
@@ -54,7 +54,7 @@ interface ApiService {
 
     @Headers("Content-Type: application/json")
     @POST("pizzalgust/get-all-users")
-    fun getAllUsers(@Body requestBody: GetAllUsers): Call<GetAllUsers>
+    fun getAllUsers(@Body requestBody: GetAllUsersRequest): Call<GetAllUsers>
 
     /* =========================================↓ UPDATE-USER ↓============================ */
     /**
@@ -68,6 +68,10 @@ interface ApiService {
     @Headers("Content-Type: application/json")
     @PUT("pizzalgust/update-user")
     fun updateUser(@Body requestBody: UpdateUser): Call<UpdateResponse>
+    /* =========================================↓ UPDATE DESDE ADMIN ↓============================ */
+    @Headers("Content-Type: application/json")
+    @PUT("pizzalgust/update-user")
+    fun updateAdminUser(@Body requestBody: AdminUpdateUser): Call<AdminUpdateResponse>
 
     /* =========================================↓ DELETE ↓============================ */
     /**
@@ -79,8 +83,9 @@ interface ApiService {
      */
 
     @Headers("Content-Type: application/json")
-    @DELETE("pizzalgust/delete-user")
-    fun deleteUser(@Body requestBody: DeleteUser): Call<DeleteUser>
+    @HTTP(method = "DELETE", path = "pizzalgust/delete-user", hasBody = true)
+    fun deleteUser(@Body requestBody: DeleteUser): Call<DeleteUserResponse>
+
 
 
     /* =========================================↓ LOGOOUT ↓============================ */
