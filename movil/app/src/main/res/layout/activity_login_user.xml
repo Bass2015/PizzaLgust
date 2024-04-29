@@ -97,5 +97,38 @@
         app:layout_constraintHorizontal_bias="0.841"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <FrameLayout
+        android:id="@+id/FLFondoLila2"
+        android:layout_width="51dp"
+        android:layout_height="53dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/border_back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tv_updateText">
+    <ImageView
+        android:id="@+id/pizza"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:clickable="true"
+        android:src="@drawable/pizza" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_PizzaText"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="88dp"
+        android:padding="5dp"
+        android:text="@string/tv_User_pizzaText"
+        android:textSize="11dp"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.821"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

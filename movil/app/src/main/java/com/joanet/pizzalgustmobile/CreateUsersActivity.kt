@@ -9,8 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 /**
  * Actividad para crear nuevos usuarios.
@@ -73,12 +71,9 @@ class CreateUsersActivity : AppCompatActivity() {
         lastName: String,
         password: String
     ) {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:5002/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
 
-        val apiService = retrofit.create(ApiService::class.java)
+
+        val apiService = RetrofitClient.createApiService()
 
         val model = CreateUser(userName, email, firstName, lastName, password)
 

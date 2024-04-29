@@ -178,3 +178,28 @@ data class AdminUpdateUser(
 data class AdminUpdateResponse(
     val msg: String
 )
+
+
+/* =========================================↓ PIZZAS ↓============================ */
+/* =========================================↓ PIZZAS ↓============================ */
+/*
+data class CreatePizza(
+    val user_name: String,
+    val email: String,
+    val first_name: String,
+    val last_name: String,
+    val password: String,
+
+    ) : java.io.Serializable
+
+/**
+ * Clase de modelo para la respuesta del servidor después de la creación de un usuario.
+ *
+ * @property msg Mensaje relacionado con la creación de usuario.
+ * @property user_id Identificador único del usuario.
+ */
+data class PizzaResponse(
+    val msg: String,
+    val user_id: String
+) : java.io.Serializable
+*/

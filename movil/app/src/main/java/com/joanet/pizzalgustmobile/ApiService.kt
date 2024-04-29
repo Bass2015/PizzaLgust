@@ -107,4 +107,16 @@ interface ApiService {
         fun logout(@Body requestBody: Logout): Call<Logout>
 
     }
+
+    /* =========================================↓ PIZZAS ↓============================ */
+    /* =========================================↓ PIZZAS ↓============================ */
+
+    /*interface Pizza {
+        @Headers("Content-type: application/json")
+        @POST("pizzalgust/create-pizza")
+
+        fun createPizza(@Body requestBody: CreatePizza): Call<PizzaResponse>
+    }
+
+*/
 }

@@ -57,4 +57,8 @@
     <string name="tv_UpdateText_description">Actualizar usuario</string>
     <string name="USER_ID">USER ID</string>
 
+    <!-- PIZZAS -->
+    <string name="tv_User_CreatePizzas">Creación de\n pizzas</string>
+    <string name="tv_User_pizzaText">PIZZAS</string>
+
 </resources>

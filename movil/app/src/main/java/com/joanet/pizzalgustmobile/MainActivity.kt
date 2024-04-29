@@ -16,8 +16,6 @@ import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 /**
  * Actividad principal de la aplicación.
@@ -69,13 +67,8 @@ class MainActivity : AppCompatActivity() {
      * @param password La contraseña del usuario.
      */
     private fun login(email: String, password: String) {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:5002/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
 
-        val apiService = retrofit.create(ApiService::class.java)
-
+        val apiService = RetrofitClient.createApiService()
 
         val model = Login(email, password, "", "", "", "", false, "","")
 
