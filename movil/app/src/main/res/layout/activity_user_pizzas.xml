@@ -36,7 +36,7 @@
         android:backgroundTint="@android:color/background_light"
         android:clickable="true"
         android:focusable="true"
-        android:src="@drawable/add_Pizza"
+        android:src="@drawable/add_pizza"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/findPizzas"
         app:layout_constraintHorizontal_bias="0.0"
@@ -51,7 +51,7 @@
         android:backgroundTint="@color/white"
         android:clickable="true"
         android:focusable="true"
-        android:src="@drawable/find_Pizza"
+        android:src="@drawable/find_pizza"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/ModifyPizzas" />
 
@@ -77,7 +77,7 @@
         android:backgroundTint="@color/white"
         android:clickable="true"
         android:focusable="true"
-        android:src="@drawable/Delete_pizza"
+        android:src="@drawable/delete_pizza"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
