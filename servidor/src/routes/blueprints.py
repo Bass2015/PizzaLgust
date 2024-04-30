@@ -7,11 +7,17 @@ from controllers import main_controller as controller
 blueprint = Blueprint('blueprint', __name__, url_prefix='/pizzalgust')
 
 
+blueprint.route('/test', methods=['POST'])(controller.test)
 
 blueprint.route('/login', methods=['POST'])(controller.login)
 blueprint.route('/logout', methods=['POST'])(controller.logout)
+
 blueprint.route('/create-user', methods=['POST'])(controller.create_user)
 blueprint.route('/get-all-users', methods=['POST'])(controller.get_all_users)
 blueprint.route('/delete-user', methods=['DELETE'])(controller.delete_user)
 blueprint.route('/update-user', methods=['PUT'])(controller.update_user)
-blueprint.route('/test', methods=['POST'])(controller.test)
+
+blueprint.route('/create-pizza', methods=['POST'])(controller.create_pizza)
+blueprint.route('/get-all-pizzas', methods=['POST'])(controller.get_all_pizzas)
+blueprint.route('/delete-pizza', methods=['DELETE'])(controller.delete_pizza)
+blueprint.route('/update-pizza', methods=['PUT'])(controller.update_pizza)

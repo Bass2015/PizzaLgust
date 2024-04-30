@@ -174,5 +174,106 @@ class PizzalgustTests(TestCase):
         assert response.status_code == 200
         assert response.json()['msg'] == 'Usuario actualizado con éxito'
 
+    def test_create_pizza(self):
+        """
+        Método para probar la creación de pizzas.
+        """
+        body = {'email': 'bwayne@gotham.com',
+                'password': 'batman'}
+        response = requests.post(url=URL + '/login',
+                                 json=body,
+                                 headers=HEADERS)
+        token = response.json()['token']
+        body = dict(
+            token=token,
+            name="Margarita",
+            price=10.5,
+            description="Pizza con tomate, queso mozzarela y albahaca"
+            )
+        response = requests.post(url=URL + '/create-pizza',
+                                 json=body,
+                                 headers=HEADERS)
+        assert response.status_code == 200
+        assert response.json()['msg'] == 'Pizza creada con éxito'
+
+    def test_get_all_pizzas(self):  
+        """
+        Método para probar la solicitud de obtener todos los pizzas.
+        """
+        body = {'email': 'bwayne@gotham.com',
+                'password': 'batman'}
+        response = requests.post(url=URL + '/login',
+                                 json=body,
+                                 headers=HEADERS)
+        token = response.json()['token']
+
+        body = {'token': token}
+        response = requests.post(url=URL + '/get-all-pizzas',
+                                 json=body,
+                                 headers=HEADERS)
+        assert response.status_code == 200
+        assert 'pizzas' in response.json().keys()
+        assert isinstance(response.json()['pizzas'], list)
+
+    
+    
+
+    def test_delete_pizza(self):
+        """
+        Método para probar la eliminación de pizzas.
+        """
+        body = {'email': 'bwayne@gotham.com',
+                'password': 'batman'}
+        response = requests.post(url=URL + '/login',
+                                 json=body,
+                                 headers=HEADERS)
+        token = response.json()['token']
+        body = dict(
+            token=token,
+            name="Carbonara",
+            price=12.5,
+            description="Pizza con huevo, bacon y parmesano"
+            )
+        response = requests.post(url=URL + '/create-pizza',
+                                 json=body,
+                                 headers=HEADERS)
+        body = {'token': token,
+                'pizza_id': response.json()['pizza_id']}
+        response = requests.delete(url=URL + '/delete-pizza',
+                                 json=body,
+                                 headers=HEADERS)
+        assert response.status_code == 200
+        assert response.json()['msg'] == 'Pizza borrada con éxito'
+    
+    def test_update_pizza(self):
+        """
+        Método para probar la actualización de Pizza.
+        """
+        body = {'email': 'bwayne@gotham.com',
+                'password': 'batman'}
+        response = requests.post(url=URL + '/login',
+                                 json=body,
+                                 headers=HEADERS)
+        token = response.json()['token']
+        body = dict(
+            token=token,
+            name="Hawaianna",
+            price=14.5,
+            description="Pizza con pollo, bacon y piña"
+            )
+        response = requests.post(url=URL + '/create-pizza',
+                                 json=body,
+                                 headers=HEADERS)
+        body = {'token': token,
+                'name': 'Hawai',
+                'pizza_id': response.json()['pizza_id'],
+                'description': "Pizza con piña, pollo y queso"}
+        
+        response = requests.put(url=URL + '/update-pizza',
+                                 json=body,
+                                 headers=HEADERS)
+        assert response.status_code == 200
+        assert response.json()['msg'] == 'Pizza actualizada con éxito'
+
 if __name__ == '__main__':
     unittest.main()

@@ -23,10 +23,6 @@ class DBModel(ABC):
     """
     def __init__(self) -> None:
         super().__init__()
-   
-    @abstractclassmethod
-    def read_w_pwd(self, *args):
-        pass
 
     @abstractmethod
     def store(self):
@@ -194,6 +190,94 @@ class User(DBModel):
                                    _id=self._id)
     
 
+class Pizza(DBModel):
+    _database = 'pizza'
+    _collection = 'pizzas'
+
+    def __init__(self,
+                 _id=None,
+                 name="",
+                 price=0.,
+                 description="",) -> None:
+        self._id = _id
+        self.name = name
+        self.price = price
+        self.description = description
+
+    @classmethod
+    def new_pizza(cls, name, price, description):
+        """
+        Método para crear una nueva pizza.
+
+        Parámetros:
+        - name: Nombre de la pizza.
+        - price: Precio de la pizza.
+        - description: Descripción de la pizza.
+
+        Retorna:
+        - pizza: Objeto de pizza creado.
+        """
+        
+        pizza = cls(name = name,
+                    price = price,
+                    description = description
+                   )
+        pizza.__dict__.pop('_id')
+        pizza._id = db.insert_one(Pizza._database, Pizza._collection, **pizza.__dict__)
+        return pizza
+    
+    @classmethod
+    def read(cls, pizza_id):
+        """
+        Método para leer una pizza por su ID.
+
+        Parámetros:
+        - pizza_id (str): ID de la pizza.
+
+        Retorna:
+        - pizza: Objeto de usuario leído.
+        """
+        retrieved_pizza = db.get_document_from_database(Pizza._database, 
+                                      Pizza._collection, 
+                                      _id=pizza_id)
+        fields = {k:v for k,v in retrieved_pizza.items() 
+                      if k in getfullargspec(cls.__init__).args}
+        pizza = cls(**fields)
+        return pizza
+    
+    @classmethod
+    def read_from_name(cls, name):
+        """
+        Método para leer un usuario por su correo electrónico y contraseña.
+
+        Parámetros:
+        - name (str): Nombre de la pizza.
+
+        Retorna:
+        - pizza: Objeto de usuario leído.
+        """
+        retrieved_pizza = db.get_document_from_database(Pizza._database, 
+                                      Pizza._collection, 
+                                      name=name)
+        fields = {k:v for k,v in retrieved_pizza.items() 
+                      if k in getfullargspec(cls.__init__).args}
+        pizza = cls(**fields)
+        return pizza
+
+    def store(self):
+        raise NotImplementedError()
+
+    def update(self, **fields_to_udpate):
+        db.update_one(Pizza._database,
+                      Pizza._collection,
+                      self._id,
+                      **fields_to_udpate)
+    
+    def delete(self):
+        return db.delete_document_from_db(Pizza._database,
+                                   Pizza._collection,
+                                   _id=self._id)
+    
 
 class InvalidUserTypeError(Exception):
     def __init__(self, message="User type is not valid. Must be one of ['admin', 'cliente', 'cocinero', 'repartidor']."):
