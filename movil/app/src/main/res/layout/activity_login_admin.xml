@@ -13,12 +13,12 @@
         android:id="@+id/btnSalirAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="156dp"
+        android:layout_marginBottom="84dp"
         android:background="@drawable/edittext_rounded_corner"
         android:text="@string/btn_salir"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.996"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -38,8 +38,8 @@
         android:id="@+id/tvFirstNameAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="500dp"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,8 +49,8 @@
         android:id="@+id/tvMessageAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="8dp"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -104,59 +104,49 @@
         android:layout_width="53dp"
         android:layout_height="50dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="88dp"
+        android:layout_marginBottom="156dp"
         android:background="@drawable/border_back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/tv_updateText">
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/tv_pizzaText">
 
         <ImageView
-            android:id="@+id/btnAdminUsersList"
+            android:id="@+id/btnAdminPizza"
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:clickable="true"
-            android:src="@drawable/update_user" />
+            android:src="@drawable/pizza" />
     </FrameLayout>
 
     <TextView
-        android:id="@+id/tv_updateText"
+        android:id="@+id/tv_pizzaText"
         android:layout_width="70dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="88dp"
+        android:layout_marginBottom="156dp"
+        android:gravity="center"
         android:padding="5dp"
-        android:text="@string/et_userslist"
+        android:text="@string/tv_User_pizzaText"
         android:textColor="#04DDFA"
         android:textSize="11dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.841"
+        app:layout_constraintHorizontal_bias="0.832"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/AdminbtnActuUser"
         android:layout_width="57dp"
         android:layout_height="57dp"
-        android:layout_marginBottom="4dp"
-
+        android:layout_marginBottom="232dp"
         android:clickable="true"
         android:src="@drawable/actu_user"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.997"
         app:layout_constraintStart_toStartOf="parent"
         app:maxImageSize="50dp" />
-
-    <TextView
-        android:layout_width="119dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginBottom="4dp"
-        android:text="Actualizar Usuario"
-        android:textColor="#04DDFA"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/AdminbtnActuUser" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvListado"
@@ -171,6 +161,25 @@
         app:layout_constraintVertical_bias="0.342">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <FrameLayout
+        android:id="@+id/FLFondoLila2"
+        android:layout_width="51dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/border_back"
+        app:layout_constraintBottom_toTopOf="@+id/AdminbtnDeleteUser"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/FLFondoLila"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageView
+            android:id="@+id/btnAdminUsersList"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:clickable="true"
+            android:src="@drawable/update_user" />
+    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

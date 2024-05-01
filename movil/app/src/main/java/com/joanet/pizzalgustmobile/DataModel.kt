@@ -178,3 +178,72 @@ data class AdminUpdateUser(
 data class AdminUpdateResponse(
     val msg: String
 )
+
+
+/* =========================================↓ PIZZAS ↓============================ */
+/* =========================================↓ PIZZAS ↓============================ */
+
+/**
+ * Clase de datos que representa la creación de una pizza.
+ *
+ * @property token El token de autenticación del usuario que crea la pizza.
+ * @property name El nombre de la pizza.
+ * @property price El precio de la pizza.
+ * @property description La descripción de la pizza.
+ */
+
+data class CreatePizza(
+    val token: String,
+    val name: String,
+    val price: Float,
+    val description: String,
+
+
+    ) : java.io.Serializable
+
+/**
+ * Clase de datos que representa la respuesta del servidor después de crear una pizza.
+ *
+ * @property msg Un mensaje relacionado con la creación de la pizza.
+ * @property pizza_id El identificador único de la pizza creada.
+ */
+data class ResponseCreatePizza(
+    val msg: String,
+    val pizza_id: String
+) : java.io.Serializable
+
+/**
+ * Clase de datos que representa una pizza.
+ *
+ * @property _id El identificador único de la pizza.
+ * @property name El nombre de la pizza.
+ * @property description La descripción de la pizza.
+ * @property price El precio de la pizza.
+ */
+data class Pizza(
+    val _id: String,
+    val name: String,
+    val description: String,
+    val price: Float
+) : java.io.Serializable
+
+/**
+ * Clase de datos que representa la respuesta que contiene una lista de pizzas.
+ *
+ * @property pizzas La lista de pizzas obtenidas del servidor.
+ */
+data class GetAllPizzas(
+    val pizzas: List<Pizza>
+) : java.io.Serializable
+
+/**
+ * Clase de datos que representa la solicitud para obtener todas las pizzas.
+ *
+ * @property token El token de autenticación del usuario que realiza la solicitud.
+ */
+data class GetAllPizzasRequest(
+    val token: String
+) : java.io.Serializable
+
+
+

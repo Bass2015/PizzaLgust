@@ -11,8 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 
 /**
@@ -24,19 +22,17 @@ class UserActivity : AppCompatActivity() {
     private lateinit var tvFirstName2: TextView
     private lateinit var tvMessage2: TextView
     private lateinit var btnUpdate: ImageView
-
-
-
-
+    //private lateinit var btnPizzas: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login_user) //
+        setContentView(R.layout.activity_login_user)
 
         btnSalir2 = findViewById(R.id.btnSalirUser)
         tvFirstName2 = findViewById(R.id.tvFirstNameUser)
         tvMessage2 = findViewById(R.id.tvMessageUser)
         btnUpdate = findViewById(R.id.updateUser)
+        //btnPizzas = findViewById(R.id.pizza)
 
         // Obtiene los datos pasados desde la actividad anterior
         val authToken = intent.getStringExtra("authToken")
@@ -60,6 +56,10 @@ class UserActivity : AppCompatActivity() {
             val intent = Intent(this@UserActivity, UpdateUserActivity::class.java)
             startActivity(intent)
         }
+        /*btnPizzas.setOnClickListener {
+            val intent = Intent(this@UserActivity, UserPizzasActivity::class.java)
+            startActivity(intent)
+        }*/
     }
 
 
@@ -74,13 +74,7 @@ class UserActivity : AppCompatActivity() {
         Log.d("DEBUG", "Iniciando logout con token: $token")
 
         // Configura la instancia de Retrofit
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:5002/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        // Crea un servicio de logout usando Retrofit
-        val logoutService = retrofit.create(ApiService.ApiLogout::class.java)
+        val logoutService = RetrofitClient.createLogoutService()
 
         // Realiza la llamada al servicio de logout
         val call = logoutService.logout(Logout(token, ""))

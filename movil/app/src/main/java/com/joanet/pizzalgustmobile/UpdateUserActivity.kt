@@ -9,8 +9,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 
 /**
@@ -69,12 +67,7 @@ class UpdateUserActivity : AppCompatActivity() {
         firstName: String?,
         lastName: String?
     ) {
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:5002/") // Asegúrate de que esta es la URL base correcta
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        val apiService = retrofit.create(ApiService::class.java)
+        val apiService = RetrofitClient.createApiService()
 
         val fieldsToUpdate = mutableMapOf<String, String?>().apply {
             userName?.let { put("user_name", it) }

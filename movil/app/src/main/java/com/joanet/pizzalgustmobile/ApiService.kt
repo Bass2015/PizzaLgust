@@ -107,4 +107,26 @@ interface ApiService {
         fun logout(@Body requestBody: Logout): Call<Logout>
 
     }
+
+    /* =========================================↓ PIZZAS ↓============================ */
+    /**
+     * Este método realiza una solicitud POST para crear una nueva pizza en el sistema.
+     *
+     * @param requestBody Cuerpo de la solicitud que contiene los datos de la nueva pizza.
+     * @return Objeto Call que representa la llamada asíncrona y su respuesta.
+     */
+    @Headers("Content-type: application/json")
+    @POST("pizzalgust/create-pizza")
+    fun createPizza(@Body requestBody: CreatePizza): Call<ResponseCreatePizza>
+
+    /* =========================================↓ LISTADO PIZZAS ↓============================ */
+    /**
+     * Este método realiza una solicitud POST para obtener todas las pizzas del sistema.
+     *
+     * @param getAllPizzasRequest Cuerpo de la solicitud que contiene los criterios de búsqueda.
+     * @return Objeto Call que representa la llamada asíncrona y su respuesta.
+     */
+    @Headers("Content-type: application/json")
+    @POST("pizzalgust/get-all-pizzas")
+    fun getAllPizzas(@Body getAllPizzasRequest: GetAllPizzasRequest): Call<GetAllPizzas>
 }

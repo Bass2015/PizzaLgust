@@ -57,4 +57,15 @@
     <string name="tv_UpdateText_description">Actualizar usuario</string>
     <string name="USER_ID">USER ID</string>
 
+    <!-- PIZZAS -->
+    <string name="tv_User_CreatePizzas">Menú\n pizzas</string>
+    <string name="tv_User_pizzaText">PIZZAS</string>
+    <string name="tv_User_creacionpizza">CREAR\nPIZZAS</string>
+    <string name="tv_User_mensajeCreacion">Rellena los campos para crear una pizza nuevo.</string>
+    <string name="tv_PizzaName">Pizza Name</string>
+    <string name="et_PizzaName">Nombre Pizza</string>
+    <string name="tv_Token">Token</string>
+    <string name="tv_PricePizza">Precio</string>
+    <string name="tv_DescriptionPizza">Descripción de la pizza</string>
+
 </resources>
