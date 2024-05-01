@@ -34,7 +34,9 @@
             android:exported="true" />
         <activity android:name=".AdminUpdateActivity"
             android:exported="true" />
-        <activity android:name=".UserPizzasActivity"
+        <activity android:name=".PizzasActivity"
+            android:exported="true" />
+        <activity android:name=".CreatePizzaActivity"
             android:exported="true" />
     </application>
 

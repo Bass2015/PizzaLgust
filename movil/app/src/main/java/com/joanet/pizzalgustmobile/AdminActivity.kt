@@ -31,6 +31,7 @@ class AdminActivity : AppCompatActivity() {
     private lateinit var btnDeleteUserAdmin: ImageView
     private lateinit var etUserId: EditText
     private lateinit var btnUpdate: FloatingActionButton
+    private lateinit var btnPizza: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_admin) //
@@ -41,6 +42,7 @@ class AdminActivity : AppCompatActivity() {
         rvUserList = findViewById(R.id.rvListado)
         btnAdminUserList = findViewById(R.id.btnAdminUsersList)
         btnUpdate = findViewById(R.id.AdminbtnActuUser)
+        btnPizza = findViewById(R.id.btnAdminPizza)
         rvUserList.layoutManager = LinearLayoutManager(this)
         rvUserList.visibility = View.GONE
 
@@ -81,6 +83,12 @@ class AdminActivity : AppCompatActivity() {
             val intent = Intent(this, AdminUpdateActivity::class.java)
             startActivity(intent)
         }
+        btnPizza.setOnClickListener{
+            val intent = Intent(this@AdminActivity, PizzasActivity::class.java)
+            startActivity(intent)
+            Toast.makeText(this@AdminActivity,"Token: $authToken", Toast.LENGTH_LONG).show()
+        }
+
     }
 
 

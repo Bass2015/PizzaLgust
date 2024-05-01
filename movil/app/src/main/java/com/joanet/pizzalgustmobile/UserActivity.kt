@@ -22,21 +22,17 @@ class UserActivity : AppCompatActivity() {
     private lateinit var tvFirstName2: TextView
     private lateinit var tvMessage2: TextView
     private lateinit var btnUpdate: ImageView
-    private lateinit var btnPizzas: ImageView
-
-
-
-
+    //private lateinit var btnPizzas: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login_user) //
+        setContentView(R.layout.activity_login_user)
 
         btnSalir2 = findViewById(R.id.btnSalirUser)
         tvFirstName2 = findViewById(R.id.tvFirstNameUser)
         tvMessage2 = findViewById(R.id.tvMessageUser)
         btnUpdate = findViewById(R.id.updateUser)
-        btnPizzas = findViewById(R.id.pizza)
+        //btnPizzas = findViewById(R.id.pizza)
 
         // Obtiene los datos pasados desde la actividad anterior
         val authToken = intent.getStringExtra("authToken")
@@ -60,10 +56,10 @@ class UserActivity : AppCompatActivity() {
             val intent = Intent(this@UserActivity, UpdateUserActivity::class.java)
             startActivity(intent)
         }
-        btnPizzas.setOnClickListener {
+        /*btnPizzas.setOnClickListener {
             val intent = Intent(this@UserActivity, UserPizzasActivity::class.java)
             startActivity(intent)
-        }
+        }*/
     }
 
 
