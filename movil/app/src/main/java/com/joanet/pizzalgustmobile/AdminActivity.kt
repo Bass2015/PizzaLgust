@@ -17,8 +17,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 /**
  * Actividad que representa la pantalla de administrador.
@@ -33,6 +31,7 @@ class AdminActivity : AppCompatActivity() {
     private lateinit var btnDeleteUserAdmin: ImageView
     private lateinit var etUserId: EditText
     private lateinit var btnUpdate: FloatingActionButton
+    private lateinit var btnPizza: ImageView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_admin) //
@@ -43,6 +42,7 @@ class AdminActivity : AppCompatActivity() {
         rvUserList = findViewById(R.id.rvListado)
         btnAdminUserList = findViewById(R.id.btnAdminUsersList)
         btnUpdate = findViewById(R.id.AdminbtnActuUser)
+        btnPizza = findViewById(R.id.btnAdminPizza)
         rvUserList.layoutManager = LinearLayoutManager(this)
         rvUserList.visibility = View.GONE
 
@@ -83,6 +83,12 @@ class AdminActivity : AppCompatActivity() {
             val intent = Intent(this, AdminUpdateActivity::class.java)
             startActivity(intent)
         }
+        btnPizza.setOnClickListener{
+            val intent = Intent(this@AdminActivity, PizzasActivity::class.java)
+            startActivity(intent)
+
+        }
+
     }
 
 
@@ -108,12 +114,8 @@ class AdminActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences("AppPrefs", Context.MODE_PRIVATE)
         val authToken = sharedPref.getString("authToken", null)
         if (authToken != null) {
-            val retrofit = Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:5002/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
 
-            val apiService = retrofit.create(ApiService::class.java)
+            val apiService = RetrofitClient.createApiService()
 
             val getAllUsersRequest = GetAllUsersRequest(authToken)
 
@@ -164,12 +166,7 @@ class AdminActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences("AppPrefs", Context.MODE_PRIVATE)
         val authToken = sharedPref.getString("authToken", null)
         if (authToken != null) {
-            val retrofit = Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:5002/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-
-            val apiService = retrofit.create(ApiService::class.java)
+            val apiService = RetrofitClient.createApiService()
 
             val deleteUserRequest = DeleteUser(authToken, userId)
 
@@ -221,13 +218,7 @@ class AdminActivity : AppCompatActivity() {
         Log.d("DEBUG", "Iniciando logout con token: $token")
 
         // Instancia de Retrofit
-        val retrofit = Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:5002/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-        // Servicio de logout usando Retrofit
-        val logoutService = retrofit.create(ApiService.ApiLogout::class.java)
+      val logoutService = RetrofitClient.createLogoutService()
 
         // llamada al servicio de logout
         val call = logoutService.logout(Logout(token, ""))
