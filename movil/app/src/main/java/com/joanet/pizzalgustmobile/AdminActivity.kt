@@ -86,7 +86,7 @@ class AdminActivity : AppCompatActivity() {
         btnPizza.setOnClickListener{
             val intent = Intent(this@AdminActivity, PizzasActivity::class.java)
             startActivity(intent)
-            Toast.makeText(this@AdminActivity,"Token: $authToken", Toast.LENGTH_LONG).show()
+
         }
 
     }

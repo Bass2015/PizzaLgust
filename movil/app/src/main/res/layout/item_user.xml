@@ -5,12 +5,12 @@
     android:id="@+id/linearLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_batman">
+    android:background="@android:color/transparent">
 
     <LinearLayout
         android:id="@+id/linear_layout"
-        android:layout_width="414dp"
-        android:layout_height="686dp"
+        android:layout_width="411dp"
+        android:layout_height="715dp"
         android:orientation="vertical"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"

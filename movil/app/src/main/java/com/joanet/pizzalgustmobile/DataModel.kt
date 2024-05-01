@@ -183,6 +183,14 @@ data class AdminUpdateResponse(
 /* =========================================↓ PIZZAS ↓============================ */
 /* =========================================↓ PIZZAS ↓============================ */
 
+/**
+ * Clase de datos que representa la creación de una pizza.
+ *
+ * @property token El token de autenticación del usuario que crea la pizza.
+ * @property name El nombre de la pizza.
+ * @property price El precio de la pizza.
+ * @property description La descripción de la pizza.
+ */
 
 data class CreatePizza(
     val token: String,
@@ -194,14 +202,48 @@ data class CreatePizza(
     ) : java.io.Serializable
 
 /**
- * Clase de modelo para la respuesta del servidor después de la creación de un usuario.
+ * Clase de datos que representa la respuesta del servidor después de crear una pizza.
  *
- * @property msg Mensaje relacionado con la creación de usuario.
- * @property pizza_id Identificador único de la pizza.
+ * @property msg Un mensaje relacionado con la creación de la pizza.
+ * @property pizza_id El identificador único de la pizza creada.
  */
 data class ResponseCreatePizza(
     val msg: String,
     val pizza_id: String
-)
+) : java.io.Serializable
+
+/**
+ * Clase de datos que representa una pizza.
+ *
+ * @property _id El identificador único de la pizza.
+ * @property name El nombre de la pizza.
+ * @property description La descripción de la pizza.
+ * @property price El precio de la pizza.
+ */
+data class Pizza(
+    val _id: String,
+    val name: String,
+    val description: String,
+    val price: Float
+) : java.io.Serializable
+
+/**
+ * Clase de datos que representa la respuesta que contiene una lista de pizzas.
+ *
+ * @property pizzas La lista de pizzas obtenidas del servidor.
+ */
+data class GetAllPizzas(
+    val pizzas: List<Pizza>
+) : java.io.Serializable
+
+/**
+ * Clase de datos que representa la solicitud para obtener todas las pizzas.
+ *
+ * @property token El token de autenticación del usuario que realiza la solicitud.
+ */
+data class GetAllPizzasRequest(
+    val token: String
+) : java.io.Serializable
+
 
 

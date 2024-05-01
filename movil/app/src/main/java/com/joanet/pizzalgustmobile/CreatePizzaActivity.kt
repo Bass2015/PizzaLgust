@@ -10,6 +10,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * Esta clase representa la actividad de creación de pizzas en la aplicación PizzaLgust.
+ * Permite a los usuarios crear nuevas pizzas proporcionando información como el nombre, el precio y la descripción.
+ */
 class CreatePizzaActivity : AppCompatActivity() {
 
     private lateinit var etPizzaName: EditText
@@ -45,10 +49,18 @@ class CreatePizzaActivity : AppCompatActivity() {
         }
     }
 
-    private fun createPizza(token: String, name: String, price: Float, description: String) {
+    /**
+     * Método privado para enviar una solicitud de creación de pizza al servidor.
+     *
+     * @param token Token de autenticación del usuario.
+     * @param name Nombre de la pizza.
+     * @param price Precio de la pizza.
+     * @param descr Descripción de la pizza.
+     */
+    private fun createPizza(token: String, name: String, price: Float, descr: String) {
 
 
-        val createPizzaRequest = CreatePizza(token, name, price, description)
+        val createPizzaRequest = CreatePizza(token, name, price, descr)
         val call = RetrofitClient.createApiService().createPizza(createPizzaRequest)
 
         call.enqueue(object : Callback<ResponseCreatePizza> {
