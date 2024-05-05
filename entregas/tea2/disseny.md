@@ -1,4 +1,4 @@
-# TEA 2 - Implementación login
+# TEA 3 - Extensión de funcionalidad
 
 ## Sistema de comunicación utilizado
 - Tecnología: RestAPI implementado en una aplicación de Flask, usando python.
@@ -221,6 +221,142 @@ Content-Type: application/json
 - Código 500: Se devuelve con cualquier otro error no contemplado en los ya mencionados.
 
 
+####  POST `/get-all-pizzas`
+Devuelve una lista con todas las pizzas.
+
+**Parámetros de Entrada**
+token (cadena): token de autenticación enviado al `login`
+
+```POST /get-all-pizzas HTTP/1.1
+Content-Type: application/json
+
+{
+    "token": "token",
+}
+```
+**Respuestas**
+- Código 200: Se devuelve cuando el inicio de sesión es exitoso. Se proporciona un token de autenticación junto con los detalles del usuario.
+```
+{
+   'pizzas': [
+        {'_id': '662cc64aaaa4cf8c845499ac',
+         'description': 'Pizza con tomate, queso mozzarela y albahaca',
+         'name': 'Margarita',
+         'price': 10.5},
+        {'_id': '662cc65eaaa4cf8c845499b3',
+         'description': 'Pizza con huevo, bacon y parmesano',
+         'name': 'Carbonara',
+         'price': 12.5},
+        {'_id': '662cc676aaa4cf8c845499cb',
+         'description': 'Pizza con pollo, bacon y piña',
+         'name': 'Hawaianna',
+         'price': 14.5},
+    ],
+}
+```
+
+- Código 400: Se devuelve si los datos de inicio de sesión son incorrectos o faltantes.
+- Código 410: Se devuelve si el usuario no está en la base de datos.
+- Código 401: Se devuelve si el usuario no ha hecho log in.
+- Código 500: Se devuelve con cualquier otro error no contemplado en los ya mencionados.
+
+####  POST `/create-pizza`
+Crea un nueva usuario en la base de datos.
+
+**Parámetros de Entrada**
+token (cadena): El token de login del usuario.
+name (cadena): El nombre de la pizza
+price (número decimal): El precio de la pizza.
+descr (cadena): DEscripción básica de la pizza.
+
+```POST /create-pizza HTTP/1.1
+Content-Type: application/json
+
+{
+    'token':'token',
+    'name':"Marina",
+    'price':10.5,
+    'descr': "Pizza con marisco, pescado y queso"
+}
+```
+**Respuestas**
+- Código 200: Se devuelve cuando la pizza se crea con éxito.
+```
+{
+    'msg': 'Pizza creada con éxito', 
+    'pizza_id': '662fc94943bf55d878cb248e'
+}
+```
+
+- Código 400: Se devuelve si los datos de inicio de sesión son incorrectos o faltantes.
+- Código 410: Se devuelve si el usuario no está en la base de datos.
+- Código 500: Se devuelve con cualquier otro error no contemplado en los ya mencionados.
+
+####  DELETE `/delete-pizza`
+Borra el usuario correspondiente al user_id enviado. Sólo funciona si la petición viene de un usuario admin.
+
+**Parámetros de Entrada**
+token (cadena): token de autenticación enviado al `login`
+pizza_id (cadena): Id de la pizza que se quiere borrar. Se puede conseguir con `get-all-pizzas`
+
+```DELETE /delete-pizza HTTP/1.1
+Content-Type: application/json
+
+{
+    "token": "token",
+    "pizza_id": "65ef5f89ee038e9346215ecb"
+}
+```
+**Respuestas**
+- Código 200: Se devuelve cuando la pizza se ha borrado con éxito.
+```
+{'msg': 'Pizza borrada con éxito'}
+```
+
+- Código 400: Se devuelve si los datos de inicio de sesión son incorrectos o faltantes.
+- Código 410: Se devuelve si el usuario no está en la base de datos.
+- Código 401: Se devuelve si el usuario no ha hecho log in o si el usuario no es admin.
+- Código 500: Se devuelve con cualquier otro error no contemplado en los ya mencionados.
+
+####  PUT `/update-pizza`
+Actualiza los datos de la pizza. Los parámetros de entrada son opcionales (se puede mandar lo que se quiera).
+
+Es **OBLIGATORIO** enviar un parámetro `pizza_id` para saber los datos
+de qué pizza hay que actualizar.
+
+**Parámetros de Entrada**
+token (cadena): token de autenticación enviado al `login`
+
+Cualquier campo de los contemplados en create_pizza:
+name (cadena): El nombre de la pizza
+price (número decimal): El precio de la pizza.
+descr (cadena): DEscripción básica de la pizza.
+
+*Solo si la petición viene de un admin*:
+user_id (cadena): Id del usuario que se quiere actualizar. Se puede conseguir con `get-all-users`
+
+```PUT /update-pizza HTTP/1.1
+Content-Type: application/json
+
+{
+    'token': token,
+    'name': 'Milán',
+    'pizza_id': "65ef5f89ee038e9346215ecb",
+    'description': "Pizza con un bistec, bacon y queso"
+}
+```
+**Respuestas**
+- Código 200: Se devuelve cuando el usuario se ha borrado con éxito.
+```
+{'msg': 'Pizza actualizada con éxito'}
+```
+
+- Código 400: Se devuelve si los datos de inicio de sesión son incorrectos o faltantes.
+- Código 410: Se devuelve si el usuario no está en la base de datos.
+- Código 401: Se devuelve si el usuario no ha hecho log in o si el usuario no es admin.
+- Código 500: Se devuelve con cualquier otro error no contemplado en los ya mencionados.
+
+
 ## Diagrama UML clases
 - Nota: En python todos los métodos y variables son públicos
   
@@ -234,6 +370,13 @@ Content-Type: application/json
 | + last_name: string |
 | + password: string |
 
+
+| Pizza |
+| --- |
+| + _id: string |
+| + name: string |
+| + description: string |
+| + price: float |
 
 
 # Llegeixme

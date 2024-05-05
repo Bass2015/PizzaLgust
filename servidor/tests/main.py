@@ -215,9 +215,6 @@ class PizzalgustTests(TestCase):
         assert 'pizzas' in response.json().keys()
         assert isinstance(response.json()['pizzas'], list)
 
-    
-    
-
     def test_delete_pizza(self):
         """
         Método para probar la eliminación de pizzas.
