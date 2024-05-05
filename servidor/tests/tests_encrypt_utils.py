@@ -54,7 +54,7 @@ def decrypt_body(body:dict):
     decrypted = {}
     for k,v in body.items():
         if k in LIST_KEYS:
-            decrypted[k] = [decrypt(item) for item in body[k]]
+            decrypted[k] = [decrypt_body(sub_body) for sub_body in body[k]]
         else:
             decrypted[k] = v if k == 'token' else KEY_TYPES.get(k,str)(decrypt(v)) 
     return decrypted

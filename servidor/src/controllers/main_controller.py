@@ -5,7 +5,7 @@ from config import (UNAUTHORIZED_CODE,
                     INVALID_TOKEN_CODE)
 from events.events import TOKEN_VERIFIED_EVENT
 from utils.async_utils import run_task_in_background
-from utils.encrypt_utils import decrypt_body
+from utils.encrypt_utils import encrypt_body, decrypt_body
 from utils.auth_utils import (verify_token, 
                               InvalidTokenError,
                               InvalidPasswordError)
@@ -24,17 +24,28 @@ def __make_response(controller, verify=True):
         if verify:
             verify_token(request.json['token'])  
         data, code = controller.run()      
+        data = encrypt_body(data)
         response =  jsonify(data), code
     except InvalidTokenError as e:
-        response =  jsonify({'msg': str(e.message)}), INVALID_TOKEN_CODE
+        data = {'msg': str(e.message)}
+        data = encrypt_body(data)
+        response =  jsonify(data), INVALID_TOKEN_CODE
     except UserNotLoggedInError as e:
-        response =  jsonify({'msg': str(e.message)}), UNAUTHORIZED_CODE
+        data = {'msg': str(e.message)}
+        data = encrypt_body(data)
+        response =  jsonify(data), UNAUTHORIZED_CODE
     except DocumentNotFoundError as e:
-        response =  jsonify({'msg': str(e.message)}), DOCUMENT_NOT_FOUND_CODE
+        data = {'msg': str(e.message)}
+        data = encrypt_body(data)
+        response =  jsonify(data), DOCUMENT_NOT_FOUND_CODE
     except UserNotAdminError as e:
-        response =  jsonify({'msg': str(e.message)}), UNAUTHORIZED_CODE
+        data = {'msg': str(e.message)}
+        data = encrypt_body(data)
+        response =  jsonify(data), UNAUTHORIZED_CODE
     except Exception as e:
-        response = jsonify({'msg': f"{e.__class__.__name__}: {str(e)}"}), 500
+        data = {'msg': f"{e.__class__.__name__}: {str(e)}"}
+        data = encrypt_body(data)
+        response = jsonify(data), 500
     finally:
         TOKEN_VERIFIED_EVENT.clear_observers()
         return response
@@ -49,13 +60,20 @@ def login():
         body = decrypt_body(request.json)
         controller = LoginController(body)
         data, code = controller.run()      
+        data = encrypt_body(data)
         response =  jsonify(data), code
-    except DocumentNotFoundError as e:
-        response =  jsonify({'msg': str(e.message)}), DOCUMENT_NOT_FOUND_CODE
     except InvalidPasswordError as e:
-        response =  jsonify({'msg': str(e.message)}), UNAUTHORIZED_CODE
+        data = {'msg': str(e.message)}
+        data = encrypt_body(data)
+        response =  jsonify(data), UNAUTHORIZED_CODE
+    except DocumentNotFoundError as e:
+            data = {'msg': str(e.message)}
+            data = encrypt_body(data)
+            response =  jsonify(data), DOCUMENT_NOT_FOUND_CODE
     except Exception as e:
-        response = jsonify({'msg': f"{e.__class__.__name__}: {str(e)}"}), 500
+            data = {'msg': f"{e.__class__.__name__}: {str(e)}"}
+            data = encrypt_body(data)
+            response = jsonify(data), 500
     finally:
         TOKEN_VERIFIED_EVENT.clear_observers()
         return response
