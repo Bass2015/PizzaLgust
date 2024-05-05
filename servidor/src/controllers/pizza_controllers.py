@@ -22,8 +22,8 @@ from .user_controllers import (BaseController,
 
         
 class GetAllPizzasController(TokenVerifiedEventListener, BaseController):
-    def __init__(self, request, config=None):
-        self.token = request.json['token']
+    def __init__(self, body, config=None):
+        self.token = body['token']
         super(GetAllPizzasController, self).__init__()
 
     def run(self) -> tuple:
@@ -34,9 +34,9 @@ class GetAllPizzasController(TokenVerifiedEventListener, BaseController):
         return data, 200
 
 class CreatePizzaController(TokenVerifiedEventListener, BaseController):
-    def __init__(self, request, config=None):
-        self.token = request.json['token']
-        self.pizza = request.json
+    def __init__(self, body, config=None):
+        self.token = body['token']
+        self.pizza = body
         super(CreatePizzaController, self).__init__()
 
 
@@ -53,8 +53,8 @@ class CreatePizzaController(TokenVerifiedEventListener, BaseController):
         return data, 200
 
 class DeletePizzaController(TokenVerifiedEventListener, BaseController):
-    def __init__(self, request, config=None):
-        self.request = request.json
+    def __init__(self, body, config=None):
+        self.body = body
         super(DeletePizzaController, self).__init__()
 
 
@@ -64,7 +64,7 @@ class DeletePizzaController(TokenVerifiedEventListener, BaseController):
         self.user = User.read(DeletePizzaController._user_id)
         if not self.user.is_admin:
             raise UserNotAdminError()
-        pizza = Pizza.read(self.request['pizza_id'])
+        pizza = Pizza.read(self.body['pizza_id'])
         if pizza.delete():
             data = {'msg': 'Pizza borrada con éxito'}
             code = 200
@@ -74,8 +74,8 @@ class DeletePizzaController(TokenVerifiedEventListener, BaseController):
         return data, code
     
 class UpdatePizzaController(TokenVerifiedEventListener, BaseController):
-    def __init__(self, request, config=None):
-        self.pizza_info = request.json.copy()
+    def __init__(self, body, config=None):
+        self.pizza_info = body.copy()
         super(UpdatePizzaController, self).__init__()
 
     def run(self) -> tuple:

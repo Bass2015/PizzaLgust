@@ -47,3 +47,8 @@ def decrypt(message):
     decrypted = __unpad(decrypted_padded)
 
     return decrypted.decode("UTF-8")
+
+
+def decrypt_body(body:dict):
+    decrypted = {k:decrypt(v) for k,v in body.items()} 
+    return decrypted

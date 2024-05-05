@@ -5,9 +5,11 @@ from config import (UNAUTHORIZED_CODE,
                     INVALID_TOKEN_CODE)
 from events.events import TOKEN_VERIFIED_EVENT
 from utils.async_utils import run_task_in_background
+from utils.encrypt_utils import decrypt_body
+from utils.auth_utils import (verify_token, 
+                              InvalidTokenError,
+                              InvalidPasswordError)
 from services.database import DocumentNotFoundError
-from utils.auth_utils import verify_token, InvalidTokenError
-from utils.auth_utils import InvalidPasswordError
 from .user_controllers import *
 from .pizza_controllers import *
 
@@ -17,7 +19,8 @@ def test():
 
 def __make_response(controller, verify=True):
     try:
-        controller = controller(request)
+        body = decrypt_body(request.json)
+        controller = controller(body)
         if verify:
             verify_token(request.json['token'])  
         data, code = controller.run()      
@@ -43,7 +46,8 @@ def __make_response(controller, verify=True):
 # ##############################################################
 def login():
     try:
-        controller = LoginController(request)
+        body = decrypt_body(request.json)
+        controller = LoginController(body)
         data, code = controller.run()      
         response =  jsonify(data), code
     except DocumentNotFoundError as e:
@@ -93,4 +97,3 @@ def delete_pizza():
 
 def update_pizza():
     return __make_response(UpdatePizzaController)
-
