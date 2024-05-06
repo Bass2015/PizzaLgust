@@ -37,3 +37,5 @@ KEY_TYPES = {
 }
 
 LIST_KEYS = ["users", "pizzas", "doughs", "ingredients"]
+
+crypto = False
