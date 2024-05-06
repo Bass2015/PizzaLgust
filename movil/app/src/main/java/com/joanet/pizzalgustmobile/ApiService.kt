@@ -129,4 +129,13 @@ interface ApiService {
     @Headers("Content-type: application/json")
     @POST("pizzalgust/get-all-pizzas")
     fun getAllPizzas(@Body getAllPizzasRequest: GetAllPizzasRequest): Call<GetAllPizzas>
+
+    /* =========================================↓ BORRAR PIZZAS ↓============================ */
+    @Headers("Content-Type: application/json")
+    @HTTP(method = "DELETE", path = "pizzalgust/delete-pizza", hasBody = true)
+    fun deletePizza(@Body requestBody: DeletePizza): Call<DeletePizzaResponse>
+
+    @Headers("Content-Type: application/json")
+    @PUT("pizzalgust/update-pizza")
+    fun updatePizza(@Body requestBody: UpdatePizza): Call<UpdatePizzaResponse>
 }

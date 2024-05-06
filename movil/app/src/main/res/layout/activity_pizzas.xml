@@ -23,8 +23,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/pizza"
-        tools:layout_editor_absoluteX="-1dp"
-        tools:layout_editor_absoluteY="54dp" />
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="-179dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addPizza"
@@ -64,12 +64,12 @@
         android:backgroundTint="@color/white"
         android:clickable="true"
         android:focusable="true"
-        android:src="@drawable/lapiz"
+        android:src="@drawable/actu_pizza"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/Delete_Pizzas" />
+        app:layout_constraintEnd_toStartOf="@+id/delete_Pizzas" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/Delete_Pizzas"
+        android:id="@+id/delete_Pizzas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"

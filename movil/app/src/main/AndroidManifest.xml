@@ -40,6 +40,10 @@
             android:exported="true" />
         <activity android:name=".GetAllPizzasActivity"
             android:exported="true" />
+        <activity android:name=".DeletePizzasActivity"
+            android:exported="true" />
+        <activity android:name=".UpdatePizzasActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

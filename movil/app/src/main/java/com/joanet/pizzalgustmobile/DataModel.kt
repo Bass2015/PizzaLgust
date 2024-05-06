@@ -177,7 +177,7 @@ data class AdminUpdateUser(
  */
 data class AdminUpdateResponse(
     val msg: String
-)
+) : java.io.Serializable
 
 
 /* =========================================↓ PIZZAS ↓============================ */
@@ -245,5 +245,39 @@ data class GetAllPizzasRequest(
     val token: String
 ) : java.io.Serializable
 
+/**
+ * Clase de datos que representa la solicitud para eliminar un usuario.
+ *
+ * @property token El token de autenticación del usuario que realiza la solicitud.
+ * @property user_id El ID del usuario que se desea eliminar.
+ */
+data class DeletePizza(
+    val token: String,
+    val pizza_id: String,
+) : java.io.Serializable
 
+/**
+ * Clase de datos que representa la respuesta después de eliminar un usuario.
+ *
+ * @property msg Mensaje asociado con la solicitud de eliminación.
+ */
+data class DeletePizzaResponse(
+    val msg: String
+) : java.io.Serializable
 
+data class UpdatePizza(
+    val token: String,
+    val pizza_id: String,
+    val name: String? = null,
+    val price: String? = null,
+    val description: String? = null,
+) : java.io.Serializable
+
+/**
+ * Clase de datos que representa la respuesta después de actualizar un usuario administrador.
+ *
+ * @property msg Mensaje asociado con la actualización del usuario.
+ */
+data class UpdatePizzaResponse(
+    val msg: String
+) : java.io.Serializable

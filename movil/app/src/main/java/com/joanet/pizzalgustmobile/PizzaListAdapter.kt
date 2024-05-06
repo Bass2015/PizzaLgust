@@ -56,11 +56,14 @@ class PizzaListAdapter(private val pizzas: List<Pizza>) : RecyclerView.Adapter<P
         private val nameTextView: TextView = itemView.findViewById(R.id.tvPizzaName)
         private val descriptionTextView: TextView = itemView.findViewById(R.id.tvPizzaDescription)
         private val priceTextView: TextView = itemView.findViewById(R.id.tvPizzaPrice)
+        private val idTextView: TextView = itemView.findViewById(R.id.tvPizzaId)
+
 
         fun bind(pizza: Pizza) {
             nameTextView.text = "Nombre: \n${pizza.name}"
             descriptionTextView.text = "Descripción: \n${pizza.description}"
             priceTextView.text = "Precio: \n${pizza.price}"
+            idTextView.text = "Id: \n${pizza._id}"
         }
     }
 }

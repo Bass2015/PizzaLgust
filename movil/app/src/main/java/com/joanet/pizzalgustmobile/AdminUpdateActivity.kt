@@ -28,11 +28,11 @@ class AdminUpdateActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_admin)
 
-        etUpdateUserName = findViewById(R.id.etUpdateUserNameAdmin)
-        etUpdateEmail = findViewById(R.id.etUpdateEmailAdmin)
-        etUpdateName = findViewById(R.id.etUpdateNameAdmin)
+        etUpdateUserName = findViewById(R.id.etUpdatePizzaName)
+        etUpdateEmail = findViewById(R.id.EtPriceUpdate)
+        etUpdateName = findViewById(R.id.etDescriptionUpdate)
         etUpdateLastName = findViewById(R.id.etUpdateLastNameAdmin)
-        etUserId = findViewById(R.id.etUpdateUserIdAdmin)
+        etUserId = findViewById(R.id.EtUpdatePizzaId)
         btnSave = findViewById(R.id.btnSaveAdmin)
 
         btnSave.setOnClickListener {
@@ -71,7 +71,7 @@ class AdminUpdateActivity : AppCompatActivity() {
         lastName: String?
     ) {
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://10.0.2.2:5002/") // Asegúrate de que esta es la URL base correcta
+            .baseUrl("http://10.0.2.2:5002/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

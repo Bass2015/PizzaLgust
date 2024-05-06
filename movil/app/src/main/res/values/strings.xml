@@ -67,5 +67,15 @@
     <string name="tv_Token">Token</string>
     <string name="tv_PricePizza">Precio</string>
     <string name="tv_DescriptionPizza">Descripción de la pizza</string>
+    <string name="tv_DeletePizza">Eliminar\npizzas</string>
+    <string name="tv_DeletePizza2">Para eliminar pizza, copia el ID de la pizza y pégalo en la siguiente barra:\nEl id lo encontrarás en el listado de pizzas de la pagina anterior.</string>
+    <string name="tv_UpdatePizzaIndex">Actualización Pizzas</string>
+    <string name="UpdateTv_mensajePizza">Rellena los campos para Actualizar la pizza.\n Obligatorio ID</string>
+    <string name="tv_PizzaNameUpdate">Pizza Name</string>
+    <string name="et_PizzaNameUpdate">Nombre pizza</string>
+    <string name="PIZZA_ID">PIZZA ID</string>
+    <string name="btn_actuPizza">Boton actualizar</string>
+    <string name="btn_SelectMassa">Seleccionar Massa</string>
+    <string name="tv_Massa">Massa</string>
 
 </resources>

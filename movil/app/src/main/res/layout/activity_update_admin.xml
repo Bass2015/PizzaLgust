@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/UpdateTv_mensajeAdmin"
+        android:id="@+id/UpdateTv_mensajePizza"
         android:layout_width="413dp"
         android:layout_height="52dp"
         android:layout_marginTop="12dp"
@@ -31,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@+id/TvIndexAdmin" />
 
     <TextView
-        android:id="@+id/UpdateTv_nameAdmin"
+        android:id="@+id/UpdateTv_PizzaName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -40,10 +40,10 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UpdateTv_mensajeAdmin" />
+        app:layout_constraintTop_toBottomOf="@+id/UpdateTv_mensajePizza" />
 
     <EditText
-        android:id="@+id/etUpdateUserNameAdmin"
+        android:id="@+id/etUpdatePizzaName"
         android:layout_width="176dp"
         android:layout_height="30dp"
         android:layout_marginStart="16dp"
@@ -55,10 +55,10 @@
         android:padding="8dp"
         android:textSize="13sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UpdateTv_nameAdmin" />
+        app:layout_constraintTop_toBottomOf="@+id/UpdateTv_PizzaName" />
 
     <TextView
-        android:id="@+id/UpdateTv_EmailAdmin"
+        android:id="@+id/UpdateTv_Price"
         android:layout_width="80dp"
         android:layout_height="22dp"
 
@@ -68,10 +68,10 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UpdateTv_mensajeAdmin" />
+        app:layout_constraintTop_toBottomOf="@+id/UpdateTv_mensajePizza" />
 
     <EditText
-        android:id="@+id/etUpdateEmailAdmin"
+        android:id="@+id/EtPriceUpdate"
         android:layout_width="176dp"
         android:layout_height="30dp"
         android:layout_marginTop="20dp"
@@ -83,10 +83,10 @@
         android:padding="8dp"
         android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UpdateTv_EmailAdmin" />
+        app:layout_constraintTop_toBottomOf="@+id/UpdateTv_Price" />
 
     <TextView
-        android:id="@+id/UpdateTv_FirstNameAdmin"
+        android:id="@+id/TvDescriptionUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -95,7 +95,7 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etUpdateUserNameAdmin" />
+        app:layout_constraintTop_toBottomOf="@+id/etUpdatePizzaName" />
 
     <EditText
         android:id="@+id/etUpdateLastNameAdmin"
@@ -109,7 +109,6 @@
         android:inputType="text"
         android:padding="8dp"
         android:textSize="13sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnSave"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/UpdateTv_LastNameAdmin"
         app:layout_constraintVertical_bias="0.0" />
@@ -124,10 +123,10 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etUpdateEmailAdmin" />
+        app:layout_constraintTop_toBottomOf="@+id/EtPriceUpdate" />
 
     <EditText
-        android:id="@+id/etUpdateNameAdmin"
+        android:id="@+id/etDescriptionUpdate"
         android:layout_width="176dp"
         android:layout_height="30dp"
         android:layout_marginStart="16dp"
@@ -140,11 +139,11 @@
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UpdateTv_FirstNameAdmin"
+        app:layout_constraintTop_toBottomOf="@+id/TvDescriptionUpdate"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/UpdateTv_UserIdAdmin"
+        android:id="@+id/TvUpdatePizzaId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -153,10 +152,10 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etUpdateNameAdmin" />
+        app:layout_constraintTop_toBottomOf="@+id/etDescriptionUpdate" />
 
     <EditText
-        android:id="@+id/etUpdateUserIdAdmin"
+        android:id="@+id/EtUpdatePizzaId"
         android:layout_width="176dp"
         android:layout_height="30dp"
         android:layout_marginStart="16dp"
@@ -168,7 +167,7 @@
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UpdateTv_UserIdAdmin"
+        app:layout_constraintTop_toBottomOf="@+id/TvUpdatePizzaId"
         app:layout_constraintVertical_bias="0.101" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/CLDeletePizzas"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_login_user">
+
+    <TextView
+        android:id="@+id/User_tvDeletePizzas"
+        android:layout_width="409dp"
+        android:layout_height="108dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/tv_DeletePizza"
+        android:textSize="45sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/User_tvDeletePizzas2"
+        android:layout_width="409dp"
+        android:layout_height="108dp"
+        android:layout_marginTop="160dp"
+        android:text="@string/tv_DeletePizza2"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Tv_PizzaId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="52dp"
+        android:text="@string/PIZZA_ID"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/User_tvDeletePizzas2" />
+
+    <EditText
+        android:id="@+id/etPizzaId"
+        android:layout_width="378dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="23dp"
+        android:autofillHints=""
+        android:background="@drawable/edittext_rounded_corner"
+        android:hint="@string/PIZZA_ID"
+        android:inputType="text"
+        android:padding="8dp"
+        android:textIsSelectable="true"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Tv_PizzaId" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/delete_Pizzas2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="Boton borrar"
+        android:src="@drawable/delete_pizza"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPizzaId" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

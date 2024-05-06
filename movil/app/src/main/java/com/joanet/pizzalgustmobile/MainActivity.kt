@@ -29,6 +29,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var progressBar: ProgressBar
     private lateinit var tvRegistration: TextView
 
+    var redirectedToCorrectActivity = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -66,7 +68,7 @@ class MainActivity : AppCompatActivity() {
      * @param email El correo electrónico del usuario.
      * @param password La contraseña del usuario.
      */
-    private fun login(email: String, password: String) {
+    fun login(email: String, password: String) {
 
         val apiService = RetrofitClient.createApiService()
 
@@ -93,6 +95,7 @@ class MainActivity : AppCompatActivity() {
                         Log.i("INFO","¡Correcto! isadmin: ${dataModel?.is_admin}")
                         Log.i("INFO","¡Correcto! usertype: ${dataModel?.user_type}")
 
+                        redirectedToCorrectActivity = true
 
                         val gson = Gson()
                         val jsonString = gson.toJson(dataModel)

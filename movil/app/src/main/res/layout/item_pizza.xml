@@ -35,6 +35,14 @@
             android:text="Precio"
             android:textSize="14sp" />
 
+        <TextView
+            android:id="@+id/tvPizzaId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Id"
+            android:textIsSelectable="true"
+            android:textSize="14sp" />
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

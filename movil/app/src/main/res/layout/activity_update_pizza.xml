@@ -1,105 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/createPizzaLayout"
+    android:id="@+id/updatePizzaLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_login_user">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp"
-        tools:context=".CreatePizzaActivity">>
-        <TextView
-            android:id="@+id/Tv_Massa"
-            android:layout_width="120dp"
-            android:layout_height="28dp"
-            android:layout_above="@+id/textView"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:text="@string/tv_Massa"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="383dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="242dp"
-            android:background="@drawable/edittext_rounded_corner"
-            android:drawableRight="@android:drawable/arrow_down_float"
-            android:drawablePadding="16dp"
-            android:hint="@string/btn_SelectMassa"
-            android:padding="12dp" />
-    </RelativeLayout>
-
 
     <TextView
-        android:id="@+id/tv_creacionpizza"
+        android:id="@+id/TvIndexUpdatePizza"
         android:layout_width="409dp"
         android:layout_height="108dp"
         android:layout_marginTop="16dp"
-        android:text="@string/tv_User_creacionpizza"
+        android:text="@string/tv_UpdatePizzaIndex"
         android:textSize="45sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/Tv_User_mensajeCreacion"
+        android:id="@+id/UpdateTv_mensajePizza"
         android:layout_width="413dp"
         android:layout_height="52dp"
         android:layout_marginTop="12dp"
-        android:text="@string/tv_Mensaje"
+        android:text="@string/UpdateTv_mensajePizza"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_creacionpizza" />
+        app:layout_constraintTop_toBottomOf="@+id/TvIndexUpdatePizza" />
 
     <TextView
-        android:id="@+id/tv_PizzaName"
+        android:id="@+id/UpdateTv_PizzaName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/tv_PizzaName"
+        android:layout_marginTop="8dp"
+        android:text="@string/tv_PizzaNameUpdate"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Tv_User_mensajeCreacion" />
+        app:layout_constraintTop_toBottomOf="@+id/UpdateTv_mensajePizza" />
 
     <EditText
-        android:id="@+id/etPizzaName"
+        android:id="@+id/etUpdatePizzaName"
         android:layout_width="176dp"
         android:layout_height="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:autofillHints=""
         android:background="@drawable/edittext_rounded_corner"
-        android:hint="@string/et_UserName"
+        android:hint="@string/et_PizzaNameUpdate"
         android:inputType="text"
         android:padding="8dp"
         android:textSize="13sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_PizzaName" />
+        app:layout_constraintTop_toBottomOf="@+id/UpdateTv_PizzaName" />
 
     <TextView
-        android:id="@+id/Tv_Price"
+        android:id="@+id/UpdateTv_Price"
         android:layout_width="80dp"
         android:layout_height="22dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="128dp"
         android:text="@string/tv_PricePizza"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Tv_User_mensajeCreacion" />
+        app:layout_constraintTop_toBottomOf="@+id/UpdateTv_mensajePizza" />
 
     <EditText
-        android:id="@+id/et_Price"
+        android:id="@+id/EtPriceUpdate"
         android:layout_width="176dp"
         android:layout_height="30dp"
         android:layout_marginTop="20dp"
@@ -111,45 +81,81 @@
         android:padding="8dp"
         android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Tv_Price" />
+        app:layout_constraintTop_toBottomOf="@+id/UpdateTv_Price" />
 
     <TextView
-        android:id="@+id/Tv_Description"
+        android:id="@+id/TvDescriptionUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:text="@string/tv_DescriptionPizza"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_Price" />
+        app:layout_constraintTop_toBottomOf="@+id/etUpdatePizzaName" />
 
     <EditText
-        android:id="@+id/etDescription"
-        android:layout_width="378dp"
+        android:id="@+id/etDescriptionUpdate"
+        android:layout_width="375dp"
         android:layout_height="40dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
         android:autofillHints=""
         android:background="@drawable/edittext_rounded_corner"
         android:hint="@string/tv_DescriptionPizza"
         android:inputType="text"
         android:padding="8dp"
         android:textSize="13sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Tv_Description" />
+        app:layout_constraintTop_toBottomOf="@+id/TvDescriptionUpdate"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/TvUpdatePizzaId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/PIZZA_ID"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etDescriptionUpdate" />
+
+    <EditText
+        android:id="@+id/EtUpdatePizzaId"
+        android:layout_width="176dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:autofillHints=""
+        android:background="@drawable/edittext_rounded_corner"
+        android:hint="@string/PIZZA_ID"
+        android:inputType="text"
+        android:padding="8dp"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TvUpdatePizzaId"
+        app:layout_constraintVertical_bias="0.058" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addPizza1"
-        android:layout_width="56dp"
-        android:layout_height="62dp"
-        android:layout_marginBottom="76dp"
-        android:backgroundTint="@android:color/background_light"
+        android:id="@+id/btnSave2"
+        android:layout_width="74dp"
+        android:layout_height="67dp"
+        android:layout_marginBottom="92dp"
+        android:background="@drawable/border_button"
+        android:backgroundTint="@android:color/holo_purple"
         android:clickable="true"
         android:focusable="true"
-        android:src="@drawable/add_pizza"
+        android:src="@drawable/add_task"
+        android:contentDescription="@string/btn_actuPizza"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.878"
+        app:layout_constraintStart_toStartOf="parent"
+        app:maxImageSize="60dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
