@@ -7,6 +7,7 @@
    1. En la terminal, ir a la carpeta del proyecto
    2. Correr `pip install -r requirements.txt`
 3. Para iniciar el servidor, correr `python servidor/src/main.py`
+4. **¡ATENCIÓN! El servidor corre encriptado por defecto. Si no se quiere que se encipten los datos, correr `python servidor/src/main.py no-crypto`**
 
 ### Métodos
 ####  POST `/login`
