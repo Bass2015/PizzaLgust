@@ -14,7 +14,7 @@ from abc import ABC, abstractmethod, abstractclassmethod
 from utils.async_utils import run_task_in_background
 from events.events import TokenVerifiedEventListener
 from services import database as db
-from models.models import User, DBModel, Pizza
+from models.models import User, DBModel, Pizza, Masa, Ingredient
 from .user_controllers import (BaseController,
                               LoginController,
                               UserNotLoggedInError,
@@ -22,8 +22,8 @@ from .user_controllers import (BaseController,
 
         
 class GetAllPizzasController(TokenVerifiedEventListener, BaseController):
-    def __init__(self, request, config=None):
-        self.token = request.json['token']
+    def __init__(self, body, config=None):
+        self.token = body['token']
         super(GetAllPizzasController, self).__init__()
 
     def run(self) -> tuple:
@@ -34,9 +34,9 @@ class GetAllPizzasController(TokenVerifiedEventListener, BaseController):
         return data, 200
 
 class CreatePizzaController(TokenVerifiedEventListener, BaseController):
-    def __init__(self, request, config=None):
-        self.token = request.json['token']
-        self.pizza = request.json
+    def __init__(self, body, config=None):
+        self.token = body['token']
+        self.pizza = body
         super(CreatePizzaController, self).__init__()
 
 
@@ -53,8 +53,8 @@ class CreatePizzaController(TokenVerifiedEventListener, BaseController):
         return data, 200
 
 class DeletePizzaController(TokenVerifiedEventListener, BaseController):
-    def __init__(self, request, config=None):
-        self.request = request.json
+    def __init__(self, body, config=None):
+        self.body = body
         super(DeletePizzaController, self).__init__()
 
 
@@ -64,7 +64,7 @@ class DeletePizzaController(TokenVerifiedEventListener, BaseController):
         self.user = User.read(DeletePizzaController._user_id)
         if not self.user.is_admin:
             raise UserNotAdminError()
-        pizza = Pizza.read(self.request['pizza_id'])
+        pizza = Pizza.read(self.body['pizza_id'])
         if pizza.delete():
             data = {'msg': 'Pizza borrada con éxito'}
             code = 200
@@ -74,8 +74,8 @@ class DeletePizzaController(TokenVerifiedEventListener, BaseController):
         return data, code
     
 class UpdatePizzaController(TokenVerifiedEventListener, BaseController):
-    def __init__(self, request, config=None):
-        self.pizza_info = request.json.copy()
+    def __init__(self, body, config=None):
+        self.pizza_info = body.copy()
         super(UpdatePizzaController, self).__init__()
 
     def run(self) -> tuple:
@@ -89,4 +89,66 @@ class UpdatePizzaController(TokenVerifiedEventListener, BaseController):
             self.pizza_info.pop('token')
         pizza.update(**self.pizza_info)
         data = {'msg': 'Pizza actualizada con éxito'}
+        return data, 200
+    
+class GetAllMasasController(TokenVerifiedEventListener, BaseController):
+    def __init__(self, body, config=None):
+        self.token = body['token']
+        super(GetAllMasasController, self).__init__()
+
+    def run(self) -> tuple:
+        if not self.token in LoginController.logged_in_user_tokens:
+            raise UserNotLoggedInError()
+        results =  db.get_all_documents_from_database(Masa._database, Masa._collection)
+        data = {'masas': results}
+        return data, 200
+
+class CreateMasaController(TokenVerifiedEventListener, BaseController):
+    def __init__(self, body, config=None):
+        self.token = body['token']
+        self.masa = body
+        super(CreateMasaController, self).__init__()
+
+
+    def run(self) -> tuple:
+        if not self.token in LoginController.logged_in_user_tokens:
+            raise UserNotLoggedInError()
+        self.user = User.read(CreateMasaController._user_id)
+        if not self.user.is_admin:
+            raise UserNotAdminError()
+        self.masa.pop('token')
+        masa = Masa.new_masa(**self.masa)
+        data = {'msg': 'Masa creada con éxito',
+                'masa_id': masa._id}
+        return data, 200
+    
+class GetAllIngredientsController(TokenVerifiedEventListener, BaseController):
+    def __init__(self, body, config=None):
+        self.token = body['token']
+        super(GetAllIngredientsController, self).__init__()
+
+    def run(self) -> tuple:
+        if not self.token in LoginController.logged_in_user_tokens:
+            raise UserNotLoggedInError()
+        results =  db.get_all_documents_from_database(Ingredient._database, Ingredient._collection)
+        data = {'ingredients': results}
+        return data, 200
+
+class CreateIngredientController(TokenVerifiedEventListener, BaseController):
+    def __init__(self, body, config=None):
+        self.token = body['token']
+        self.ingredient = body
+        super(CreateIngredientController, self).__init__()
+
+
+    def run(self) -> tuple:
+        if not self.token in LoginController.logged_in_user_tokens:
+            raise UserNotLoggedInError()
+        self.user = User.read(CreateIngredientController._user_id)
+        if not self.user.is_admin:
+            raise UserNotAdminError()
+        self.ingredient.pop('token')
+        ingredient = Ingredient.new_ingredient(**self.ingredient)
+        data = {'msg': 'Ingrediente creado con éxito',
+                'ingredient_id': ingredient._id}
         return data, 200

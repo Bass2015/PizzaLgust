@@ -21,3 +21,9 @@ blueprint.route('/create-pizza', methods=['POST'])(controller.create_pizza)
 blueprint.route('/get-all-pizzas', methods=['POST'])(controller.get_all_pizzas)
 blueprint.route('/delete-pizza', methods=['DELETE'])(controller.delete_pizza)
 blueprint.route('/update-pizza', methods=['PUT'])(controller.update_pizza)
+
+blueprint.route('/create-masa', methods=['POST'])(controller.create_masa)
+blueprint.route('/get-all-masas', methods=['POST'])(controller.get_all_masas)
+
+blueprint.route('/create-ingredient', methods=['POST'])(controller.create_ingredient)
+blueprint.route('/get-all-ingredients', methods=['POST'])(controller.get_all_ingredients)

@@ -27,7 +27,7 @@ class BaseController(ABC):
     """BaseController: Clase base abstracta para definir la funcionalidad básica del controlador.
 
     Métodos:
-    - __init__(self, request, config=None): Método constructor.
+    - __init__(self, body, config=None): Método constructor.
     - run(self) -> tuple: Método abstracto que debe ser implementado por subclases para ejecutar la lógica del controlador.
     """
     def __init__(self, config=None):
@@ -53,9 +53,9 @@ class BaseController(ABC):
         
 class LoginController(BaseController):
     logged_in_user_tokens = []
-    def __init__(self, request, config=None):
-        self.user = User.read_from_email(email=request.json['email'],
-                                         password=request.json['password'])
+    def __init__(self, body, config=None):
+        self.user = User.read_from_email(email=body['email'],
+                                         password=body['password'])
 
 
     def run(self) -> tuple:
@@ -71,8 +71,8 @@ class LoginController(BaseController):
                 'token': token}
         return data, 200
 class LogoutController(BaseController):
-    def __init__(self, request, config=None):
-        self.token = request.json['token']
+    def __init__(self, body, config=None):
+        self.token = body['token']
 
 
     def run(self) -> tuple:
@@ -84,8 +84,8 @@ class LogoutController(BaseController):
         return data, 200
 
 class GetAllUsersController(TokenVerifiedEventListener, BaseController):
-    def __init__(self, request, config=None):
-        self.token = request.json['token']
+    def __init__(self, body, config=None):
+        self.token = body['token']
         super(GetAllUsersController, self).__init__()
 
     def run(self) -> tuple:
@@ -102,8 +102,8 @@ class GetAllUsersController(TokenVerifiedEventListener, BaseController):
         return data, 200
 
 class CreateUserController(BaseController):
-    def __init__(self, request, config=None):
-        self.user = request.json
+    def __init__(self, body, config=None):
+        self.user = body
 
     def run(self) -> tuple:
         user = User.new_user(**self.user)
@@ -112,8 +112,8 @@ class CreateUserController(BaseController):
         return data, 200
 
 class DeleteUserController(TokenVerifiedEventListener, BaseController):
-    def __init__(self, request, config=None):
-        self.request = request.json
+    def __init__(self, body, config=None):
+        self.body = body
         super(DeleteUserController, self).__init__()
 
 
@@ -123,7 +123,7 @@ class DeleteUserController(TokenVerifiedEventListener, BaseController):
         self.user = User.read(DeleteUserController._user_id)
         if not self.user.is_admin:
             raise UserNotAdminError()
-        user = User.read(self.request['user_id'])
+        user = User.read(self.body['user_id'])
         if user.delete():
             data = {'msg': 'Usuario borrado con éxito'}
             code = 200
@@ -133,8 +133,8 @@ class DeleteUserController(TokenVerifiedEventListener, BaseController):
         return data, code
     
 class UpdateUserController(TokenVerifiedEventListener, BaseController):
-    def __init__(self, request, config=None):
-        self.user_info = request.json.copy()
+    def __init__(self, body, config=None):
+        self.user_info = body.copy()
         self.user_info.pop('token')
         super(UpdateUserController, self).__init__()
 
