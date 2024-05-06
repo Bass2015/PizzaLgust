@@ -278,7 +278,174 @@ class Pizza(DBModel):
                                    Pizza._collection,
                                    _id=self._id)
     
+class Masa(DBModel):
+    _database = 'pizza'
+    _collection = 'masas'
 
+    def __init__(self,
+                 _id=None,
+                 name="",
+                 description="",) -> None:
+        self._id = _id
+        self.name = name
+        self.description = description
+
+    @classmethod
+    def new_masa(cls, name, description):
+        """
+        Método para crear una nueva masa.
+
+        Parámetros:
+        - name: Nombre de la masa.
+        - description: Descripción de la masa.
+
+        Retorna:
+        - masa: Objeto de masa creado.
+        """
+        
+        masa = cls(name = name,
+                   description = description
+                   )
+        masa.__dict__.pop('_id')
+        masa._id = db.insert_one(Masa._database, Masa._collection, **masa.__dict__)
+        return masa
+    
+    @classmethod
+    def read(cls, masa_id):
+        """
+        Método para leer una masa por su ID.
+
+        Parámetros:
+        - masa_id (str): ID de la masa.
+
+        Retorna:
+        - masa: Objeto de usuario leído.
+        """
+        retrieved_masa = db.get_document_from_database(Masa._database, 
+                                      Masa._collection, 
+                                      _id=masa_id)
+        fields = {k:v for k,v in retrieved_masa.items() 
+                      if k in getfullargspec(cls.__init__).args}
+        masa = cls(**fields)
+        return masa
+    
+    @classmethod
+    def read_from_name(cls, name):
+        """
+        Método para leer una masa por su nombre
+
+        Parámetros:
+        - name (str): Nombre de la masa.
+
+        Retorna:
+        - masa: Objeto de usuario leído.
+        """
+        retrieved_masa = db.get_document_from_database(Masa._database, 
+                                    Masa._collection, 
+                                      name=name)
+        fields = {k:v for k,v in retrieved_masa.items() 
+                      if k in getfullargspec(cls.__init__).args}
+        masa = cls(**fields)
+        return masa
+
+    def store(self):
+        raise NotImplementedError()
+
+    def update(self, **fields_to_udpate):
+        db.update_one(Masa._database,
+                      Masa._collection,
+                      self._id,
+                      **fields_to_udpate)
+    
+    def delete(self):
+        return db.delete_document_from_db(Masa._database,
+                                   Masa._collection,
+                                   _id=self._id)
+
+class Ingredient(DBModel):
+    _database = 'pizza'
+    _collection = 'ingredients'
+
+    def __init__(self,
+                 _id=None,
+                 name="",
+                 description="",) -> None:
+        self._id = _id
+        self.name = name
+        self.description = description
+
+    @classmethod
+    def new_ingredient(cls, name, description):
+        """
+        Método para crear una nueva ingredient.
+
+        Parámetros:
+        - name: Nombre de la ingredient.
+        - price: Precio de la ingredient.
+        - description: Descripción de la ingredient.
+
+        Retorna:
+        - ingredient: Objeto de ingredient creado.
+        """
+        
+        ingredient = cls(name = name,
+                   description = description
+                   )
+        ingredient.__dict__.pop('_id')
+        ingredient._id = db.insert_one(Ingredient._database, Ingredient._collection, **ingredient.__dict__)
+        return ingredient
+    
+    @classmethod
+    def read(cls, ingredient_id):
+        """
+        Método para leer una ingredient por su ID.
+
+        Parámetros:
+        - ingredient_id (str): ID de la ingredient.
+
+        Retorna:
+        - ingredient: Objeto de usuario leído.
+        """
+        retrieved_ingredient = db.get_document_from_database(Ingredient._database, 
+                                      Ingredient._collection, 
+                                      _id=ingredient_id)
+        fields = {k:v for k,v in retrieved_ingredient.items() 
+                      if k in getfullargspec(cls.__init__).args}
+        ingredient = cls(**fields)
+        return ingredient
+    
+    @classmethod
+    def read_from_name(cls, name):
+        """
+        Método para leer una ingredient por su nombre
+
+        Parámetros:
+        - name (str): Nombre de la ingredient.
+
+        Retorna:
+        - ingredient: Objeto de usuario leído.
+        """
+        retrieved_ingredient = db.get_document_from_database(Ingredient._database, 
+                                    Ingredient._collection, 
+                                      name=name)
+        fields = {k:v for k,v in retrieved_ingredient.items() 
+                      if k in getfullargspec(cls.__init__).args}
+        ingredient = cls(**fields)
+        return ingredient
+
+    def store(self):
+        raise NotImplementedError()
+
+    def update(self, **fields_to_udpate):
+        db.update_one(Ingredient._database,
+                      Ingredient._collection,
+                      self._id,
+                      **fields_to_udpate)
+    
+    def delete(self):
+        return db.delete_document_from_db(Ingredient._database,
+                                   Ingredient._collection,
+                                   _id=self._id)
 class InvalidUserTypeError(Exception):
     def __init__(self, message="User type is not valid. Must be one of ['admin', 'cliente', 'cocinero', 'repartidor']."):
         self.message = message

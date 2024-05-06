@@ -36,5 +36,5 @@ KEY_TYPES = {
     "pizza_id": str,
 }
 
-LIST_KEYS = ["users", "pizzas", "doughs", "ingredients"]
+LIST_KEYS = ["users", "pizzas", "masas", "ingredients"]
 

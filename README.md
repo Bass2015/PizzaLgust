@@ -216,10 +216,6 @@ Content-Type: application/json
 - Código 500: Se devuelve con cualquier otro error no contemplado en los ya mencionados.
 
 
-# NUEVO
-______________
-
-
 ####  POST `/get-all-pizzas`
 Devuelve una lista con todas las pizzas.
 
@@ -353,4 +349,74 @@ Content-Type: application/json
 - Código 400: Se devuelve si los datos de inicio de sesión son incorrectos o faltantes.
 - Código 410: Se devuelve si el usuario no está en la base de datos.
 - Código 401: Se devuelve si el usuario no ha hecho log in o si el usuario no es admin.
+- Código 500: Se devuelve con cualquier otro error no contemplado en los ya mencionados.
+
+
+# NUEVO
+______________
+
+####  POST `/get-all-masas`
+Devuelve una lista con todas las masas.
+
+**Parámetros de Entrada**
+token (cadena): token de autenticación enviado al `login`
+
+```POST /get-all-masas HTTP/1.1
+Content-Type: application/json
+
+{
+    "token": "token",
+}
+```
+**Respuestas**
+- Código 200: Se devuelve cuando el inicio de sesión es exitoso. Se proporciona un token de autenticación junto con los detalles del usuario.
+```
+{
+   'masas': [
+        {'_id': '662cc64aaaa4cf8c845499ac',
+         'description': 'Masa tradicional de harina blanca',
+         'name': 'Trigo'},
+        {'_id': '662cc65eaaa4cf8c845499b3',
+         'description': 'Masa de centeno, muy deliciosa',
+         'name': 'Centeno'},
+        {'_id': '662cc676aaa4cf8c845499cb',
+         'description': 'Masa con relleno de queso, genial para engordar',
+         'name': 'Con queso'},
+    ],
+}
+```
+
+- Código 400: Se devuelve si los datos de inicio de sesión son incorrectos o faltantes.
+- Código 410: Se devuelve si el usuario no está en la base de datos.
+- Código 401: Se devuelve si el usuario no ha hecho log in.
+- Código 500: Se devuelve con cualquier otro error no contemplado en los ya mencionados.
+
+####  POST `/create-masa`
+Crea un nueva usuario en la base de datos.
+
+**Parámetros de Entrada**
+token (cadena): El token de login del usuario.
+name (cadena): El nombre de la masa
+description (cadena): DEscripción básica de la masa.
+
+```POST /create-masa HTTP/1.1
+Content-Type: application/json
+
+{
+    'token':'token',
+    'name': 'Trigo',
+    'description': 'Masa tradicional de harina blanca'
+}
+```
+**Respuestas**
+- Código 200: Se devuelve cuando la masa se crea con éxito.
+```
+{
+    'msg': 'Pizza creada con éxito', 
+    'masa_id': '662fc94943bf55d878cb248e'
+}
+```
+
+- Código 400: Se devuelve si los datos de inicio de sesión son incorrectos o faltantes.
+- Código 410: Se devuelve si el usuario no está en la base de datos.
 - Código 500: Se devuelve con cualquier otro error no contemplado en los ya mencionados.

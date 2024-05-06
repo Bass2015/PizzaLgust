@@ -119,3 +119,24 @@ def delete_pizza():
 def update_pizza():
     return __make_response(UpdatePizzaController)
 
+# ##############################################################
+# #                                                            #
+# #                 MASA ENDPOINTS                             #
+# #                 ``````````````                             #
+# ##############################################################
+def get_all_masas():
+    return __make_response(GetAllMasasController)
+
+def create_masa():
+    return __make_response(CreateMasaController)
+
+# ##############################################################
+# #                                                            #
+# #              INGREDIENT ENDPOINTS                          #
+# #                 ``````````````                             #
+# ##############################################################
+def get_all_ingredients():
+    return __make_response(GetAllIngredientsController)
+
+def create_ingredient():
+    return __make_response(CreateIngredientController)
