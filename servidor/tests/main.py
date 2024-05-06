@@ -1,6 +1,7 @@
 import unittest
 import requests
 from unittest import TestCase
+from tests_encrypt_utils import encrypt_body, decrypt_body
 
 URL = 'http://localhost:5002/pizzalgust/'
 HEADERS = {'Content-Type': 'application/json'}
@@ -15,17 +16,19 @@ class PizzalgustTests(TestCase):
         """
         body = {'email': 'bwayne@gotham.com',
                 'password': 'batman'}
+        body = encrypt_body(body)
         response = requests.post(url=URL + '/login',
                                  json=body,
                                  headers=HEADERS)
+        response_body = decrypt_body(response.json())
         assert response.status_code == 200
-        assert 'msg' in response.json().keys()
-        assert 'user_name' in response.json().keys()
-        assert 'first_name' in response.json().keys()
-        assert 'last_name' in response.json().keys()
-        assert 'is_admin' in response.json().keys()
-        assert 'token' in response.json().keys()
-        assert 'user_type' in response.json().keys()
+        assert 'msg' in response_body.keys()
+        assert 'user_name' in response_body.keys()
+        assert 'first_name' in response_body.keys()
+        assert 'last_name' in response_body.keys()
+        assert 'is_admin' in response_body.keys()
+        assert 'token' in response_body.keys()
+        assert 'user_type' in response_body.keys()
 
     def test_bad_password(self):
         """
@@ -33,6 +36,7 @@ class PizzalgustTests(TestCase):
         """
         body = {'email': 'bwayne@gotham.com',
                 'password': 'fake_password'}
+        body = encrypt_body(body)
         response = requests.post(url=URL + '/login',
                                  json=body,
                                  headers=HEADERS)
@@ -44,15 +48,19 @@ class PizzalgustTests(TestCase):
         """
         body = {'email': 'bwayne@gotham.com',
                 'password': 'batman'}
+        body = encrypt_body(body)
         response = requests.post(url=URL + '/login',
                                  json=body,
                                  headers=HEADERS)
-        token = response.json()['token']
+        response_body = decrypt_body(response.json())
+        token = response_body['token']
 
         body = {'token': token}
+        body = encrypt_body(body)
         response = requests.post(url=URL + '/logout',
                                  json=body,
                                  headers=HEADERS)
+        response_body = decrypt_body(response.json())
         assert response.status_code == 200
 
     def test_bad_token(self):
@@ -61,6 +69,7 @@ class PizzalgustTests(TestCase):
         """
         token = 'Not a token'
         body = {'token': token}
+        body = encrypt_body(body)
         response = requests.post(url=URL + '/logout',
                                  json=body,
                                  headers=HEADERS)
@@ -72,18 +81,22 @@ class PizzalgustTests(TestCase):
         """
         body = {'email': 'bwayne@gotham.com',
                 'password': 'batman'}
+        body = encrypt_body(body)
         response = requests.post(url=URL + '/login',
                                  json=body,
                                  headers=HEADERS)
-        token = response.json()['token']
+        response_body = decrypt_body(response.json())
+        token = response_body['token']
 
         body = {'token': token}
+        body = encrypt_body(body)
         response = requests.post(url=URL + '/get-all-users',
                                  json=body,
                                  headers=HEADERS)
+        response_body = decrypt_body(response.json())
         assert response.status_code == 200
-        assert 'users' in response.json().keys()
-        assert isinstance(response.json()['users'], list)
+        assert 'users' in response_body.keys()
+        assert isinstance(response_body['users'], list)
     
     def test_get_all_users_no_admin(self):  
         """
@@ -91,15 +104,19 @@ class PizzalgustTests(TestCase):
         """
         body = {"email": "pparker@newyork.com",
                 "password": "spiderman",}
+        body = encrypt_body(body)
         response = requests.post(url=URL + '/login',
                                  json=body,
                                  headers=HEADERS)
-        token = response.json()['token']
+        response_body = decrypt_body(response.json())
+        token = response_body['token']
 
         body = {'token': token}
+        body = encrypt_body(body)
         response = requests.post(url=URL + '/get-all-users',
                                  json=body,
                                  headers=HEADERS)
+        response_body = decrypt_body(response.json())
         assert response.status_code == 401
     
     def test_create_user(self):
@@ -111,11 +128,13 @@ class PizzalgustTests(TestCase):
             first_name="Homer",
             last_name="Simpson",
             password="stupidflanders",)
+        body = encrypt_body(body)
         response = requests.post(url=URL + '/create-user',
                                  json=body,
                                  headers=HEADERS)
+        response_body = decrypt_body(response.json())
         assert response.status_code == 200
-        assert response.json()['msg'] == 'Usuario creado con éxito'
+        assert response_body['msg'] == 'Usuario creado con éxito'
 
     def test_delete_user(self):
         """
@@ -123,25 +142,31 @@ class PizzalgustTests(TestCase):
         """
         body = {'email': 'bwayne@gotham.com',
                 'password': 'batman'}
+        body = encrypt_body(body)
         response = requests.post(url=URL + '/login',
                                  json=body,
                                  headers=HEADERS)
-        token = response.json()['token']
+        response_body = decrypt_body(response.json())
+        token = response_body['token']
         body = dict(user_name="homer",
             email="hsimpson@springfield.com",
             first_name="Homer",
             last_name="Simpson",
             password="stupidflanders",)
+        body = encrypt_body(body)
         response = requests.post(url=URL + '/create-user',
                                  json=body,
                                  headers=HEADERS)
+        response_body = decrypt_body(response.json())
         body = {'token': token,
-                'user_id': response.json()['user_id']}
+                'user_id': response_body['user_id']}
+        body = encrypt_body(body)
         response = requests.delete(url=URL + '/delete-user',
                                  json=body,
                                  headers=HEADERS)
+        response_body = decrypt_body(response.json())
         assert response.status_code == 200
-        assert response.json()['msg'] == 'Usuario borrado con éxito'
+        assert response_body['msg'] == 'Usuario borrado con éxito'
     
     def test_update_user(self):
         """
@@ -152,27 +177,33 @@ class PizzalgustTests(TestCase):
             first_name="Homer",
             last_name="Simpson",
             password="stupidflanders",)
+        body = encrypt_body(body)
         response = requests.post(url=URL + '/create-user',
                                  json=body,
                                  headers=HEADERS)
+        response_body = decrypt_body(response.json())
         
         body = {'email': 'hsimpson@springfield.com',
                 'password': 'stupidflanders'}
+        body = encrypt_body(body)
         response = requests.post(url=URL + '/login',
                                  json=body,
                                  headers=HEADERS)
-        token = response.json()['token']
+        response_body = decrypt_body(response.json())
+        token = response_body['token']
 
         body = {'token': token,
                 'user_name': "max_power",
                 'first_name': "Max",
                 'last_name': "Power"}
         
+        body = encrypt_body(body)
         response = requests.put(url=URL + '/update-user',
                                  json=body,
                                  headers=HEADERS)
+        response_body = decrypt_body(response.json())
         assert response.status_code == 200
-        assert response.json()['msg'] == 'Usuario actualizado con éxito'
+        assert response_body['msg'] == 'Usuario actualizado con éxito'
 
     def test_create_pizza(self):
         """
@@ -180,21 +211,25 @@ class PizzalgustTests(TestCase):
         """
         body = {'email': 'bwayne@gotham.com',
                 'password': 'batman'}
+        body = encrypt_body(body)
         response = requests.post(url=URL + '/login',
                                  json=body,
                                  headers=HEADERS)
-        token = response.json()['token']
+        response_body = decrypt_body(response.json())
+        token = response_body['token']
         body = dict(
             token=token,
             name="Margarita",
             price=10.5,
             description="Pizza con tomate, queso mozzarela y albahaca"
             )
+        body = encrypt_body(body)
         response = requests.post(url=URL + '/create-pizza',
                                  json=body,
                                  headers=HEADERS)
+        response_body = decrypt_body(response.json())
         assert response.status_code == 200
-        assert response.json()['msg'] == 'Pizza creada con éxito'
+        assert response_body['msg'] == 'Pizza creada con éxito'
 
     def test_get_all_pizzas(self):  
         """
@@ -202,18 +237,22 @@ class PizzalgustTests(TestCase):
         """
         body = {'email': 'bwayne@gotham.com',
                 'password': 'batman'}
+        body = encrypt_body(body)
         response = requests.post(url=URL + '/login',
                                  json=body,
                                  headers=HEADERS)
-        token = response.json()['token']
+        response_body = decrypt_body(response.json())
+        token = response_body['token']
 
         body = {'token': token}
+        body = encrypt_body(body)
         response = requests.post(url=URL + '/get-all-pizzas',
                                  json=body,
                                  headers=HEADERS)
+        response_body = decrypt_body(response.json())
         assert response.status_code == 200
-        assert 'pizzas' in response.json().keys()
-        assert isinstance(response.json()['pizzas'], list)
+        assert 'pizzas' in response_body.keys()
+        assert isinstance(response_body['pizzas'], list)
 
     def test_delete_pizza(self):
         """
@@ -221,26 +260,32 @@ class PizzalgustTests(TestCase):
         """
         body = {'email': 'bwayne@gotham.com',
                 'password': 'batman'}
+        body = encrypt_body(body)
         response = requests.post(url=URL + '/login',
                                  json=body,
                                  headers=HEADERS)
-        token = response.json()['token']
+        response_body = decrypt_body(response.json())
+        token = response_body['token']
         body = dict(
             token=token,
             name="Carbonara",
             price=12.5,
             description="Pizza con huevo, bacon y parmesano"
             )
+        body = encrypt_body(body)
         response = requests.post(url=URL + '/create-pizza',
                                  json=body,
                                  headers=HEADERS)
+        response_body = decrypt_body(response.json())
         body = {'token': token,
-                'pizza_id': response.json()['pizza_id']}
+                'pizza_id': response_body['pizza_id']}
+        body = encrypt_body(body)
         response = requests.delete(url=URL + '/delete-pizza',
                                  json=body,
                                  headers=HEADERS)
+        response_body = decrypt_body(response.json())
         assert response.status_code == 200
-        assert response.json()['msg'] == 'Pizza borrada con éxito'
+        assert response_body['msg'] == 'Pizza borrada con éxito'
     
     def test_update_pizza(self):
         """
@@ -248,29 +293,35 @@ class PizzalgustTests(TestCase):
         """
         body = {'email': 'bwayne@gotham.com',
                 'password': 'batman'}
+        body = encrypt_body(body)
         response = requests.post(url=URL + '/login',
                                  json=body,
                                  headers=HEADERS)
-        token = response.json()['token']
+        response_body = decrypt_body(response.json())
+        token = response_body['token']
         body = dict(
             token=token,
             name="Hawaianna",
             price=14.5,
             description="Pizza con pollo, bacon y piña"
             )
+        body = encrypt_body(body)
         response = requests.post(url=URL + '/create-pizza',
                                  json=body,
                                  headers=HEADERS)
+        response_body = decrypt_body(response.json())
         body = {'token': token,
                 'name': 'Hawai',
-                'pizza_id': response.json()['pizza_id'],
+                'pizza_id': response_body['pizza_id'],
                 'description': "Pizza con piña, pollo y queso"}
         
+        body = encrypt_body(body)
         response = requests.put(url=URL + '/update-pizza',
                                  json=body,
                                  headers=HEADERS)
+        response_body = decrypt_body(response.json())
         assert response.status_code == 200
-        assert response.json()['msg'] == 'Pizza actualizada con éxito'
+        assert response_body['msg'] == 'Pizza actualizada con éxito'
 
 if __name__ == '__main__':
     unittest.main()
