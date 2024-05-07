@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/findLayout"
+    android:background="@drawable/bg_login_user">
+
+    <TextView
+        android:id="@+id/tv_buscarGeneral"
+        android:layout_width="402dp"
+        android:layout_height="114dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/tv_Find"
+        android:textSize="45sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Tv_mensajeBuscarGeneral"
+        android:layout_width="400dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/tv_MensajeGeneral"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_buscarGeneral" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/findPizza4"
+        android:layout_width="60dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="252dp"
+        android:backgroundTint="@android:color/background_light"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/pizza2"
+        android:contentDescription="Buscar pizzas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:maxImageSize="35sp" />
+
+    <TextView
+        android:layout_width="167dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="268dp"
+        android:gravity="left"
+        android:text="@string/tv_Pizzas"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/findPizza4"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/massas4"
+        android:layout_width="60dp"
+        android:layout_height="59dp"
+        android:backgroundTint="@android:color/background_light"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/massa_pizza"
+        android:contentDescription="Buscar masas"
+        app:layout_constraintBottom_toTopOf="@+id/ingredientes4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/findPizza4"
+        app:maxImageSize="35sp" />
+
+    <TextView
+        android:layout_width="167dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="400dp"
+        android:gravity="left"
+        android:text="@string/tv_Massa"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.078"
+        app:layout_constraintStart_toEndOf="@+id/findPizza4"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/ingredientes4"
+        android:layout_width="60dp"
+        android:layout_height="59dp"
+        android:backgroundTint="@android:color/background_light"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/ingredientes_pizza"
+        android:contentDescription="Buscar ingredientes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.741"
+        app:maxImageSize="35sp" />
+
+    <TextView
+        android:layout_width="167dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="1dp"
+        android:gravity="left"
+        android:text="@string/tv_Ingredientes"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/findPizza4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.732" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

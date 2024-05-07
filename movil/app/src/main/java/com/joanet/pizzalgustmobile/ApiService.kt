@@ -68,6 +68,7 @@ interface ApiService {
     @Headers("Content-Type: application/json")
     @PUT("pizzalgust/update-user")
     fun updateUser(@Body requestBody: UpdateUser): Call<UpdateResponse>
+
     /* =========================================↓ UPDATE DESDE ADMIN ↓============================ */
     @Headers("Content-Type: application/json")
     @PUT("pizzalgust/update-user")
@@ -85,7 +86,6 @@ interface ApiService {
     @Headers("Content-Type: application/json")
     @HTTP(method = "DELETE", path = "pizzalgust/delete-user", hasBody = true)
     fun deleteUser(@Body requestBody: DeleteUser): Call<DeleteUserResponse>
-
 
 
     /* =========================================↓ LOGOOUT ↓============================ */
@@ -138,4 +138,47 @@ interface ApiService {
     @Headers("Content-Type: application/json")
     @PUT("pizzalgust/update-pizza")
     fun updatePizza(@Body requestBody: UpdatePizza): Call<UpdatePizzaResponse>
+
+    /**
+     * Este método realiza una solicitud POST para crear una nueva masa en el sistema.
+     *
+     * @param requestBody Cuerpo de la solicitud que contiene los datos de la nueva masa.
+     * @return Objeto Call que representa la llamada asíncrona y su respuesta.
+     */
+    @Headers("Content-type: application/json")
+    @POST("pizzalgust/create-masa")
+    fun createMasa(@Body requestBody: CreateMasa): Call<ResponseCreateMasa>
+
+    /**
+     * Este método realiza una solicitud POST para crear un nuevo ingrediente en el sistema.
+     *
+     * @param requestBody Cuerpo de la solicitud que contiene los datos del nuev ingrediente.
+     * @return Objeto Call que representa la llamada asíncrona y su respuesta.
+     */
+    @Headers("Content-type: application/json")
+    @POST("pizzalgust/create-ingredient")
+    fun createIngredient(@Body requestBody: CreateIngredient): Call<ResponseCreateIngredient>
+
+    /**
+     * Este método realiza una solicitud POST para obtener todos los ingredientes del sistema.
+     *
+     * @param getAllIngredientsRequest Cuerpo de la solicitud que contiene los criterios de búsqueda.
+     * @return Objeto Call que representa la llamada asíncrona y su respuesta.
+     */
+    @Headers("Content-type: application/json")
+    @POST("pizzalgust/get-all-ingredients")
+    fun getAllIngredients(@Body getAllIngredientsRequest: GetAllIngredientsRequest): Call<GetAllIngredients>
+
+
+    /**
+     * Este método realiza una solicitud POST para obtener todos las masas del sistema.
+     *
+     * @param getAllMassesRequest Cuerpo de la solicitud que contiene los criterios de búsqueda.
+     * @return Objeto Call que representa la llamada asíncrona y su respuesta.
+     */
+    @Headers("Content-type: application/json")
+    @POST("pizzalgust/get-all-masas")
+    fun getAllMasses(@Body getAllMassesRequest: GetAllMassesRequest): Call<GetAllMasses>
 }
+
+

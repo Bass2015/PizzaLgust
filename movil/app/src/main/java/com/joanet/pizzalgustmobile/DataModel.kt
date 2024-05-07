@@ -51,7 +51,7 @@ data class CreateUser(
     val email: String,
     val first_name: String,
     val last_name: String,
-    val password: String,
+    val password: String
 
     ) : java.io.Serializable
 
@@ -280,4 +280,127 @@ data class UpdatePizza(
  */
 data class UpdatePizzaResponse(
     val msg: String
+) : java.io.Serializable
+
+/**
+ * Clase de datos que representa la creación de una masa.
+ *
+ * @property token El token de autenticación del usuario que crea la pizza.
+ * @property name El nombre de la masa.
+ * @property description La descripción de la masa.
+ */
+
+data class CreateMasa(
+    val token: String,
+    val name: String,
+    val description: String,
+
+
+    ) : java.io.Serializable
+
+/**
+ * Clase de datos que representa la respuesta del servidor después de crear una masa.
+ *
+ * @property msg Un mensaje relacionado con la creación de la masa.
+ * @property masa_id El identificador único de la masa creada.
+ */
+data class ResponseCreateMasa(
+    val msg: String,
+    val masa_id: String
+) : java.io.Serializable
+
+/**
+ * Clase de datos que representa la creación de una masa.
+ *
+ * @property token El token de autenticación del usuario que crea el ingrediente.
+ * @property name El nombre del ingrediente.
+ * @property description La descripción del ingrediente.
+ */
+
+data class CreateIngredient(
+    val token: String,
+    val name: String,
+    val description: String,
+
+
+    ) : java.io.Serializable
+
+/**
+ * Clase de datos que representa la respuesta del servidor después de crear un ingrediente.
+ *
+ * @property msg Un mensaje relacionado con la creación del ingrediente.
+ * @property msg Un mensaje relacionado con la creación del ingrediente.
+ * @property masa_id El identificador único del ingrediente.
+ */
+data class ResponseCreateIngredient(
+    val msg: String,
+    val ingredient_id: String
+) : java.io.Serializable
+
+/**
+ * Clase de datos que representa un ingrediente.
+ *
+ * @property _id El identificador único del ingrediente.
+ * @property name El nombre del ingrediente.
+ * @property description La descripción del ingrediente.
+ */
+
+data class Ingredient(
+    val _id: String,
+    val name: String,
+    val description: String
+
+) : java.io.Serializable
+
+
+/**
+ * Clase de datos que representa la respuesta que contiene una lista de Ingredientes.
+ *
+ * @property ingredients La lista de ingredientes obtenidas del servidor.
+ */
+data class GetAllIngredients(
+    val ingredients: List<Ingredient>
+) : java.io.Serializable
+
+
+/**
+ * Clase de datos que representa la solicitud para obtener todos los ingredientes.
+ *
+ * @property token El token de autenticación del usuario que realiza la solicitud.
+ */
+data class GetAllIngredientsRequest(
+    val token: String
+) : java.io.Serializable
+
+/**
+ * Clase de datos que representa una masa.
+ *
+ * @property _id El identificador único de la masa.
+ * @property name El nombre de la masa.
+ * @property description La descripción de la masa.
+ */
+
+data class Masa(
+    val _id: String,
+    val name: String,
+    val description: String
+
+    ) : java.io.Serializable
+
+/**
+ * Clase de datos que representa la respuesta que contiene una lista de masas.
+ *
+ * @property ingredients La lista de ingredientes obtenidas de masas.
+ */
+data class GetAllMasses(
+    val masas: List<Masa>
+) : java.io.Serializable
+
+/**
+ * Clase de datos que representa la solicitud para obtener todas las masas.
+ *
+ * @property token El token de autenticación del usuario que realiza la solicitud.
+ */
+data class GetAllMassesRequest(
+    val token: String
 ) : java.io.Serializable

@@ -7,35 +7,37 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_login_user">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp"
-        tools:context=".CreatePizzaActivity">>
-        <TextView
-            android:id="@+id/Tv_Massa"
-            android:layout_width="120dp"
-            android:layout_height="28dp"
-            android:layout_above="@+id/textView"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:text="@string/tv_Massa"
-            android:textSize="16sp"
-            android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="383dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="242dp"
-            android:background="@drawable/edittext_rounded_corner"
-            android:drawableRight="@android:drawable/arrow_down_float"
-            android:drawablePadding="16dp"
-            android:hint="@string/btn_SelectMassa"
-            android:padding="12dp" />
-    </RelativeLayout>
+    <TextView
+        android:id="@+id/Tv_Massa"
+        android:layout_width="120dp"
+        android:layout_height="28dp"
+        android:layout_above="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="12dp"
+        android:text="@string/tv_Massa"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etDescription" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="383dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edittext_rounded_corner"
+        android:drawableRight="@android:drawable/arrow_down_float"
+        android:drawablePadding="16dp"
+        android:hint="@string/btn_SelectMassa"
+        android:padding="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Tv_Massa" />
 
     <TextView
         android:id="@+id/tv_creacionpizza"
@@ -144,7 +146,8 @@
         android:id="@+id/addPizza1"
         android:layout_width="56dp"
         android:layout_height="62dp"
-        android:layout_marginBottom="76dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="144dp"
         android:backgroundTint="@android:color/background_light"
         android:clickable="true"
         android:focusable="true"

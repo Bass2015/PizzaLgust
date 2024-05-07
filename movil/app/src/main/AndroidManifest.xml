@@ -40,9 +40,21 @@
             android:exported="true" />
         <activity android:name=".GetAllPizzasActivity"
             android:exported="true" />
+        <activity android:name=".GetAllIngredientsActivity"
+            android:exported="true" />
+        <activity android:name=".GetAllMassesActivity"
+            android:exported="true" />
         <activity android:name=".DeletePizzasActivity"
             android:exported="true" />
         <activity android:name=".UpdatePizzasActivity"
+            android:exported="true" />
+        <activity android:name=".AllCreateActivity"
+            android:exported="true" />
+        <activity android:name="CreateMassesActivity"
+            android:exported="true" />
+        <activity android:name=".CreateIngredientsActivity"
+            android:exported="true" />
+        <activity android:name=".AllFIndActivity"
             android:exported="true" />
     </application>
 

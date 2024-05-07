@@ -61,7 +61,7 @@
     <string name="tv_User_CreatePizzas">Menú\n pizzas</string>
     <string name="tv_User_pizzaText">PIZZAS</string>
     <string name="tv_User_creacionpizza">CREAR\nPIZZAS</string>
-    <string name="tv_User_mensajeCreacion">Rellena los campos para crear una pizza nuevo.</string>
+    <string name="tv_User_mensajeCreacion">Rellena los campos para crear una pizza nueva.</string>
     <string name="tv_PizzaName">Pizza Name</string>
     <string name="et_PizzaName">Nombre Pizza</string>
     <string name="tv_Token">Token</string>
@@ -76,6 +76,18 @@
     <string name="PIZZA_ID">PIZZA ID</string>
     <string name="btn_actuPizza">Boton actualizar</string>
     <string name="btn_SelectMassa">Seleccionar Massa</string>
-    <string name="tv_Massa">Massa</string>
+    <string name="tv_NombreMasa">Nombre de la Massa</string>
+    <string name="tv_Massa">Masa</string>
+    <string name="tv_Pizzas">Pizzas</string>
+    <string name="tv_Ingredientes">Ingredientes</string>
+    <string name="tv_Description">Descripción</string>
+    <string name="tv_CreateMasses">Crear masa\nnueva.</string>
+    <string name="tv_Create">Menú crear.</string>
+    <string name="tv_Find">Menú buscar.</string>
+    <string name="tv_MensajeMasa">Rellena los campos para crear una masa nueva.</string>
+    <string name="tv_CreateIngredients">Crear\ningrediente\nnuevo.</string>
+    <string name="tv_MensajeIngrediente">Rellena los campos para crear un ingrediente nuevo.</string>
+    <string name="tv_MensajeGeneral">Haz clic en el botón que quieras para generar pizzas, masas o ingredientes.</string>
+    <string name="tv_MensajeBuscarGeneral">Haz clic en el botón que quieras para listar pizzas, masas o ingredientes.</string>
 
 </resources>

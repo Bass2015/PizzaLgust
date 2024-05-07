@@ -10,7 +10,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
  */
 class PizzasActivity : AppCompatActivity() {
 
-    private lateinit var btnAddPizza: FloatingActionButton
+    private lateinit var btnCreate: FloatingActionButton
     private lateinit var btnListPizza: FloatingActionButton
     private lateinit var btnDeletePizza: FloatingActionButton
     private lateinit var btnUpdatePizza: FloatingActionButton
@@ -18,17 +18,17 @@ class PizzasActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pizzas)
 
-        btnAddPizza = findViewById(R.id.addPizza)
-        btnListPizza = findViewById(R.id.findPizzas)
+        btnCreate = findViewById(R.id.create)
+        btnListPizza = findViewById(R.id.find)
         btnDeletePizza = findViewById(R.id.delete_Pizzas)
         btnUpdatePizza = findViewById(R.id.ModifyPizzas)
 
-        btnAddPizza.setOnClickListener {
-            val intent = Intent(this@PizzasActivity, CreatePizzaActivity::class.java)
+        btnCreate.setOnClickListener {
+            val intent = Intent(this@PizzasActivity, AllCreateActivity::class.java)
             startActivity(intent)
         }
         btnListPizza.setOnClickListener{
-            val intent = Intent(this@PizzasActivity,GetAllPizzasActivity::class.java)
+            val intent = Intent(this@PizzasActivity,AllFIndActivity::class.java)
             startActivity(intent)
         }
         btnDeletePizza.setOnClickListener{
