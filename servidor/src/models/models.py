@@ -198,18 +198,21 @@ class Pizza(DBModel):
                  _id=None,
                  name="",
                  masa_id="",
+                 ingredient_ids=[],
                  price=0.,
                  description="",) -> None:
         self._id = _id
         self.name = name
         self.price = price
         self.masa_id = masa_id
+        self.ingredient_ids = ingredient_ids
+        self.ingredients = [Ingredient.read(ing_id) for ing_id in ingredient_ids]
         if not masa_id == "":
             self.masa = Masa.read(masa_id)
         self.description = description
 
     @classmethod
-    def new_pizza(cls, name, price, description, masa_id):
+    def new_pizza(cls, name, price, description, masa_id, ingredient_ids):
         """
         Método para crear una nueva pizza.
 
@@ -222,14 +225,19 @@ class Pizza(DBModel):
         - pizza: Objeto de pizza creado.
         """
         
-        pizza = cls(name = name,
-                    price = price,
-                    description = description,
-                    masa_id=masa_id
+        pizza = cls(name=name,
+                    price=price,
+                    description=description,
+                    masa_id=masa_id, 
+                    ingredient_ids=ingredient_ids
                    )
         pizza.__dict__.pop('_id')
         try:
             pizza.__dict__.pop('masa')
+        except KeyError:
+            pass
+        try:
+            pizza.__dict__.pop('ingredients')
         except KeyError:
             pass
         pizza._id = db.insert_one(Pizza._database, Pizza._collection, **pizza.__dict__)
