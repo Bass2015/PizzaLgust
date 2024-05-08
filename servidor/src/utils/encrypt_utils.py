@@ -49,6 +49,13 @@ def decrypt(message):
     decrypted = __unpad(decrypted_padded)
     return decrypted.decode("UTF-8")
 
+def string_to_dict(string):
+    d = {}
+    for kv in string[1:-1].split(','):
+        splited = kv.split(':')
+        k = splited[0].strip()[1:-1]
+        v = splited[1][2:-1]
+        d[k] = v
 
 def decrypt_body(body:dict):
     decrypted = {}
@@ -62,7 +69,11 @@ def decrypt_body(body:dict):
 def encrypt_body(body:dict):
     encrypted = {}
     for k,v in body.items():
-        if k in LIST_KEYS:
+        if isinstance(v, dict):
+            encrypted[k] = encrypt_body(v)
+        elif k == 'ingredient_ids':
+            encrypted[k] = [encrypt(item) for item in body[k]]
+        elif k in LIST_KEYS:
             encrypted[k] = [encrypt_body(sub_body) for sub_body in body[k]]
         else:
             encrypted[k] = v if k == 'token' else encrypt(v)
