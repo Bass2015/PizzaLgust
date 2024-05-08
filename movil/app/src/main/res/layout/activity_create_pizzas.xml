@@ -9,14 +9,14 @@
 
 
     <TextView
-        android:id="@+id/Tv_Massa"
+        android:id="@+id/SP_Massa"
         android:layout_width="120dp"
         android:layout_height="28dp"
-        android:layout_above="@+id/textView"
+        android:layout_above="@+id/spinnerMasas"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="12dp"
-        android:text="@string/tv_Massa"
+        android:text="@string/tv_Ingredientes"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,19 +25,33 @@
         app:layout_constraintTop_toBottomOf="@+id/etDescription" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="383dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/edittext_rounded_corner"
-        android:drawableRight="@android:drawable/arrow_down_float"
-        android:drawablePadding="16dp"
-        android:hint="@string/btn_SelectMassa"
-        android:padding="12dp"
+        android:id="@+id/tv_massa"
+        android:layout_width="120dp"
+        android:layout_height="28dp"
+        android:layout_above="@+id/spinnerMasas"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:text="@string/tv_Massa"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerMasas"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.058"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Tv_Massa" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollViewIngredients" />
+
+    <Spinner
+        android:id="@+id/spinnerMasas"
+        android:layout_width="384dp"
+        android:layout_height="34dp"
+        android:layout_below="@id/etDescription"
+        android:layout_marginBottom="16dp"
+        android:prompt="@string/tv_Massa"
+        app:layout_constraintBottom_toTopOf="@+id/addPizza1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
     <TextView
         android:id="@+id/tv_creacionpizza"
@@ -147,12 +161,38 @@
         android:layout_width="56dp"
         android:layout_height="62dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="144dp"
+        android:layout_marginBottom="24dp"
         android:backgroundTint="@android:color/background_light"
         android:clickable="true"
         android:focusable="true"
         android:src="@drawable/add_pizza"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollViewIngredients"
+        android:layout_width="410dp"
+        android:layout_height="132dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SP_Massa"> <!-- Ajusta la altura según sea necesario -->
+
+        <LinearLayout
+            android:id="@+id/ingredientLayout"
+            android:layout_width="372dp"
+            android:layout_height="126dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/tv_massa"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.41"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/SP_Massa"
+            app:layout_constraintVertical_bias="0.0">
+
+            <!-- Aquí van tus elementos dentro del LinearLayout -->
+            <!-- Por ejemplo, tus TextView, EditText, etc. -->
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

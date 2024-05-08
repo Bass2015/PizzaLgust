@@ -198,7 +198,6 @@ data class CreatePizza(
     val price: Float,
     val description: String,
 
-
     ) : java.io.Serializable
 
 /**
@@ -225,6 +224,7 @@ data class Pizza(
     val name: String,
     val description: String,
     val price: Float
+
 ) : java.io.Serializable
 
 /**
