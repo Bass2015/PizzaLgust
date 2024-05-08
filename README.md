@@ -246,6 +246,26 @@ Content-Type: application/json
          'description': 'Pizza con pollo, bacon y piña',
          'name': 'Hawaianna',
          'price': 14.5},
+        {'_id': '663b5db2359eeffe93708bbb',
+         'description': 'Pizza con masa de queso de cabra, anchoas y gambas',
+         'ingredient_ids': ['663a721258b1ab5149370490',
+                            '6638bef81a1e99075284912d',
+                            '6638bf791a1e990752849138'],
+         'ingredients': [{'_id': '663a721258b1ab5149370490',
+                          'description': 'el mejor queso para una pizza.',
+                          'name': 'Queso de cabra'},
+                         {'_id': '6638bef81a1e99075284912d',
+                          'description': 'Gambas de palamós de las más ricas',
+                          'name': 'Gambas'},
+                        {'_id': '6638bf791a1e990752849138',
+                         'description': 'Anchoas de loas mares del Norte',
+                         'name': 'Anchoas'}],
+         'masa': {'_id': '6638bb6e778b2abe345c88e5',
+                  'description': 'Masa tradicional de harina blanca',
+                  'name': 'Trigo'},
+         'masa_id': '6638bb6e778b2abe345c88e5',
+         'name': 'Pescadora',
+         'price': 18.5}
     ],
 }
 ```
@@ -262,7 +282,9 @@ Crea un nueva usuario en la base de datos.
 token (cadena): El token de login del usuario.
 name (cadena): El nombre de la pizza
 price (número decimal): El precio de la pizza.
-descr (cadena): DEscripción básica de la pizza.
+masa_id (cadena): La masa id de la pizza.
+ingredient_ids (lista): Una lista con los ids de los ingredientes de las pizzas.
+description (cadena): DEscripción básica de la pizza.
 
 ```POST /create-pizza HTTP/1.1
 Content-Type: application/json
@@ -271,7 +293,11 @@ Content-Type: application/json
     'token':'token',
     'name':"Marina",
     'price':10.5,
-    'descr': "Pizza con marisco, pescado y queso"
+    'masa_id': '6638bb6e778b2abe345c88e5',
+    'ingredient_ids': ['663a721258b1ab5149370490',
+                       '84512234bb5149370490'
+                       '63245a1258b1cfn34149634']
+    'description': "Pizza con marisco, pescado y queso"
 }
 ```
 **Respuestas**
