@@ -20,7 +20,22 @@ from .user_controllers import (BaseController,
                               UserNotLoggedInError,
                               UserNotAdminError)
 
+def class_to_dict(clase):
+    new_dict = {}
+    for key, value in clase.__dict__.items():
+        if not key.startswith('__') and not callable(key):
+            if key == 'ingredients':
+                value = [class_to_dict(val) for val in value]
+            if isinstance(value, Masa) or isinstance(value, Ingredient):
+                value = class_to_dict(value)
+            new_dict[key] = value
+    return new_dict
         
+def is_ingredient_list(possible_list):
+    return isinstance(possible_list, list) and \
+           len(possible_list) > 0 and \
+           isinstance(possible_list[0], list) 
+          
 class GetAllPizzasController(TokenVerifiedEventListener, BaseController):
     def __init__(self, body, config=None):
         self.token = body['token']
@@ -30,7 +45,9 @@ class GetAllPizzasController(TokenVerifiedEventListener, BaseController):
         if not self.token in LoginController.logged_in_user_tokens:
             raise UserNotLoggedInError()
         results =  db.get_all_documents_from_database('pizza','pizzas')
-        data = {'pizzas': results}
+        # pizzas = [class_to_dict(Pizza(**result)) for result in results]
+        pizzas = [class_to_dict(Pizza(**result)) for result in results[-2:]]
+        data = {'pizzas': pizzas}
         return data, 200
 
 class CreatePizzaController(TokenVerifiedEventListener, BaseController):
