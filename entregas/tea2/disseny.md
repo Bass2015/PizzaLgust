@@ -356,36 +356,140 @@ Content-Type: application/json
 - Código 401: Se devuelve si el usuario no ha hecho log in o si el usuario no es admin.
 - Código 500: Se devuelve con cualquier otro error no contemplado en los ya mencionados.
 
+####  POST `/get-all-masas`
+Devuelve una lista con todas las masas.
+
+**Parámetros de Entrada**
+token (cadena): token de autenticación enviado al `login`
+
+```POST /get-all-masas HTTP/1.1
+Content-Type: application/json
+
+{
+    "token": "token",
+}
+```
+**Respuestas**
+- Código 200: Se devuelve cuando el inicio de sesión es exitoso. Se proporciona un token de autenticación junto con los detalles del usuario.
+```
+{
+   'masas': [
+        {'_id': '662cc64aaaa4cf8c845499ac',
+         'description': 'Masa tradicional de harina blanca',
+         'name': 'Trigo'},
+        {'_id': '662cc65eaaa4cf8c845499b3',
+         'description': 'Masa de centeno, muy deliciosa',
+         'name': 'Centeno'},
+        {'_id': '662cc676aaa4cf8c845499cb',
+         'description': 'Masa con relleno de queso, genial para engordar',
+         'name': 'Con queso'},
+    ],
+}
+```
+
+- Código 400: Se devuelve si los datos de inicio de sesión son incorrectos o faltantes.
+- Código 410: Se devuelve si el usuario no está en la base de datos.
+- Código 401: Se devuelve si el usuario no ha hecho log in.
+- Código 500: Se devuelve con cualquier otro error no contemplado en los ya mencionados.
+
+####  POST `/create-masa`
+Crea un nueva usuario en la base de datos.
+
+**Parámetros de Entrada**
+token (cadena): El token de login del usuario.
+name (cadena): El nombre de la masa
+description (cadena): DEscripción básica de la masa.
+
+```POST /create-masa HTTP/1.1
+Content-Type: application/json
+
+{
+    'token':'token',
+    'name': 'Trigo',
+    'description': 'Masa tradicional de harina blanca'
+}
+```
+**Respuestas**
+- Código 200: Se devuelve cuando la masa se crea con éxito.
+```
+{
+    'msg': 'Masa creada con éxito', 
+    'masa_id': '662fc94943bf55d878cb248e'
+}
+```
+
+- Código 400: Se devuelve si los datos de inicio de sesión son incorrectos o faltantes.
+- Código 410: Se devuelve si el usuario no está en la base de datos.
+- Código 500: Se devuelve con cualquier otro error no contemplado en los ya mencionados.
+
+
+####  POST `/get-all-ingredients`
+Devuelve una lista con todas las ingredients.
+
+**Parámetros de Entrada**
+token (cadena): token de autenticación enviado al `login`
+
+```POST /get-all-ingredients HTTP/1.1
+Content-Type: application/json
+
+{
+    "token": "token",
+}
+```
+**Respuestas**
+- Código 200: Se devuelve cuando el inicio de sesión es exitoso. Se proporciona un token de autenticación junto con los detalles del usuario.
+```
+{
+   'ingredients': [
+        {'_id': '662cc64aaaa4cf8c845499ac',
+         'description': 'Anchoas de loas mares del Norte',
+         'name': 'Anchoas'},
+        {'_id': '662cc65eaaa4cf8c845499b3',
+         'description': 'Olivas del olivero del abuelo Paco',
+         'name': 'Olivas'},
+        {'_id': '662cc676aaa4cf8c845499cb',
+         'description': 'Sobrasada super sabrosa. La llamamos la triple S',
+         'name': 'Sobrasada'},
+    ],
+}
+```
+
+- Código 400: Se devuelve si los datos de inicio de sesión son incorrectos o faltantes.
+- Código 410: Se devuelve si el usuario no está en la base de datos.
+- Código 401: Se devuelve si el usuario no ha hecho log in.
+- Código 500: Se devuelve con cualquier otro error no contemplado en los ya mencionados.
+
+####  POST `/create-ingredient`
+Crea un nueva usuario en la base de datos.
+
+**Parámetros de Entrada**
+token (cadena): El token de login del usuario.
+name (cadena): El nombre de la ingredient
+description (cadena): DEscripción básica de la ingredient.
+
+```POST /create-ingredient HTTP/1.1
+Content-Type: application/json
+
+{
+    'token':'token',
+    'name': 'Trigo',
+    'description': 'ingredient tradicional de harina blanca'
+}
+```
+**Respuestas**
+- Código 200: Se devuelve cuando la ingredient se crea con éxito.
+```
+{
+    'msg': 'ingredient creada con éxito', 
+    'ingredient_id': '662fc94943bf55d878cb248e'
+}
+```
+
+- Código 400: Se devuelve si los datos de inicio de sesión son incorrectos o faltantes.
+- Código 410: Se devuelve si el usuario no está en la base de datos.
+- Código 500: Se devuelve con cualquier otro error no contemplado en los ya mencionados.
+  
 
 ## Diagrama UML clases
 - Nota: En python todos los métodos y variables son públicos
-  
-| User |
-| --- |
-| + _id: string |
-| + is_admin: boolean |
-| + email: string |
-| + user_name: string |
-| + first_name: string |
-| + last_name: string |
-| + password: string |
-
-
-| Pizza |
-| --- |
-| + _id: string |
-| + name: string |
-| + description: string |
-| + price: float |
-
-
-# Llegeixme
-## Patrones
-| Patrón utilizado | Archivos                  |
-|------------------|---------------------------|
-| MVC              | controllers.py, models.py |
-| Observador       | events.py                 |
-| ORM              | models.py, database.py    |
-
-## Punto de conexión
-`src/main.py`
+![diagrama_uml](image.png)

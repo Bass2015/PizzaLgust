@@ -212,7 +212,7 @@ class Pizza(DBModel):
         self.description = description
 
     @classmethod
-    def new_pizza(cls, name, price, description, masa_id, ingredient_ids):
+    def new_pizza(cls, name, price, description, masa_id="", ingredient_ids=[]):
         """
         Método para crear una nueva pizza.
 
