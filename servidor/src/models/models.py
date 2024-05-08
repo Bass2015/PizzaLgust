@@ -197,15 +197,19 @@ class Pizza(DBModel):
     def __init__(self,
                  _id=None,
                  name="",
+                 masa_id="",
                  price=0.,
                  description="",) -> None:
         self._id = _id
         self.name = name
         self.price = price
+        self.masa_id = masa_id
+        if not masa_id == "":
+            self.masa = Masa.read(masa_id)
         self.description = description
 
     @classmethod
-    def new_pizza(cls, name, price, description):
+    def new_pizza(cls, name, price, description, masa_id):
         """
         Método para crear una nueva pizza.
 
@@ -220,9 +224,14 @@ class Pizza(DBModel):
         
         pizza = cls(name = name,
                     price = price,
-                    description = description
+                    description = description,
+                    masa_id=masa_id
                    )
         pizza.__dict__.pop('_id')
+        try:
+            pizza.__dict__.pop('masa')
+        except KeyError:
+            pass
         pizza._id = db.insert_one(Pizza._database, Pizza._collection, **pizza.__dict__)
         return pizza
     

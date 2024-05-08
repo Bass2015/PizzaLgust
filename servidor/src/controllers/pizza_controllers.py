@@ -20,6 +20,14 @@ from .user_controllers import (BaseController,
                               UserNotLoggedInError,
                               UserNotAdminError)
 
+def class_to_dict(clase):
+    new_dict = {}
+    for key, value in clase.__dict__.items():
+        if not key.startswith('__') and not callable(key):
+            if isinstance(value, Masa):
+                value = class_to_dict(value)
+            new_dict[key] = value
+    return new_dict
         
 class GetAllPizzasController(TokenVerifiedEventListener, BaseController):
     def __init__(self, body, config=None):
@@ -30,7 +38,8 @@ class GetAllPizzasController(TokenVerifiedEventListener, BaseController):
         if not self.token in LoginController.logged_in_user_tokens:
             raise UserNotLoggedInError()
         results =  db.get_all_documents_from_database('pizza','pizzas')
-        data = {'pizzas': results}
+        pizzas = [class_to_dict(Pizza(**result)) for result in results]
+        data = {'pizzas': pizzas}
         return data, 200
 
 class CreatePizzaController(TokenVerifiedEventListener, BaseController):
