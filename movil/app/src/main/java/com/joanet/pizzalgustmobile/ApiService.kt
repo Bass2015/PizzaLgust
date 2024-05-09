@@ -130,6 +130,7 @@ interface ApiService {
     @POST("pizzalgust/get-all-pizzas")
     fun getAllPizzas(@Body getAllPizzasRequest: GetAllPizzasRequest): Call<GetAllPizzas>
 
+
     /* =========================================↓ BORRAR PIZZAS ↓============================ */
     @Headers("Content-Type: application/json")
     @HTTP(method = "DELETE", path = "pizzalgust/delete-pizza", hasBody = true)

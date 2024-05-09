@@ -37,8 +37,7 @@ class GetAllPizzasActivity :  AppCompatActivity() {
         if (authToken != null) {
             val apiService = RetrofitClient.createApiService()
             val call = apiService.getAllPizzas(GetAllPizzasRequest(authToken))
-
-            call.enqueue(object : Callback<GetAllPizzas> {
+            call.enqueue(object: Callback<GetAllPizzas> {
                 override fun onResponse(call: Call<GetAllPizzas>, response: Response<GetAllPizzas>) {
                     if (response.isSuccessful) {
                         val pizzas = response.body()?.pizzas ?: emptyList()

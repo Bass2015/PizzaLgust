@@ -40,7 +40,7 @@ android {
                 "META-INF/LICENSE.md",
                 "META-INF/LICENSE-notice.md",
 
-        )
+                )
         )
     }
 
@@ -54,16 +54,16 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-
+    implementation("androidx.core:core:1.9.0")
 
 
     //Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("org.jetbrains.dokka:android-documentation-plugin:1.9.20")
-    implementation("androidx.core:core:1.8.0")
+    testImplementation("io.kotest.extensions:kotest-extensions-mockserver:1.2.1")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:3.2.0")
     testImplementation(libs.junit)
-    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
@@ -76,4 +76,3 @@ dependencies {
 tasks.dokkaHtml.configure {
     outputDirectory.set(file("C:\\Users\\joanet\\Desktop\\DAM\\pizzaLgust\\github\\PizzaLgust\\movil\\documentation"))
 }
-
