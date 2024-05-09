@@ -206,9 +206,18 @@ class Pizza(DBModel):
         self.price = price
         self.masa_id = masa_id
         self.ingredient_ids = ingredient_ids
-        self.ingredients = [Ingredient.read(ing_id) for ing_id in ingredient_ids]
+        self.ingredients = []
+        for id in ingredient_ids:
+            try:
+                ing = Ingredient.read(id)
+                self.ingredient_ids.append(ing)
+            except:
+                pass
         if not masa_id == "":
-            self.masa = Masa.read(masa_id)
+            try:
+                self.masa = Masa.read(masa_id)
+            except:
+                self.masa = ""
         self.description = description
 
     @classmethod
