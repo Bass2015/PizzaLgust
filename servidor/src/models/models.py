@@ -6,10 +6,10 @@ Propósito: Definir la estructura de datos y las relaciones para la base de dato
 from inspect import getfullargspec
 from abc import ABC, abstractmethod, abstractclassmethod
 
-from services import database as db
-from events.events import TokenVerifiedEventListener
-from utils.async_utils import run_task_in_background
-from utils.auth_utils import hash_password, check_password
+from src.services import database as db
+from src.events.events import TokenVerifiedEventListener
+from src.utils.async_utils import run_task_in_background
+from src.utils.auth_utils import hash_password, check_password
 
 class DBModel(ABC):
     """
@@ -212,7 +212,7 @@ class Pizza(DBModel):
         self.description = description
 
     @classmethod
-    def new_pizza(cls, name, price, description, masa_id, ingredient_ids):
+    def new_pizza(cls, name, price, description, masa_id="", ingredient_ids=[]):
         """
         Método para crear una nueva pizza.
 

@@ -2,7 +2,7 @@
 Propósito: Definir y registrar blueprints que manejen diferentes partes de la funcionalidad de tu aplicación."""
 
 from flask import Blueprint
-from controllers import main_controller as controller
+from src.controllers import main_controller as controller
 
 blueprint = Blueprint('blueprint', __name__, url_prefix='/pizzalgust')
 

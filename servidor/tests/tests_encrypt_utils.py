@@ -62,7 +62,9 @@ def decrypt_body(body:dict):
 def encrypt_body(body:dict):
     encrypted = {}
     for k,v in body.items():
-        if k in LIST_KEYS:
+        if k == 'ingredient_ids':
+            encrypted[k] = [encrypt(item) for item in body[k]]
+        elif k in LIST_KEYS:
             encrypted[k] = [encrypt_body(sub_body) for sub_body in body[k]]
         else:
             encrypted[k] = v if k == 'token' else encrypt(v)
