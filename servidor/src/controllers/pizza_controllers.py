@@ -11,11 +11,11 @@ Clases:
 """
 from abc import ABC, abstractmethod, abstractclassmethod
 
-from utils.async_utils import run_task_in_background
-from events.events import TokenVerifiedEventListener
-from services import database as db
-from models.models import User, DBModel, Pizza, Masa, Ingredient
-from .user_controllers import (BaseController,
+from src.utils.async_utils import run_task_in_background
+from src.events.events import TokenVerifiedEventListener
+from src.services import database as db
+from src.models.models import User, DBModel, Pizza, Masa, Ingredient
+from src.controllers.user_controllers import (BaseController,
                               LoginController,
                               UserNotLoggedInError,
                               UserNotAdminError)
@@ -45,8 +45,7 @@ class GetAllPizzasController(TokenVerifiedEventListener, BaseController):
         if not self.token in LoginController.logged_in_user_tokens:
             raise UserNotLoggedInError()
         results =  db.get_all_documents_from_database('pizza','pizzas')
-        # pizzas = [class_to_dict(Pizza(**result)) for result in results]
-        pizzas = [class_to_dict(Pizza(**result)) for result in results[-2:]]
+        pizzas = [class_to_dict(Pizza(**result)) for result in results]
         data = {'pizzas': pizzas}
         return data, 200
 

@@ -5,11 +5,11 @@ Propósito: Inicializar y ejecutar la aplicación Flask.
 """
 
 from flask import Flask
-from routes.blueprints import blueprint
+from src.routes.blueprints import blueprint
 from flask_cors import CORS
 import sys
 
-import controllers.main_controller as c
+import src.controllers.main_controller as c
 
 app = Flask(__name__) 
 CORS(app)

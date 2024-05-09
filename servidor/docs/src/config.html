@@ -48,6 +48,15 @@
             <li>
                     <a class="variable" href="#N_REQ_CLAIMS">N_REQ_CLAIMS</a>
             </li>
+            <li>
+                    <a class="variable" href="#ENCRYPT_KEY">ENCRYPT_KEY</a>
+            </li>
+            <li>
+                    <a class="variable" href="#KEY_TYPES">KEY_TYPES</a>
+            </li>
+            <li>
+                    <a class="variable" href="#LIST_KEYS">LIST_KEYS</a>
+            </li>
     </ul>
 
 
@@ -84,6 +93,28 @@
 </span><span id="L-13"><a href="#L-13"><span class="linenos">13</span></a><span class="n">JWT_SECRET_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;JWT_SECRET_KEY&#39;</span><span class="p">)</span>
 </span><span id="L-14"><a href="#L-14"><span class="linenos">14</span></a><span class="n">INVALID_TOKEN_CODE</span> <span class="o">=</span> <span class="mi">403</span>
 </span><span id="L-15"><a href="#L-15"><span class="linenos">15</span></a><span class="n">N_REQ_CLAIMS</span> <span class="o">=</span> <span class="mi">3</span>
+</span><span id="L-16"><a href="#L-16"><span class="linenos">16</span></a>
+</span><span id="L-17"><a href="#L-17"><span class="linenos">17</span></a><span class="n">ENCRYPT_KEY</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;ENCRYPT_KEY&#39;</span><span class="p">)</span>
+</span><span id="L-18"><a href="#L-18"><span class="linenos">18</span></a>
+</span><span id="L-19"><a href="#L-19"><span class="linenos">19</span></a><span class="n">KEY_TYPES</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="L-20"><a href="#L-20"><span class="linenos">20</span></a>    <span class="s2">&quot;email&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="L-21"><a href="#L-21"><span class="linenos">21</span></a>    <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="L-22"><a href="#L-22"><span class="linenos">22</span></a>    <span class="s2">&quot;msg&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="L-23"><a href="#L-23"><span class="linenos">23</span></a>    <span class="s2">&quot;user_name&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="L-24"><a href="#L-24"><span class="linenos">24</span></a>    <span class="s2">&quot;first_name&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="L-25"><a href="#L-25"><span class="linenos">25</span></a>    <span class="s2">&quot;last_name&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="L-26"><a href="#L-26"><span class="linenos">26</span></a>    <span class="s2">&quot;is_admin&quot;</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+</span><span id="L-27"><a href="#L-27"><span class="linenos">27</span></a>    <span class="s2">&quot;user_type&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="L-28"><a href="#L-28"><span class="linenos">28</span></a>    <span class="s2">&quot;token&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="L-29"><a href="#L-29"><span class="linenos">29</span></a>    <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="L-30"><a href="#L-30"><span class="linenos">30</span></a>    <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="L-31"><a href="#L-31"><span class="linenos">31</span></a>    <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="L-32"><a href="#L-32"><span class="linenos">32</span></a>    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="L-33"><a href="#L-33"><span class="linenos">33</span></a>    <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+</span><span id="L-34"><a href="#L-34"><span class="linenos">34</span></a>    <span class="s2">&quot;pizza_id&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+</span><span id="L-35"><a href="#L-35"><span class="linenos">35</span></a><span class="p">}</span>
+</span><span id="L-36"><a href="#L-36"><span class="linenos">36</span></a>
+</span><span id="L-37"><a href="#L-37"><span class="linenos">37</span></a><span class="n">LIST_KEYS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;users&quot;</span><span class="p">,</span> <span class="s2">&quot;pizzas&quot;</span><span class="p">,</span> <span class="s2">&quot;masas&quot;</span><span class="p">,</span> <span class="s2">&quot;ingredient_ids&quot;</span><span class="p">,</span> <span class="s2">&quot;ingredients&quot;</span><span class="p">]</span>
 </span></pre></div>
 
 
@@ -156,6 +187,43 @@
         
     </div>
     <a class="headerlink" href="#N_REQ_CLAIMS"></a>
+    
+    
+
+                </section>
+                <section id="ENCRYPT_KEY">
+                    <div class="attr variable">
+            <span class="name">ENCRYPT_KEY</span>        =
+<span class="default_value">$ENCRYPT_KEY</span>
+
+        
+    </div>
+    <a class="headerlink" href="#ENCRYPT_KEY"></a>
+    
+    
+
+                </section>
+                <section id="KEY_TYPES">
+                    <div class="attr variable">
+            <span class="name">KEY_TYPES</span>        =
+<input id="KEY_TYPES-view-value" class="view-value-toggle-state" type="checkbox" aria-hidden="true" tabindex="-1">
+            <label class="view-value-button pdoc-button" for="KEY_TYPES-view-value"></label><span class="default_value">{&#39;email&#39;: &lt;class &#39;str&#39;&gt;, &#39;password&#39;: &lt;class &#39;str&#39;&gt;, &#39;msg&#39;: &lt;class &#39;str&#39;&gt;, &#39;user_name&#39;: &lt;class &#39;str&#39;&gt;, &#39;first_name&#39;: &lt;class &#39;str&#39;&gt;, &#39;last_name&#39;: &lt;class &#39;str&#39;&gt;, &#39;is_admin&#39;: &lt;class &#39;bool&#39;&gt;, &#39;user_type&#39;: &lt;class &#39;str&#39;&gt;, &#39;token&#39;: &lt;class &#39;str&#39;&gt;, &#39;_id&#39;: &lt;class &#39;str&#39;&gt;, &#39;user_id&#39;: &lt;class &#39;str&#39;&gt;, &#39;description&#39;: &lt;class &#39;str&#39;&gt;, &#39;name&#39;: &lt;class &#39;str&#39;&gt;, &#39;price&#39;: &lt;class &#39;float&#39;&gt;, &#39;pizza_id&#39;: &lt;class &#39;str&#39;&gt;}</span>
+
+        
+    </div>
+    <a class="headerlink" href="#KEY_TYPES"></a>
+    
+    
+
+                </section>
+                <section id="LIST_KEYS">
+                    <div class="attr variable">
+            <span class="name">LIST_KEYS</span>        =
+<span class="default_value">[&#39;users&#39;, &#39;pizzas&#39;, &#39;masas&#39;, &#39;ingredient_ids&#39;, &#39;ingredients&#39;]</span>
+
+        
+    </div>
+    <a class="headerlink" href="#LIST_KEYS"></a>
     
     
 

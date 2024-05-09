@@ -1,7 +1,7 @@
 from Crypto.Cipher import AES
 import base64
 import os
-from config import ENCRYPT_KEY, KEY_TYPES, LIST_KEYS
+from ..config import ENCRYPT_KEY, KEY_TYPES, LIST_KEYS
 
 def __pad(byte_array):
     BLOCK_SIZE = 16
