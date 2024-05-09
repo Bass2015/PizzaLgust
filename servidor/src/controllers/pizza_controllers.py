@@ -11,11 +11,11 @@ Clases:
 """
 from abc import ABC, abstractmethod, abstractclassmethod
 
-from src.utils.async_utils import run_task_in_background
-from src.events.events import TokenVerifiedEventListener
-from src.services import database as db
-from src.models.models import User, DBModel, Pizza, Masa, Ingredient
-from src.controllers.user_controllers import (BaseController,
+from utils.async_utils import run_task_in_background
+from events.events import TokenVerifiedEventListener
+from services import database as db
+from models.models import User, DBModel, Pizza, Masa, Ingredient
+from .user_controllers import (BaseController,
                               LoginController,
                               UserNotLoggedInError,
                               UserNotAdminError)

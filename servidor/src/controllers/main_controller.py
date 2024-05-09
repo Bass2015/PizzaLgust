@@ -1,17 +1,17 @@
 from flask import request, jsonify
 
-from ..config import (UNAUTHORIZED_CODE, 
+from config import (UNAUTHORIZED_CODE, 
                     DOCUMENT_NOT_FOUND_CODE, 
                     INVALID_TOKEN_CODE)
-from src.events.events import TOKEN_VERIFIED_EVENT
-from src.utils.async_utils import run_task_in_background
-from src.utils.encrypt_utils import encrypt_body, decrypt_body
-from src.utils.auth_utils import (verify_token, 
+from events.events import TOKEN_VERIFIED_EVENT
+from utils.async_utils import run_task_in_background
+from utils.encrypt_utils import encrypt_body, decrypt_body
+from utils.auth_utils import (verify_token, 
                               InvalidTokenError,
                               InvalidPasswordError)
-from src.services.database import DocumentNotFoundError
-from src.controllers.user_controllers import *
-from src.controllers.pizza_controllers import *
+from services.database import DocumentNotFoundError
+from .user_controllers import *
+from .pizza_controllers import *
 
 
 crypto = False

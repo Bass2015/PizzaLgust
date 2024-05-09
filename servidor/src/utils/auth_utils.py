@@ -8,9 +8,9 @@ from jwt import (decode,
                  ExpiredSignatureError, 
                  MissingRequiredClaimError)
 
-from ..config import JWT_SECRET_KEY, N_REQ_CLAIMS
-from src.events.events import TOKEN_VERIFIED_EVENT
-from src.services.database import is_document_in_collection
+from config import JWT_SECRET_KEY, N_REQ_CLAIMS
+from events.events import TOKEN_VERIFIED_EVENT
+from services.database import is_document_in_collection
 
 
 
