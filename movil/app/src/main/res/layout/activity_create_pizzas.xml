@@ -95,7 +95,7 @@
         android:layout_marginTop="20dp"
         android:autofillHints=""
         android:background="@drawable/edittext_rounded_corner"
-        android:hint="@string/et_UserName"
+        android:hint="@string/et_PizzaName"
         android:inputType="text"
         android:padding="8dp"
         android:textSize="13sp"
@@ -175,7 +175,7 @@
         android:layout_height="132dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SP_Massa"> <!-- Ajusta la altura según sea necesario -->
+        app:layout_constraintTop_toBottomOf="@+id/SP_Massa">
 
         <LinearLayout
             android:id="@+id/ingredientLayout"
@@ -189,8 +189,7 @@
             app:layout_constraintTop_toBottomOf="@+id/SP_Massa"
             app:layout_constraintVertical_bias="0.0">
 
-            <!-- Aquí van tus elementos dentro del LinearLayout -->
-            <!-- Por ejemplo, tus TextView, EditText, etc. -->
+
 
         </LinearLayout>
     </ScrollView>

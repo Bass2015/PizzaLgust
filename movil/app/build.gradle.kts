@@ -54,7 +54,7 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-
+    implementation("androidx.core:core:1.9.0")
 
 
     //Retrofit

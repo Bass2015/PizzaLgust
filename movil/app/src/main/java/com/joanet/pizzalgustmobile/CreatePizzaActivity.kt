@@ -2,6 +2,8 @@ package com.joanet.pizzalgustmobile
 
 import android.content.Context
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.CheckBox
 import android.widget.EditText
@@ -14,10 +16,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-/**
- * Esta clase representa la actividad de creación de pizzas en la aplicación PizzaLgust.
- * Permite a los usuarios crear nuevas pizzas proporcionando información como el nombre, el precio y la descripción.
- */
 class CreatePizzaActivity : AppCompatActivity() {
 
     private lateinit var etPizzaName: EditText
@@ -27,6 +25,7 @@ class CreatePizzaActivity : AppCompatActivity() {
     private lateinit var spinnerMasas: Spinner
     private lateinit var ingredientLayout: LinearLayout
     private var selectedIngredients: MutableList<String> = mutableListOf()
+    private lateinit var selectedMasaId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +47,7 @@ class CreatePizzaActivity : AppCompatActivity() {
                 val sharedPref = getSharedPreferences("AppPrefs", Context.MODE_PRIVATE)
                 val authToken = sharedPref.getString("authToken", null)
                 if (authToken != null) {
-                    createPizza(authToken, pizzaName, price, description)
+                    createPizza(authToken, pizzaName, price, description, selectedMasaId, selectedIngredients)
                 } else {
                     Toast.makeText(this, "Por favor, inicie sesión primero.", Toast.LENGTH_SHORT).show()
                 }
@@ -85,24 +84,24 @@ class CreatePizzaActivity : AppCompatActivity() {
             Toast.makeText(this, "No se encontró el token de autenticación.", Toast.LENGTH_SHORT).show()
         }
     }
+
     private fun setupIngredientLayout(ingredients: List<Ingredient>) {
         for (ingredient in ingredients) {
-            val ingredientName = ingredient.name
+            val ingredientId = ingredient._id
             val checkBox = CheckBox(this@CreatePizzaActivity)
-            checkBox.text = ingredientName
+            checkBox.text = ingredient.name
             checkBox.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
-                    if (!selectedIngredients.contains(ingredientName)) {
-                        selectedIngredients.add(ingredientName)
+                    if (!selectedIngredients.contains(ingredientId)) {
+                        selectedIngredients.add(ingredientId)
                     }
                 } else {
-                    selectedIngredients.remove(ingredientName)
+                    selectedIngredients.remove(ingredientId)
                 }
             }
             ingredientLayout.addView(checkBox)
         }
     }
-
 
     private fun fillSpinnerWithMasas() {
         val sharedPref = getSharedPreferences("AppPrefs", Context.MODE_PRIVATE)
@@ -119,6 +118,16 @@ class CreatePizzaActivity : AppCompatActivity() {
                         val adapter = ArrayAdapter(this@CreatePizzaActivity, android.R.layout.simple_spinner_item, masasList)
                         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                         spinnerMasas.adapter = adapter
+                        spinnerMasas.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                            override fun onItemSelected(parentView: AdapterView<*>, selectedItemView: View, position: Int, id: Long) {
+                                // Obtener el ID de la masa seleccionada
+                                selectedMasaId = response.body()?.masas?.get(position)?._id ?: ""
+                            }
+
+                            override fun onNothingSelected(parentView: AdapterView<*>) {
+                                // No hacer nada
+                            }
+                        }
                     } else {
                         Toast.makeText(this@CreatePizzaActivity, "Error al obtener las masas: ${response.code()}", Toast.LENGTH_SHORT).show()
                     }
@@ -133,31 +142,22 @@ class CreatePizzaActivity : AppCompatActivity() {
         }
     }
 
-    /**
-     * Método privado para enviar una solicitud de creación de pizza al servidor.
-     *
-     * @param token Token de autenticación del usuario.
-     * @param name Nombre de la pizza.
-     * @param price Precio de la pizza.
-     * @param descr Descripción de la pizza.
-     */
-
-
-    private fun createPizza(token: String, name: String, price: Float, description: String) {
-
-
-        val createPizzaRequest = CreatePizza(token, name, price, description)
+    private fun createPizza(token: String, name: String, price: Float, description: String, masaId: String, ingredientIds: List<String>) {
+        val createPizzaRequest = CreatePizza(token, name, price, masaId, ingredientIds, description)
         val call = RetrofitClient.createApiService().createPizza(createPizzaRequest)
 
         call.enqueue(object : Callback<ResponseCreatePizza> {
             override fun onResponse(call: Call<ResponseCreatePizza>, response: Response<ResponseCreatePizza>) {
                 if (response.isSuccessful) {
                     val createResponse = response.body()
-                    Toast.makeText(
-                        this@CreatePizzaActivity,
-                        createResponse?.msg ?: "Pizza creada con éxito",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    createResponse?.let { response ->
+                        val pizzaId = response.pizza_id
+                        Toast.makeText(
+                            this@CreatePizzaActivity,
+                            "Pizza creada con éxito, ID: $pizzaId",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 } else {
                     val errorBody = response.errorBody()?.string()
                     Toast.makeText(

@@ -196,6 +196,8 @@ data class CreatePizza(
     val token: String,
     val name: String,
     val price: Float,
+    val masa_id: String,
+    val ingredient_ids: List<String>,
     val description: String,
 
     ) : java.io.Serializable
@@ -223,7 +225,9 @@ data class Pizza(
     val _id: String,
     val name: String,
     val description: String,
-    val price: Float
+    val price: Float,
+    val masaName: String,
+    val ingredients: List<Ingredient>
 
 ) : java.io.Serializable
 
@@ -294,8 +298,6 @@ data class CreateMasa(
     val token: String,
     val name: String,
     val description: String,
-
-
     ) : java.io.Serializable
 
 /**
@@ -321,8 +323,6 @@ data class CreateIngredient(
     val token: String,
     val name: String,
     val description: String,
-
-
     ) : java.io.Serializable
 
 /**
@@ -383,9 +383,12 @@ data class GetAllIngredientsRequest(
 data class Masa(
     val _id: String,
     val name: String,
-    val description: String
+    val description: String,
 
-    ) : java.io.Serializable
+
+) : java.io.Serializable
+
+
 
 /**
  * Clase de datos que representa la respuesta que contiene una lista de masas.

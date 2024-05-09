@@ -43,6 +43,22 @@
             android:textIsSelectable="true"
             android:textSize="14sp" />
 
+        <TextView
+            android:id="@+id/tvMasa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Masa"
+            android:textIsSelectable="true"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvIngredients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ingredientes"
+            android:textIsSelectable="true"
+            android:textSize="14sp" />
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
