@@ -16,11 +16,11 @@ Clases:
 """
 from abc import ABC, abstractmethod, abstractclassmethod
 
-from src.utils.async_utils import run_task_in_background
-from src.utils.auth_utils import create_token
-from src.events.events import TokenVerifiedEventListener
-from src.services import database as db
-from src.models.models import DBModel, User
+from utils.async_utils import run_task_in_background
+from utils.auth_utils import create_token
+from events.events import TokenVerifiedEventListener
+from services import database as db
+from models.models import DBModel, User
 
 
 class BaseController(ABC):

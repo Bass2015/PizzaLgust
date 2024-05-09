@@ -7,7 +7,7 @@ from contextlib import contextmanager
 from pymongo.server_api import ServerApi
 from pymongo.mongo_client import MongoClient
 from bson import ObjectId
-from ..config import DB_URI
+from config import DB_URI
 
 def insert_one(database: str, collection: str, **fields) -> str:
     """
