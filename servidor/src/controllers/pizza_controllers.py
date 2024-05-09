@@ -46,6 +46,8 @@ class GetAllPizzasController(TokenVerifiedEventListener, BaseController):
             raise UserNotLoggedInError()
         results =  db.get_all_documents_from_database('pizza','pizzas')
         pizzas = [class_to_dict(Pizza(**result)) for result in results]
+
+        # pizzas = [class_to_dict(Pizza(**result)) for result in results[-2:]]
         data = {'pizzas': pizzas}
         return data, 200
 
