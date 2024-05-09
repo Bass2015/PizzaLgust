@@ -54,13 +54,14 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-    implementation("androidx.core:core:1.9.0")
+
 
 
     //Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("org.jetbrains.dokka:android-documentation-plugin:1.9.20")
+    implementation("androidx.core:core:1.8.0")
     testImplementation(libs.junit)
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
     androidTestImplementation(libs.androidx.junit)
